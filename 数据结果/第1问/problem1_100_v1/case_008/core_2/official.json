@@ -1,0 +1,68 @@
+{
+  "makespan": 244163,
+  "num_cores": 2,
+  "data_movement_bytes": {
+    "original_graph_copy_bytes": 2654424,
+    "scheduled_copy_bytes": 4645080,
+    "added_copy_bytes": 1990656,
+    "partition_added_copy_bytes": 1990656,
+    "spill_added_copy_bytes": 0
+  },
+  "memory_peak_by_core": {
+    "0": {
+      "L1": 36864,
+      "UB": 37056
+    },
+    "1": {
+      "L1": 30720,
+      "UB": 55488
+    }
+  },
+  "per_core_tasks": [
+    {
+      "core_id": 0,
+      "tasks": [
+        {
+          "task_id": 4,
+          "subgraph_id": 4,
+          "start": 0,
+          "end": 244163,
+          "duration": 244163
+        }
+      ]
+    },
+    {
+      "core_id": 1,
+      "tasks": [
+        {
+          "task_id": 0,
+          "subgraph_id": 0,
+          "start": 0,
+          "end": 32868,
+          "duration": 32868
+        },
+        {
+          "task_id": 2,
+          "subgraph_id": 2,
+          "start": 32968,
+          "end": 65640,
+          "duration": 32672
+        },
+        {
+          "task_id": 1,
+          "subgraph_id": 1,
+          "start": 65740,
+          "end": 102987,
+          "duration": 37247
+        },
+        {
+          "task_id": 3,
+          "subgraph_id": 3,
+          "start": 103087,
+          "end": 140134,
+          "duration": 37047
+        }
+      ]
+    }
+  ]
+}

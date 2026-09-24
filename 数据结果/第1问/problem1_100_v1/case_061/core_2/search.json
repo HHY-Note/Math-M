@@ -1,0 +1,170 @@
+{
+  "version": "3.0",
+  "cores": 2,
+  "selected": "components_1/critical",
+  "elapsed_seconds": 1.828345599999011,
+  "search_budget_seconds": 180.0,
+  "budget_note": "在候选之间检查预算；已经启动的核内展开不被中断。最终原评测另计时。",
+  "max_candidates": 3,
+  "moves": 8,
+  "preparations": 8,
+  "kernel_builds": 29,
+  "kernel_cache_hits": 6,
+  "duplicate_simulations_skipped": 5,
+  "simulations": 13,
+  "candidates": [
+    {
+      "candidate": "whole",
+      "tasks": 1,
+      "makespan": 77191,
+      "added_copy_bytes": 0,
+      "simulation_seconds": 0.015807300000233226,
+      "improved": true
+    },
+    {
+      "candidate": "baseline_chain_list",
+      "tasks": 4,
+      "makespan": 85370,
+      "added_copy_bytes": 114696,
+      "simulation_seconds": 0.01022940000075323,
+      "improved": false
+    },
+    {
+      "candidate": "components_1/critical",
+      "tasks": 2,
+      "makespan": 39299,
+      "added_copy_bytes": 34560,
+      "simulation_seconds": 0.01318849999915983,
+      "improved": true
+    },
+    {
+      "candidate": "components_2/critical",
+      "tasks": 4,
+      "makespan": 44593,
+      "added_copy_bytes": 62208,
+      "simulation_seconds": 0.014120800000455347,
+      "improved": false
+    },
+    {
+      "candidate": "components_4/critical",
+      "tasks": 8,
+      "makespan": 45618,
+      "added_copy_bytes": 146688,
+      "simulation_seconds": 0.017160499999590684,
+      "improved": false
+    },
+    {
+      "candidate": "split_bottleneck/critical",
+      "tasks": 3,
+      "makespan": 39801,
+      "added_copy_bytes": 34560,
+      "simulation_seconds": 0.018374999999650754,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 2,
+      "makespan": 76203,
+      "added_copy_bytes": 34560,
+      "simulation_seconds": 0.01138840000021446,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 2,
+      "makespan": 76203,
+      "added_copy_bytes": 34560,
+      "simulation_seconds": 0.01175850000072387,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 2,
+      "makespan": 76203,
+      "added_copy_bytes": 34560,
+      "simulation_seconds": 0.011070099999415106,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 2,
+      "makespan": 76203,
+      "added_copy_bytes": 34560,
+      "simulation_seconds": 0.011126899998998852,
+      "improved": false
+    },
+    {
+      "candidate": "window_16/critical",
+      "tasks": 6,
+      "makespan": 42907,
+      "added_copy_bytes": 83788,
+      "simulation_seconds": 0.023455399999875226,
+      "improved": false
+    },
+    {
+      "candidate": "bottleneck_band_40/critical",
+      "tasks": 4,
+      "makespan": 44830,
+      "added_copy_bytes": 74496,
+      "simulation_seconds": 0.01912070000071253,
+      "improved": false
+    },
+    {
+      "candidate": "bottleneck_band_39/critical",
+      "tasks": 4,
+      "makespan": 44271,
+      "added_copy_bytes": 74496,
+      "simulation_seconds": 0.013234000000011292,
+      "improved": false
+    }
+  ],
+  "rejected": [
+    {
+      "candidate": "structure",
+      "reason": "时间下界已经超过当前最好结果"
+    },
+    {
+      "candidate": "affinity_1",
+      "reason": "时间下界已经超过当前最好结果"
+    }
+  ],
+  "baseline_makespan": 85370,
+  "final_makespan": 39299,
+  "coarse_makespan": 39299,
+  "backbone_makespan": 39299,
+  "improvement_over_baseline": 2.1723199063589402,
+  "lower_bound_cycles": 35728.0,
+  "gap_to_lower_bound": 0.09994961934617108,
+  "features": {
+    "compute_ops": 1115,
+    "tensors": 1709,
+    "edges": 3505,
+    "depth": 45,
+    "width": 232,
+    "components": 40,
+    "largest_component": 167,
+    "max_fanout": 20,
+    "max_tensor": 8192,
+    "critical_compute": 11506,
+    "family": "mixed",
+    "op_counts": {
+      "MATMUL": 202,
+      "ADD": 237,
+      "RELU": 157,
+      "REDUCE": 201,
+      "DIV": 63,
+      "MUL": 103,
+      "SUB": 54,
+      "SQRT": 9,
+      "SIGMOID": 48,
+      "NEG": 41
+    },
+    "pipe_work": {
+      "PIPE_M": 71456,
+      "PIPE_V": 27572
+    }
+  },
+  "official_verified": true,
+  "verification_source": "original_evaluator",
+  "official_evaluation_seconds": 0.5750228999986575
+}

@@ -1,0 +1,243 @@
+{
+  "version": "3.0",
+  "cores": 2,
+  "selected": "window_8/critical",
+  "elapsed_seconds": 6.603437100000519,
+  "search_budget_seconds": 180.0,
+  "budget_note": "在候选之间检查预算；已经启动的核内展开不被中断。最终原评测另计时。",
+  "max_candidates": 3,
+  "moves": 8,
+  "preparations": 9,
+  "kernel_builds": 171,
+  "kernel_cache_hits": 94,
+  "duplicate_simulations_skipped": 1,
+  "simulations": 22,
+  "candidates": [
+    {
+      "candidate": "whole",
+      "tasks": 1,
+      "makespan": 149690,
+      "added_copy_bytes": 0,
+      "simulation_seconds": 0.02869549999923038,
+      "improved": true
+    },
+    {
+      "candidate": "baseline_chain_list",
+      "tasks": 4,
+      "makespan": 149964,
+      "added_copy_bytes": 188244,
+      "simulation_seconds": 0.0333267000005435,
+      "improved": false
+    },
+    {
+      "candidate": "levels_2/critical",
+      "tasks": 3,
+      "makespan": 102368,
+      "added_copy_bytes": 41262,
+      "simulation_seconds": 0.0350321999994776,
+      "improved": true
+    },
+    {
+      "candidate": "components_1/critical",
+      "tasks": 2,
+      "makespan": 108121,
+      "added_copy_bytes": 3456,
+      "simulation_seconds": 0.03184259999943606,
+      "improved": false
+    },
+    {
+      "candidate": "components_2/critical",
+      "tasks": 4,
+      "makespan": 108121,
+      "added_copy_bytes": 10368,
+      "simulation_seconds": 0.03275960000064515,
+      "improved": false
+    },
+    {
+      "candidate": "split_bottleneck/critical",
+      "tasks": 4,
+      "makespan": 102647,
+      "added_copy_bytes": 53428,
+      "simulation_seconds": 0.03270200000042678,
+      "improved": false
+    },
+    {
+      "candidate": "split_bottleneck/longest",
+      "tasks": 4,
+      "makespan": 102647,
+      "added_copy_bytes": 53428,
+      "simulation_seconds": 0.03536989999884099,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 3,
+      "makespan": 103268,
+      "added_copy_bytes": 41262,
+      "simulation_seconds": 0.03555390000110492,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 3,
+      "makespan": 151246,
+      "added_copy_bytes": 41262,
+      "simulation_seconds": 0.03290460000062012,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 3,
+      "makespan": 151246,
+      "added_copy_bytes": 41262,
+      "simulation_seconds": 0.03279830000064976,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 3,
+      "makespan": 150346,
+      "added_copy_bytes": 41262,
+      "simulation_seconds": 0.03211650000048394,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 3,
+      "makespan": 150346,
+      "added_copy_bytes": 41262,
+      "simulation_seconds": 0.028595100000529783,
+      "improved": false
+    },
+    {
+      "candidate": "window_8/critical",
+      "tasks": 46,
+      "makespan": 101918,
+      "added_copy_bytes": 1905856,
+      "simulation_seconds": 0.07655200000044715,
+      "improved": true
+    },
+    {
+      "candidate": "structure/critical",
+      "tasks": 110,
+      "makespan": 140162,
+      "added_copy_bytes": 4579066,
+      "simulation_seconds": 0.12263239999992948,
+      "improved": false
+    },
+    {
+      "candidate": "split_bottleneck/critical",
+      "tasks": 47,
+      "makespan": 102851,
+      "added_copy_bytes": 1905856,
+      "simulation_seconds": 0.06137920000037411,
+      "improved": false
+    },
+    {
+      "candidate": "merge_neighbors/critical",
+      "tasks": 45,
+      "makespan": 101919,
+      "added_copy_bytes": 1905852,
+      "simulation_seconds": 0.057899200000974815,
+      "improved": false
+    },
+    {
+      "candidate": "final_schedule_move",
+      "tasks": 46,
+      "makespan": 102046,
+      "added_copy_bytes": 1905856,
+      "simulation_seconds": 0.0637892999984615,
+      "improved": false
+    },
+    {
+      "candidate": "final_schedule_move",
+      "tasks": 46,
+      "makespan": 102046,
+      "added_copy_bytes": 1905856,
+      "simulation_seconds": 0.06509960000039428,
+      "improved": false
+    },
+    {
+      "candidate": "final_schedule_move",
+      "tasks": 46,
+      "makespan": 102805,
+      "added_copy_bytes": 1905856,
+      "simulation_seconds": 0.07263020000027609,
+      "improved": false
+    },
+    {
+      "candidate": "final_schedule_move",
+      "tasks": 46,
+      "makespan": 102921,
+      "added_copy_bytes": 1905856,
+      "simulation_seconds": 0.060081499999796506,
+      "improved": false
+    },
+    {
+      "candidate": "final_schedule_move",
+      "tasks": 46,
+      "makespan": 102921,
+      "added_copy_bytes": 1905856,
+      "simulation_seconds": 0.06522690000019793,
+      "improved": false
+    },
+    {
+      "candidate": "final_schedule_move",
+      "tasks": 46,
+      "makespan": 103049,
+      "added_copy_bytes": 1905856,
+      "simulation_seconds": 0.0588341999991826,
+      "improved": false
+    }
+  ],
+  "rejected": [
+    {
+      "candidate": "merge_neighbors",
+      "reason": "时间下界已经超过当前最好结果"
+    },
+    {
+      "candidate": "affinity_1",
+      "reason": "时间下界已经超过当前最好结果"
+    }
+  ],
+  "baseline_makespan": 149964,
+  "final_makespan": 101918,
+  "coarse_makespan": 102368,
+  "backbone_makespan": 101918,
+  "improvement_over_baseline": 1.4714181989442492,
+  "lower_bound_cycles": 66705.5,
+  "gap_to_lower_bound": 0.5278800098942367,
+  "features": {
+    "compute_ops": 4555,
+    "tensors": 4969,
+    "edges": 12462,
+    "depth": 186,
+    "width": 134,
+    "components": 23,
+    "largest_component": 4011,
+    "max_fanout": 256,
+    "max_tensor": 8192,
+    "critical_compute": 6829,
+    "family": "mixed",
+    "op_counts": {
+      "MATMUL": 781,
+      "REDUCE": 752,
+      "SUB": 569,
+      "MUL": 225,
+      "ADD": 1021,
+      "SQRT": 68,
+      "DIV": 386,
+      "RELU": 392,
+      "EXP": 263,
+      "SIGMOID": 79,
+      "NEG": 19
+    },
+    "pipe_work": {
+      "PIPE_M": 51968,
+      "PIPE_V": 133411
+    }
+  },
+  "official_verified": true,
+  "verification_source": "original_evaluator",
+  "official_evaluation_seconds": 1.513785299999654
+}

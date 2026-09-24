@@ -1,0 +1,104 @@
+{
+  "makespan": 1351818,
+  "num_cores": 4,
+  "data_movement_bytes": {
+    "original_graph_copy_bytes": 2802950,
+    "scheduled_copy_bytes": 12455174,
+    "added_copy_bytes": 9652224,
+    "partition_added_copy_bytes": 9446400,
+    "spill_added_copy_bytes": 205824
+  },
+  "memory_peak_by_core": {
+    "0": {
+      "L1": 523776,
+      "UB": 36864
+    },
+    "1": {
+      "L1": 0,
+      "UB": 0
+    },
+    "2": {
+      "L1": 0,
+      "UB": 0
+    },
+    "3": {
+      "L1": 0,
+      "UB": 0
+    }
+  },
+  "per_core_tasks": [
+    {
+      "core_id": 0,
+      "tasks": [
+        {
+          "task_id": 0,
+          "subgraph_id": 0,
+          "start": 0,
+          "end": 169366,
+          "duration": 169366
+        },
+        {
+          "task_id": 2,
+          "subgraph_id": 2,
+          "start": 169466,
+          "end": 337470,
+          "duration": 168004
+        },
+        {
+          "task_id": 5,
+          "subgraph_id": 5,
+          "start": 337570,
+          "end": 509050,
+          "duration": 171480
+        },
+        {
+          "task_id": 4,
+          "subgraph_id": 4,
+          "start": 509150,
+          "end": 677770,
+          "duration": 168620
+        },
+        {
+          "task_id": 3,
+          "subgraph_id": 3,
+          "start": 677870,
+          "end": 846814,
+          "duration": 168944
+        },
+        {
+          "task_id": 6,
+          "subgraph_id": 6,
+          "start": 846914,
+          "end": 1016403,
+          "duration": 169489
+        },
+        {
+          "task_id": 7,
+          "subgraph_id": 7,
+          "start": 1016503,
+          "end": 1185663,
+          "duration": 169160
+        },
+        {
+          "task_id": 1,
+          "subgraph_id": 1,
+          "start": 1185763,
+          "end": 1351818,
+          "duration": 166055
+        }
+      ]
+    },
+    {
+      "core_id": 1,
+      "tasks": []
+    },
+    {
+      "core_id": 2,
+      "tasks": []
+    },
+    {
+      "core_id": 3,
+      "tasks": []
+    }
+  ]
+}

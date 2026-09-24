@@ -1,0 +1,223 @@
+{
+  "version": "3.0",
+  "cores": 5,
+  "selected": "chains_1/critical",
+  "elapsed_seconds": 7.706850399999894,
+  "search_budget_seconds": 180.0,
+  "budget_note": "在候选之间检查预算；已经启动的核内展开不被中断。最终原评测另计时。",
+  "max_candidates": 3,
+  "moves": 8,
+  "preparations": 9,
+  "kernel_builds": 217,
+  "kernel_cache_hits": 12,
+  "duplicate_simulations_skipped": 9,
+  "simulations": 21,
+  "candidates": [
+    {
+      "candidate": "whole",
+      "tasks": 1,
+      "makespan": 693092,
+      "added_copy_bytes": 0,
+      "simulation_seconds": 0.04402680000021064,
+      "improved": true
+    },
+    {
+      "candidate": "carry_2_cores",
+      "tasks": 2,
+      "makespan": 346832,
+      "added_copy_bytes": 238720,
+      "simulation_seconds": 0.030607799999415874,
+      "improved": true
+    },
+    {
+      "candidate": "carry_3_cores",
+      "tasks": 6,
+      "makespan": 243214,
+      "added_copy_bytes": 1158528,
+      "simulation_seconds": 0.05486360000031709,
+      "improved": true
+    },
+    {
+      "candidate": "carry_4_cores",
+      "tasks": 4,
+      "makespan": 178160,
+      "added_copy_bytes": 716160,
+      "simulation_seconds": 0.02218949999951292,
+      "improved": true
+    },
+    {
+      "candidate": "baseline_chain_list",
+      "tasks": 10,
+      "makespan": 156404,
+      "added_copy_bytes": 2148480,
+      "simulation_seconds": 0.023971499998879153,
+      "improved": true
+    },
+    {
+      "candidate": "chains_1/critical",
+      "tasks": 5,
+      "makespan": 147432,
+      "added_copy_bytes": 954880,
+      "simulation_seconds": 0.02089469999918947,
+      "improved": true
+    },
+    {
+      "candidate": "components_1/critical",
+      "tasks": 5,
+      "makespan": 147432,
+      "added_copy_bytes": 954880,
+      "simulation_seconds": 0.02201039999999921,
+      "improved": false
+    },
+    {
+      "candidate": "levels_2/critical",
+      "tasks": 10,
+      "makespan": 148460,
+      "added_copy_bytes": 1610240,
+      "simulation_seconds": 0.02695999999923515,
+      "improved": false
+    },
+    {
+      "candidate": "split_bottleneck/critical",
+      "tasks": 6,
+      "makespan": 147824,
+      "added_copy_bytes": 1193600,
+      "simulation_seconds": 0.026781900000059977,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 5,
+      "makespan": 282472,
+      "added_copy_bytes": 954880,
+      "simulation_seconds": 0.02759670000159531,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 5,
+      "makespan": 282472,
+      "added_copy_bytes": 954880,
+      "simulation_seconds": 0.03849399999853631,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 5,
+      "makespan": 282472,
+      "added_copy_bytes": 954880,
+      "simulation_seconds": 0.026843600000574952,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 5,
+      "makespan": 282472,
+      "added_copy_bytes": 954880,
+      "simulation_seconds": 0.027072999999290914,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 5,
+      "makespan": 282472,
+      "added_copy_bytes": 954880,
+      "simulation_seconds": 0.02786780000133149,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 5,
+      "makespan": 282472,
+      "added_copy_bytes": 954880,
+      "simulation_seconds": 0.027788299999883748,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 5,
+      "makespan": 282472,
+      "added_copy_bytes": 954880,
+      "simulation_seconds": 0.028014199999233824,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 5,
+      "makespan": 282472,
+      "added_copy_bytes": 954880,
+      "simulation_seconds": 0.02756520000002638,
+      "improved": false
+    },
+    {
+      "candidate": "window_16/critical",
+      "tasks": 40,
+      "makespan": 158105,
+      "added_copy_bytes": 2675200,
+      "simulation_seconds": 0.031998599999496946,
+      "improved": false
+    },
+    {
+      "candidate": "structure/critical",
+      "tasks": 125,
+      "makespan": 162282,
+      "added_copy_bytes": 3043840,
+      "simulation_seconds": 0.04927060000045458,
+      "improved": false
+    },
+    {
+      "candidate": "bottleneck_band_119/critical",
+      "tasks": 14,
+      "makespan": 149458,
+      "added_copy_bytes": 1975296,
+      "simulation_seconds": 0.03459140000086336,
+      "improved": false
+    },
+    {
+      "candidate": "bottleneck_band_115/critical",
+      "tasks": 14,
+      "makespan": 150658,
+      "added_copy_bytes": 2040832,
+      "simulation_seconds": 0.03443820000029518,
+      "improved": false
+    }
+  ],
+  "rejected": [
+    {
+      "candidate": "affinity_1",
+      "reason": "时间下界已经超过当前最好结果"
+    }
+  ],
+  "baseline_makespan": 156404,
+  "final_makespan": 147432,
+  "coarse_makespan": 147432,
+  "backbone_makespan": 147432,
+  "improvement_over_baseline": 1.0608551739106842,
+  "lower_bound_cycles": 117824.0,
+  "gap_to_lower_bound": 0.25129005975013574,
+  "features": {
+    "compute_ops": 5120,
+    "tensors": 5348,
+    "edges": 13628,
+    "depth": 124,
+    "width": 80,
+    "components": 40,
+    "largest_component": 128,
+    "max_fanout": 40,
+    "max_tensor": 18432,
+    "critical_compute": 16272,
+    "family": "conv_deep",
+    "op_counts": {
+      "CONV": 2160,
+      "RELU": 2000,
+      "ADD": 960
+    },
+    "pipe_work": {
+      "PIPE_M": 589120,
+      "PIPE_V": 109760
+    }
+  },
+  "official_verified": true,
+  "verification_source": "original_evaluator",
+  "official_evaluation_seconds": 1.8679255999995803
+}

@@ -1,0 +1,105 @@
+{
+  "makespan": 1048023,
+  "num_cores": 4,
+  "data_movement_bytes": {
+    "original_graph_copy_bytes": 2388964,
+    "scheduled_copy_bytes": 12224484,
+    "added_copy_bytes": 9835520,
+    "partition_added_copy_bytes": 9408512,
+    "spill_added_copy_bytes": 427008
+  },
+  "memory_peak_by_core": {
+    "0": {
+      "L1": 524288,
+      "UB": 24576
+    },
+    "1": {
+      "L1": 522240,
+      "UB": 32776
+    },
+    "2": {
+      "L1": 0,
+      "UB": 0
+    },
+    "3": {
+      "L1": 0,
+      "UB": 0
+    }
+  },
+  "per_core_tasks": [
+    {
+      "core_id": 0,
+      "tasks": [
+        {
+          "task_id": 2,
+          "subgraph_id": 2,
+          "start": 0,
+          "end": 214944,
+          "duration": 214944
+        },
+        {
+          "task_id": 3,
+          "subgraph_id": 3,
+          "start": 215044,
+          "end": 424314,
+          "duration": 209270
+        },
+        {
+          "task_id": 6,
+          "subgraph_id": 6,
+          "start": 424414,
+          "end": 637522,
+          "duration": 213108
+        },
+        {
+          "task_id": 5,
+          "subgraph_id": 5,
+          "start": 637622,
+          "end": 846516,
+          "duration": 208894
+        },
+        {
+          "task_id": 7,
+          "subgraph_id": 7,
+          "start": 846616,
+          "end": 1048023,
+          "duration": 201407
+        }
+      ]
+    },
+    {
+      "core_id": 1,
+      "tasks": [
+        {
+          "task_id": 0,
+          "subgraph_id": 0,
+          "start": 0,
+          "end": 189866,
+          "duration": 189866
+        },
+        {
+          "task_id": 4,
+          "subgraph_id": 4,
+          "start": 189966,
+          "end": 397953,
+          "duration": 207987
+        },
+        {
+          "task_id": 1,
+          "subgraph_id": 1,
+          "start": 398053,
+          "end": 606073,
+          "duration": 208020
+        }
+      ]
+    },
+    {
+      "core_id": 2,
+      "tasks": []
+    },
+    {
+      "core_id": 3,
+      "tasks": []
+    }
+  ]
+}

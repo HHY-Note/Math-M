@@ -1,0 +1,163 @@
+{
+  "version": "3.0",
+  "cores": 2,
+  "selected": "components_1/critical",
+  "elapsed_seconds": 1.410494199999448,
+  "search_budget_seconds": 180.0,
+  "budget_note": "在候选之间检查预算；已经启动的核内展开不被中断。最终原评测另计时。",
+  "max_candidates": 3,
+  "moves": 8,
+  "preparations": 6,
+  "kernel_builds": 25,
+  "kernel_cache_hits": 1,
+  "duplicate_simulations_skipped": 5,
+  "simulations": 12,
+  "candidates": [
+    {
+      "candidate": "whole",
+      "tasks": 1,
+      "makespan": 56780,
+      "added_copy_bytes": 0,
+      "simulation_seconds": 0.010455699999511125,
+      "improved": true
+    },
+    {
+      "candidate": "baseline_chain_list",
+      "tasks": 4,
+      "makespan": 57388,
+      "added_copy_bytes": 83776,
+      "simulation_seconds": 0.012531000000308268,
+      "improved": false
+    },
+    {
+      "candidate": "components_1/critical",
+      "tasks": 2,
+      "makespan": 28333,
+      "added_copy_bytes": 6912,
+      "simulation_seconds": 0.01200299999982235,
+      "improved": true
+    },
+    {
+      "candidate": "components_2/critical",
+      "tasks": 4,
+      "makespan": 28532,
+      "added_copy_bytes": 13824,
+      "simulation_seconds": 0.012256499998329673,
+      "improved": false
+    },
+    {
+      "candidate": "components_4/critical",
+      "tasks": 8,
+      "makespan": 28564,
+      "added_copy_bytes": 27648,
+      "simulation_seconds": 0.013797699999486213,
+      "improved": false
+    },
+    {
+      "candidate": "split_bottleneck/critical",
+      "tasks": 3,
+      "makespan": 28439,
+      "added_copy_bytes": 6912,
+      "simulation_seconds": 0.01652780000040366,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 2,
+      "makespan": 56610,
+      "added_copy_bytes": 6912,
+      "simulation_seconds": 0.015543999999863445,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 2,
+      "makespan": 56610,
+      "added_copy_bytes": 6912,
+      "simulation_seconds": 0.010260099999868544,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 2,
+      "makespan": 56610,
+      "added_copy_bytes": 6912,
+      "simulation_seconds": 0.011033199998564669,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 2,
+      "makespan": 56610,
+      "added_copy_bytes": 6912,
+      "simulation_seconds": 0.01116089999959513,
+      "improved": false
+    },
+    {
+      "candidate": "window_16/critical",
+      "tasks": 5,
+      "makespan": 29254,
+      "added_copy_bytes": 95096,
+      "simulation_seconds": 0.021713899999667774,
+      "improved": false
+    },
+    {
+      "candidate": "window_16/longest",
+      "tasks": 5,
+      "makespan": 29487,
+      "added_copy_bytes": 95096,
+      "simulation_seconds": 0.0156490000008489,
+      "improved": false
+    }
+  ],
+  "rejected": [
+    {
+      "candidate": "affinity_1",
+      "reason": "时间下界已经超过当前最好结果"
+    },
+    {
+      "candidate": "structure",
+      "reason": "时间下界已经超过当前最好结果"
+    }
+  ],
+  "baseline_makespan": 57388,
+  "final_makespan": 28333,
+  "coarse_makespan": 28333,
+  "backbone_makespan": 28333,
+  "improvement_over_baseline": 2.025482652737091,
+  "lower_bound_cycles": 27043.5,
+  "gap_to_lower_bound": 0.047682437554310564,
+  "features": {
+    "compute_ops": 1356,
+    "tensors": 1705,
+    "edges": 3720,
+    "depth": 36,
+    "width": 149,
+    "components": 32,
+    "largest_component": 183,
+    "max_fanout": 10,
+    "max_tensor": 8192,
+    "critical_compute": 1986,
+    "family": "mixed",
+    "op_counts": {
+      "RELU": 367,
+      "ADD": 375,
+      "REDUCE": 254,
+      "DIV": 71,
+      "MUL": 115,
+      "SUB": 62,
+      "SQRT": 7,
+      "MATMUL": 23,
+      "SIGMOID": 44,
+      "EXP": 4,
+      "NEG": 34
+    },
+    "pipe_work": {
+      "PIPE_V": 54087,
+      "PIPE_M": 4484
+    }
+  },
+  "official_verified": true,
+  "verification_source": "original_evaluator",
+  "official_evaluation_seconds": 0.6201118000008137
+}

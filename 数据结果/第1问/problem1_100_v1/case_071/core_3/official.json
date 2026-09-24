@@ -1,0 +1,112 @@
+{
+  "makespan": 10279,
+  "num_cores": 3,
+  "data_movement_bytes": {
+    "original_graph_copy_bytes": 121446,
+    "scheduled_copy_bytes": 368210,
+    "added_copy_bytes": 246764,
+    "partition_added_copy_bytes": 246764,
+    "spill_added_copy_bytes": 0
+  },
+  "memory_peak_by_core": {
+    "0": {
+      "L1": 23808,
+      "UB": 13874
+    },
+    "1": {
+      "L1": 23808,
+      "UB": 11618
+    },
+    "2": {
+      "L1": 13824,
+      "UB": 13874
+    }
+  },
+  "per_core_tasks": [
+    {
+      "core_id": 0,
+      "tasks": [
+        {
+          "task_id": 0,
+          "subgraph_id": 0,
+          "start": 0,
+          "end": 1024,
+          "duration": 1024
+        },
+        {
+          "task_id": 4,
+          "subgraph_id": 4,
+          "start": 1639,
+          "end": 4259,
+          "duration": 2620
+        },
+        {
+          "task_id": 7,
+          "subgraph_id": 7,
+          "start": 5722,
+          "end": 10279,
+          "duration": 4557
+        }
+      ]
+    },
+    {
+      "core_id": 1,
+      "tasks": [
+        {
+          "task_id": 2,
+          "subgraph_id": 2,
+          "start": 0,
+          "end": 639,
+          "duration": 639
+        },
+        {
+          "task_id": 5,
+          "subgraph_id": 5,
+          "start": 2024,
+          "end": 3215,
+          "duration": 1191
+        },
+        {
+          "task_id": 1,
+          "subgraph_id": 1,
+          "start": 3315,
+          "end": 3444,
+          "duration": 129
+        },
+        {
+          "task_id": 3,
+          "subgraph_id": 3,
+          "start": 3544,
+          "end": 3794,
+          "duration": 250
+        },
+        {
+          "task_id": 6,
+          "subgraph_id": 6,
+          "start": 5722,
+          "end": 10279,
+          "duration": 4557
+        }
+      ]
+    },
+    {
+      "core_id": 2,
+      "tasks": [
+        {
+          "task_id": 9,
+          "subgraph_id": 9,
+          "start": 2024,
+          "end": 4722,
+          "duration": 2698
+        },
+        {
+          "task_id": 8,
+          "subgraph_id": 8,
+          "start": 5259,
+          "end": 7800,
+          "duration": 2541
+        }
+      ]
+    }
+  ]
+}

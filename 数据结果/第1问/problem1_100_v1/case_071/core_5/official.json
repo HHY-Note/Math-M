@@ -1,0 +1,151 @@
+{
+  "makespan": 9287,
+  "num_cores": 5,
+  "data_movement_bytes": {
+    "original_graph_copy_bytes": 121446,
+    "scheduled_copy_bytes": 372052,
+    "added_copy_bytes": 250606,
+    "partition_added_copy_bytes": 250606,
+    "spill_added_copy_bytes": 0
+  },
+  "memory_peak_by_core": {
+    "0": {
+      "L1": 10752,
+      "UB": 13874
+    },
+    "1": {
+      "L1": 13824,
+      "UB": 11616
+    },
+    "2": {
+      "L1": 36096,
+      "UB": 13874
+    },
+    "3": {
+      "L1": 13824,
+      "UB": 11616
+    },
+    "4": {
+      "L1": 13824,
+      "UB": 11616
+    }
+  },
+  "per_core_tasks": [
+    {
+      "core_id": 0,
+      "tasks": [
+        {
+          "task_id": 0,
+          "subgraph_id": 0,
+          "start": 0,
+          "end": 1024,
+          "duration": 1024
+        },
+        {
+          "task_id": 4,
+          "subgraph_id": 4,
+          "start": 1639,
+          "end": 4259,
+          "duration": 2620
+        }
+      ]
+    },
+    {
+      "core_id": 1,
+      "tasks": [
+        {
+          "task_id": 2,
+          "subgraph_id": 2,
+          "start": 0,
+          "end": 639,
+          "duration": 639
+        },
+        {
+          "task_id": 7,
+          "subgraph_id": 7,
+          "start": 2024,
+          "end": 3033,
+          "duration": 1009
+        },
+        {
+          "task_id": 3,
+          "subgraph_id": 3,
+          "start": 3133,
+          "end": 3474,
+          "duration": 341
+        },
+        {
+          "task_id": 9,
+          "subgraph_id": 9,
+          "start": 6075,
+          "end": 9287,
+          "duration": 3212
+        }
+      ]
+    },
+    {
+      "core_id": 2,
+      "tasks": [
+        {
+          "task_id": 12,
+          "subgraph_id": 12,
+          "start": 2024,
+          "end": 5075,
+          "duration": 3051
+        },
+        {
+          "task_id": 11,
+          "subgraph_id": 11,
+          "start": 5259,
+          "end": 8654,
+          "duration": 3395
+        }
+      ]
+    },
+    {
+      "core_id": 3,
+      "tasks": [
+        {
+          "task_id": 5,
+          "subgraph_id": 5,
+          "start": 2024,
+          "end": 3272,
+          "duration": 1248
+        },
+        {
+          "task_id": 8,
+          "subgraph_id": 8,
+          "start": 6075,
+          "end": 9287,
+          "duration": 3212
+        }
+      ]
+    },
+    {
+      "core_id": 4,
+      "tasks": [
+        {
+          "task_id": 6,
+          "subgraph_id": 6,
+          "start": 2024,
+          "end": 3108,
+          "duration": 1084
+        },
+        {
+          "task_id": 1,
+          "subgraph_id": 1,
+          "start": 3208,
+          "end": 3517,
+          "duration": 309
+        },
+        {
+          "task_id": 10,
+          "subgraph_id": 10,
+          "start": 6075,
+          "end": 9287,
+          "duration": 3212
+        }
+      ]
+    }
+  ]
+}

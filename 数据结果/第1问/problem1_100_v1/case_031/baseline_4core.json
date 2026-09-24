@@ -1,0 +1,104 @@
+{
+  "makespan": 1405191,
+  "num_cores": 4,
+  "data_movement_bytes": {
+    "original_graph_copy_bytes": 2185040,
+    "scheduled_copy_bytes": 9558096,
+    "added_copy_bytes": 7373056,
+    "partition_added_copy_bytes": 7373056,
+    "spill_added_copy_bytes": 0
+  },
+  "memory_peak_by_core": {
+    "0": {
+      "L1": 425984,
+      "UB": 57344
+    },
+    "1": {
+      "L1": 0,
+      "UB": 0
+    },
+    "2": {
+      "L1": 0,
+      "UB": 0
+    },
+    "3": {
+      "L1": 0,
+      "UB": 0
+    }
+  },
+  "per_core_tasks": [
+    {
+      "core_id": 0,
+      "tasks": [
+        {
+          "task_id": 7,
+          "subgraph_id": 7,
+          "start": 0,
+          "end": 169366,
+          "duration": 169366
+        },
+        {
+          "task_id": 6,
+          "subgraph_id": 6,
+          "start": 169466,
+          "end": 345685,
+          "duration": 176219
+        },
+        {
+          "task_id": 3,
+          "subgraph_id": 3,
+          "start": 345785,
+          "end": 521982,
+          "duration": 176197
+        },
+        {
+          "task_id": 1,
+          "subgraph_id": 1,
+          "start": 522082,
+          "end": 699366,
+          "duration": 177284
+        },
+        {
+          "task_id": 2,
+          "subgraph_id": 2,
+          "start": 699466,
+          "end": 876258,
+          "duration": 176792
+        },
+        {
+          "task_id": 0,
+          "subgraph_id": 0,
+          "start": 876358,
+          "end": 1052514,
+          "duration": 176156
+        },
+        {
+          "task_id": 4,
+          "subgraph_id": 4,
+          "start": 1052614,
+          "end": 1229898,
+          "duration": 177284
+        },
+        {
+          "task_id": 5,
+          "subgraph_id": 5,
+          "start": 1229998,
+          "end": 1405191,
+          "duration": 175193
+        }
+      ]
+    },
+    {
+      "core_id": 1,
+      "tasks": []
+    },
+    {
+      "core_id": 2,
+      "tasks": []
+    },
+    {
+      "core_id": 3,
+      "tasks": []
+    }
+  ]
+}

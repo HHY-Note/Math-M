@@ -1,0 +1,158 @@
+{
+  "version": "3.0",
+  "cores": 2,
+  "selected": "components_1/critical",
+  "elapsed_seconds": 0.884164500001134,
+  "search_budget_seconds": 180.0,
+  "budget_note": "在候选之间检查预算；已经启动的核内展开不被中断。最终原评测另计时。",
+  "max_candidates": 3,
+  "moves": 8,
+  "preparations": 6,
+  "kernel_builds": 22,
+  "kernel_cache_hits": 3,
+  "duplicate_simulations_skipped": 5,
+  "simulations": 12,
+  "candidates": [
+    {
+      "candidate": "whole",
+      "tasks": 1,
+      "makespan": 37555,
+      "added_copy_bytes": 0,
+      "simulation_seconds": 0.0083595999985846,
+      "improved": true
+    },
+    {
+      "candidate": "baseline_chain_list",
+      "tasks": 4,
+      "makespan": 38034,
+      "added_copy_bytes": 24602,
+      "simulation_seconds": 0.007145200001104968,
+      "improved": false
+    },
+    {
+      "candidate": "components_1/critical",
+      "tasks": 2,
+      "makespan": 19740,
+      "added_copy_bytes": 0,
+      "simulation_seconds": 0.006398399998943205,
+      "improved": true
+    },
+    {
+      "candidate": "chains_4/critical",
+      "tasks": 8,
+      "makespan": 20003,
+      "added_copy_bytes": 41020,
+      "simulation_seconds": 0.008437000000412809,
+      "improved": false
+    },
+    {
+      "candidate": "chains_4/longest",
+      "tasks": 8,
+      "makespan": 19935,
+      "added_copy_bytes": 41020,
+      "simulation_seconds": 0.009414599999217899,
+      "improved": false
+    },
+    {
+      "candidate": "components_2/critical",
+      "tasks": 4,
+      "makespan": 19991,
+      "added_copy_bytes": 0,
+      "simulation_seconds": 0.009495899999819812,
+      "improved": false
+    },
+    {
+      "candidate": "split_bottleneck/critical",
+      "tasks": 3,
+      "makespan": 19974,
+      "added_copy_bytes": 0,
+      "simulation_seconds": 0.007874599999922793,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 2,
+      "makespan": 37725,
+      "added_copy_bytes": 0,
+      "simulation_seconds": 0.007157399999414338,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 2,
+      "makespan": 37725,
+      "added_copy_bytes": 0,
+      "simulation_seconds": 0.007746499999484513,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 2,
+      "makespan": 37725,
+      "added_copy_bytes": 0,
+      "simulation_seconds": 0.007266800001161755,
+      "improved": false
+    },
+    {
+      "candidate": "schedule_move",
+      "tasks": 2,
+      "makespan": 37725,
+      "added_copy_bytes": 0,
+      "simulation_seconds": 0.009507599999778904,
+      "improved": false
+    },
+    {
+      "candidate": "window_8/critical",
+      "tasks": 4,
+      "makespan": 21223,
+      "added_copy_bytes": 344148,
+      "simulation_seconds": 0.012427400000888156,
+      "improved": false
+    }
+  ],
+  "rejected": [
+    {
+      "candidate": "structure",
+      "reason": "时间下界已经超过当前最好结果"
+    },
+    {
+      "candidate": "affinity_1",
+      "reason": "时间下界已经超过当前最好结果"
+    }
+  ],
+  "baseline_makespan": 38034,
+  "final_makespan": 19740,
+  "coarse_makespan": 19740,
+  "backbone_makespan": 19740,
+  "improvement_over_baseline": 1.9267477203647416,
+  "lower_bound_cycles": 18742.5,
+  "gap_to_lower_bound": 0.053221288515406195,
+  "features": {
+    "compute_ops": 861,
+    "tensors": 1281,
+    "edges": 2772,
+    "depth": 12,
+    "width": 168,
+    "components": 21,
+    "largest_component": 41,
+    "max_fanout": 5,
+    "max_tensor": 2048,
+    "critical_compute": 407,
+    "family": "vector_norm",
+    "op_counts": {
+      "REDUCE": 168,
+      "ADD": 231,
+      "DIV": 126,
+      "MUL": 189,
+      "SUB": 105,
+      "RELU": 21,
+      "SQRT": 21
+    },
+    "pipe_work": {
+      "PIPE_V": 37485
+    }
+  },
+  "official_verified": true,
+  "verification_source": "original_evaluator",
+  "official_evaluation_seconds": 0.24724889999924926
+}

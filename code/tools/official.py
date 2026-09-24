@@ -12,10 +12,11 @@ if str(REFERENCE) not in sys.path:
 from contest_io import _read_json as read_json
 from evaluation_validation import read_evaluation_config, validate_graph
 from multicore_cut_evaluate_problem_1 import (
-    _build_scene_a_tasks, evaluate_scene_a, read_scene_a_config,
+    _copy_traffic_bytes, evaluate_scene_a, read_scene_a_config,
 )
 from schedule_step1 import step1_schedule
-from schedule_step3 import PIPES, _op_duration, _uses_ddr_bandwidth
+from schedule_step2 import step2_spill_insertion, _build_extended_graph
+from schedule_step3 import PIPES, _op_duration, _uses_ddr_bandwidth, prepare_step3_execution
 from stub_multicore_cut_and_schedule import (
     _build_op_adjacency, _contract_excluded_copy_nodes,
 )

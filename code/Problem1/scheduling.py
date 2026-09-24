@@ -4,6 +4,7 @@ import heapq
 import math
 
 from Problem1.execution import check_schedules
+from tools.graph import topological
 
 
 def lower_bound(partition, cores):
@@ -77,3 +78,37 @@ def neighbors(partition, schedules, result, limit=12):
                 emitted += 1
                 if emitted >= limit:
                     return
+
+
+def schedule_cost(partition, schedules, durations, settings):
+    """固定核顺序的快速事件递推，仅用于候选排序，不作为安全剪枝下界。"""
+    owner = {s: c for c, order in enumerate(schedules) for s in order}
+    previous = {b: a for order in schedules for a, b in zip(order, order[1:])}
+    preds = {s: set(row) for s, row in partition.preds.items()}
+    succs = {s: set(row) for s, row in partition.succs.items()}
+    for b, a in previous.items():
+        preds[b].add(a)
+        succs[a].add(b)
+    finish = {}
+    for s in topological(preds, succs):
+        start = max((finish[p] + (settings.cross_wait if owner[p] != owner[s] else 0)
+                     for p in partition.preds[s]), default=0)
+        if s in previous:
+            start = max(start, finish[previous[s]] + settings.same_wait)
+        finish[s] = start + durations[s]
+    return max(finish.values(), default=0)
+
+
+def ranked_neighbors(compiled, schedules, result, settings, limit):
+    """对最终切图微调；先比较预计收益，使评测次数不浪费在枚举顺序上。"""
+    if limit <= 0:
+        return
+    part = compiled.partition
+    measured = [b - a for a, b in zip(result['task_start'], result['task_end'])]
+    ranked = []
+    for orders in neighbors(part, schedules, result, 12 * len(schedules)):
+        cost = schedule_cost(part, orders, measured, settings)
+        solo = schedule_cost(part, orders, compiled.durations, settings)
+        ranked.append((cost, solo, orders))
+    for _, _, orders in sorted(ranked)[:limit]:
+        yield orders

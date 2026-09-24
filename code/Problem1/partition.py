@@ -260,3 +260,24 @@ def feedback(graph, partition, schedules, result):
         yield 'merge_neighbors', canonical(
             [g for s, g in enumerate(partition.groups) if s not in (a, b)]
             + [partition.groups[a] + partition.groups[b]])
+
+
+def bottleneck_bands(graph, partition, result, cores, settings):
+    """仅拆分占主导的大 Task；按内部深度分段，再将每段的独立分支装箱。"""
+    if not partition.groups:
+        return
+    task = max(partition.preds, key=lambda s: result['task_end'][s] - result['task_start'][s])
+    if cores * (result['task_end'][task] - result['task_start'][task]) < result['makespan']:
+        return
+    nodes = partition.groups[task]
+    depths = sorted({graph.depth[v] for v in nodes})
+    cuts = depths[:-1]
+    if len(cuts) > 32:
+        cuts = [cuts[round(i * (len(cuts) - 1) / 31)] for i in range(32)]
+    fixed = [g for s, g in enumerate(partition.groups) if s != task]
+    for cut in cuts:
+        groups = list(fixed)
+        for before in (True, False):
+            band = [v for v in nodes if (graph.depth[v] <= cut) == before]
+            groups.extend(pack_components(graph.connected(band), graph, cores, settings.bandwidth))
+        yield f'bottleneck_band_{cut}', canonical(groups)

@@ -12,8 +12,8 @@ if __package__ in (None, ''):
 from tools.graph import Graph
 from tools.official import ROOT, Settings, read_json, write_json
 from Problem1.execution import Engine, assert_official
-from Problem1.partition import candidates, canonical, describe, feedback, refinements
-from Problem1.scheduling import list_schedule, neighbors, lower_bound
+from Problem1.partition import candidates, canonical, describe, feedback, refinements, bottleneck_bands
+from Problem1.scheduling import list_schedule, neighbors, lower_bound, ranked_neighbors
 
 
 @dataclass
@@ -39,6 +39,7 @@ class Solver:
         self.settings = settings
         self.engine = Engine(self.graph, settings)
         self.known = {}
+        self.optimized = {}
         self.whole = None
 
     def singlecore(self):
@@ -58,18 +59,26 @@ class Solver:
         started = time.perf_counter()
         whole = self.singlecore()
         if cores == 1:
-            report = dict(version='2.0', cores=1, selected='whole',
+            report = dict(version='3.0', cores=1, selected='whole',
                           elapsed_seconds=time.perf_counter() - started,
                           baseline_makespan=whole.score[0], final_makespan=whole.score[0],
                           improvement_over_baseline=1.0, features=self.graph.features())
             return whole, whole, report
         deadline = started + budget
         before_preparations = self.engine.preparations
+        before_builds, before_hits = self.engine.kernel_builds, self.engine.kernel_hits
         log, rejected = [], []
         best = None
+        evaluated = set()
+        duplicate_simulations = 0
 
-        def consider(compiled, orders, label):
-            nonlocal best
+        def consider(compiled, orders, label, required=False):
+            nonlocal best, duplicate_simulations
+            key = compiled.partition.groups, tuple(map(tuple, orders))
+            if key in evaluated and not required:
+                duplicate_simulations += 1
+                return None
+            evaluated.add(key)
             begin = time.perf_counter()
             result = self.engine.simulate(compiled, orders)
             solution = Solution(compiled, [list(o) for o in orders], result, label)
@@ -109,7 +118,7 @@ class Solver:
         baseline_entry = baseline_entry or pool[0]
         _, _, name, part, orders = baseline_entry
         baseline_compiled = self.engine.prepare(part)
-        baseline = consider(baseline_compiled, orders, 'baseline_chain_list')
+        baseline = consider(baseline_compiled, orders, 'baseline_chain_list', required=True)
         exact_orders, _ = list_schedule(part, cores, self.settings, baseline_compiled.durations)
         consider(baseline_compiled, exact_orders, name + '/profiled')
         prepared = {whole.compiled.partition.groups, part.groups}
@@ -190,19 +199,60 @@ class Solver:
             if best.score == previous_score or time.perf_counter() >= deadline:
                 break
         self.known[cores] = best
+        backbone_makespan = best.score[0]
         features = self.graph.features()
         work = features['pipe_work']
         global_bound = max(max(self.graph.rank.values(), default=0),
                            max((value / cores for value in work.values()), default=0))
+        # 保留原搜索路径及其跨核数传递；增强结果只在此后的阶段参与比较。
+        if max_candidates and best.score[0] > 1.08 * global_bound:
+            pool = []
+            for name, groups in bottleneck_bands(
+                    self.graph, best.compiled.partition, best.result, cores, self.settings):
+                if time.perf_counter() >= deadline:
+                    break
+                if groups in seen or groups in prepared:
+                    continue
+                seen[groups] = None
+                try:
+                    part = describe(self.graph, groups, self.settings, name)
+                    if lower_bound(part, cores) <= best.score[0]:
+                        _, estimate = list_schedule(part, cores, self.settings)
+                        pool.append((estimate, part.copy_bytes, name, part))
+                except ValueError:
+                    continue
+            for _, _, _, part in sorted(pool, key=lambda row: row[:3])[:min(2, max_candidates)]:
+                try_partition(part)
+        for k, old in sorted(self.optimized.items()):
+            if k < cores and old.score < best.score:
+                consider(old.compiled, old.schedules + [[] for _ in range(cores - k)],
+                         f'polished_carry_{k}')
+        # 细化后的最终切图也得到调度优化；仅在实际改善后开始下一轮。
+        for _ in range(2):
+            if time.perf_counter() >= deadline or len(best.compiled.partition.groups) > 256:
+                break
+            previous_score = best.score
+            compiled = best.compiled
+            for orders in ranked_neighbors(compiled, best.schedules, best.result, self.settings, moves):
+                if time.perf_counter() >= deadline:
+                    break
+                consider(compiled, orders, 'final_schedule_move')
+            if best.score == previous_score:
+                break
+        self.optimized[cores] = best
         report = dict(
-            version='2.0', cores=cores, selected=best.origin,
+            version='3.0', cores=cores, selected=best.origin,
             elapsed_seconds=time.perf_counter() - started, search_budget_seconds=budget,
             budget_note='在候选之间检查预算；已经启动的核内展开不被中断。最终原评测另计时。',
             max_candidates=max_candidates, moves=moves,
             preparations=self.engine.preparations - before_preparations,
+            kernel_builds=self.engine.kernel_builds - before_builds,
+            kernel_cache_hits=self.engine.kernel_hits - before_hits,
+            duplicate_simulations_skipped=duplicate_simulations,
             simulations=len(log), candidates=log, rejected=rejected,
             baseline_makespan=baseline.score[0], final_makespan=best.score[0],
             coarse_makespan=coarse_makespan,
+            backbone_makespan=backbone_makespan,
             improvement_over_baseline=baseline.score[0] / best.score[0] if best.score[0] else 1.0,
             lower_bound_cycles=global_bound,
             gap_to_lower_bound=best.score[0] / global_bound - 1 if global_bound else None,

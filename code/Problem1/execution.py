@@ -4,12 +4,15 @@
 不在每个事件重新扫描任务内所有操作；运行态最多维护 4N 个操作。
 """
 
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 from dataclasses import dataclass
 import math
 
 from tools.graph import topological
-from tools.official import PIPES, _build_scene_a_tasks, _op_duration, _uses_ddr_bandwidth
+from tools.official import (
+    PIPES, _op_duration, _uses_ddr_bandwidth, _copy_traffic_bytes,
+    step1_schedule, step2_spill_insertion, _build_extended_graph, prepare_step3_execution,
+)
 
 
 def check_schedules(partition, schedules):
@@ -41,41 +44,151 @@ class Compiled:
     movement: dict
 
 
+@dataclass
+class Kernel:
+    """固定节点集合的核内执行图；边界 COPY 与 SPILL 的编号可按序平移。"""
+    op_ids: list
+    copy_ids: list
+    spill_base: int
+    work: list
+    ddr: list
+    degree: list
+    successors: list
+    pipes: tuple
+    peak: dict
+    duration: int
+    spill_bytes: int
+
+
 class Engine:
     def __init__(self, graph, settings, cache_size=8):
         self.graph, self.settings = graph, settings
         self.cache_size = cache_size
         self.cache = OrderedDict()
         self.preparations = 0
+        self.kernels = OrderedDict()
+        self.kernel_ops = 0
+        self.kernel_limit = 8 * max(32, len(graph.all_ops))
+        self.kernel_builds = self.kernel_hits = 0
+        self.original_bytes = _copy_traffic_bytes(graph.raw)
+        self.direct = defaultdict(list)
+        for i, edge in enumerate(graph.raw['edges']):
+            if edge['source'] in graph.ops and edge['target'] in graph.ops:
+                self.direct[edge['source']].append((i, edge))
+
+    def _kernel(self, nodes, tensors, boundaries):
+        """只对新子图调用原 Step1/2/3；缓存与核指派及其他子图的划分无关。"""
+        if nodes in self.kernels:
+            self.kernel_hits += 1
+            self.kernels.move_to_end(nodes)
+            return self.kernels[nodes]
+        graph, cfg = self.graph, self.settings
+        members = set(nodes)
+        ops = [dict(graph.ops[v]) for v in nodes]
+        local_tensors, edges = [], []
+        for t in tensors:
+            tensor = dict(graph.tensors[t])
+            if tensor['pos'] == 'DDR':
+                tensor['pos'] = 'UB'
+            local_tensors.append(tensor)
+            edges.extend(dict(source=v, target=t) for v in sorted(graph.producers[t] & members))
+            edges.extend(dict(source=t, target=v) for v in sorted(graph.consumers[t] & members))
+            for tid, copy_id, incoming in boundaries.get(t, ()):
+                size = tensor['size']
+                local_tensors.append(dict(id=tid, pos='DDR', size=size))
+                ops.append(dict(id=copy_id, op='COPY_IN' if incoming else 'COPY_OUT',
+                                pipe=PIPES[0 if incoming else 1],
+                                cycles=max(1, math.ceil(size / cfg.bandwidth))))
+                source, target = (tid, t) if incoming else (t, tid)
+                edges.extend((dict(source=source, target=copy_id),
+                              dict(source=copy_id, target=target)))
+        edges.extend(dict(edge) for _, edge in sorted(
+            (i, e) for v in nodes for i, e in self.direct[v] if e['target'] in members))
+        local = dict(ops=ops, tensors=local_tensors, edges=edges)
+        spill_base = max([o['id'] for o in ops] + [t['id'] for t in local_tensors] + [0]) + 1
+        spills = step2_spill_insertion(local, step1_schedule(local), capacity=cfg.capacity)
+        task = prepare_step3_execution(_build_extended_graph(local, spills),
+                                       capacity=cfg.capacity, bandwidth=cfg.bandwidth)
+        seq = task['seq']
+        index = {v: i for i, v in enumerate(seq)}
+        work, ddr = [], []
+        for v in seq:
+            args = (task['op_by_id'][v], task['in_tids'], task['out_tids'], task['tensor_by_id'])
+            work.append(_op_duration(*args, cfg.bandwidth))
+            ddr.append(_uses_ddr_bandwidth(*args))
+        kernel = Kernel(
+            seq, [cid for row in boundaries.values() for _, cid, _ in row], spill_base,
+            work, ddr, [len(task['op_preds'][v]) for v in seq],
+            [tuple(index[w] for w in sorted(task['op_succs'][v])) for v in seq],
+            tuple(tuple(index[v] for v in task['pipe_ops'][p]) for p in PIPES),
+            task['step3']['memory_peak'], task['step3']['makespan'],
+            sum(s['size'] * (1 + int(s['spill_out_copies_data'])) for s in spills['spill_records']))
+        self.kernel_builds += 1
+        self.kernels[nodes] = kernel
+        self.kernel_ops += len(seq)
+        while self.kernel_ops > self.kernel_limit and len(self.kernels) > 1:
+            self.kernel_ops -= len(self.kernels.popitem(last=False)[1].op_ids)
+        return kernel
 
     def prepare(self, partition):
         key = partition.groups
         if key in self.cache:
             self.cache.move_to_end(key)
             return self.cache[key]
-        tasks, _, movement, _ = _build_scene_a_tasks(
-            self.graph.raw, partition.plan([partition.order]),
-            self.settings.bandwidth, self.settings.capacity)
+        graph = self.graph
+        used = set(graph.all_ops) | set(graph.tensors)
+        next_op = max(graph.all_ops, default=0) + 1
+        next_tensor = max([10000, *graph.tensors]) + 1
         op_ids, task_of, work, ddr, degree, successors = [], [], [], [], [], []
         pipes, sizes, peaks, durations = [], [], [], []
-        for s in range(len(partition.groups)):
-            task = tasks.pop(s)
-            seq = task['seq']
-            index = {v: len(op_ids) + i for i, v in enumerate(seq)}
-            for v in seq:
-                op = task['op_by_id'][v]
-                op_ids.append(v)
-                task_of.append(s)
-                work.append(_op_duration(op, task['in_tids'], task['out_tids'],
-                                         task['tensor_by_id'], self.settings.bandwidth))
-                ddr.append(_uses_ddr_bandwidth(op, task['in_tids'], task['out_tids'],
-                                               task['tensor_by_id']))
-                degree.append(len(task['op_preds'][v]))
-                successors.append(tuple(index[w] for w in sorted(task['op_succs'][v])))
-            pipes.append(tuple(tuple(index[v] for v in task['pipe_ops'][p]) for p in PIPES))
-            sizes.append(len(seq))
-            peaks.append(task['step3']['memory_peak'])
-            durations.append(task['step3']['makespan'])
+        boundary_bytes = spill_bytes = 0
+        for s, nodes in enumerate(partition.groups):
+            members = set(nodes)
+            touched = sorted({t for v in nodes for t in graph.inputs[v] | graph.outputs[v]})
+            boundaries = {}
+            for t in touched:
+                ps, cs = graph.producers[t] & members, graph.consumers[t] & members
+                directions = []
+                if cs and not ps:
+                    directions.append(True)
+                if ps and (t in graph.final or not graph.consumers[t] or graph.consumers[t] - members):
+                    directions.append(False)
+                for incoming in directions:
+                    while next_tensor in used:
+                        next_tensor += 1
+                    tid = next_tensor
+                    used.add(tid)
+                    next_tensor += 1
+                    while next_op in used:
+                        next_op += 1
+                    copy_id = next_op
+                    used.add(copy_id)
+                    next_op += 1
+                    boundaries.setdefault(t, []).append((tid, copy_id, incoming))
+                    boundary_bytes += graph.tensors[t]['size']
+            kernel = self._kernel(nodes, touched, boundaries)
+            copies = [cid for row in boundaries.values() for _, cid, _ in row]
+            rename = dict(zip(kernel.copy_ids, copies))
+            spill_base = max([*nodes, *copies, *touched,
+                              *(tid for row in boundaries.values() for tid, _, _ in row), 0]) + 1
+            offset = len(op_ids)
+            op_ids.extend(rename.get(v, v + spill_base - kernel.spill_base
+                                     if v >= kernel.spill_base else v) for v in kernel.op_ids)
+            task_of.extend([s] * len(kernel.op_ids))
+            work.extend(kernel.work)
+            ddr.extend(kernel.ddr)
+            degree.extend(kernel.degree)
+            successors.extend(tuple(offset + w for w in row) for row in kernel.successors)
+            pipes.append(tuple(tuple(offset + v for v in row) for row in kernel.pipes))
+            sizes.append(len(kernel.op_ids))
+            peaks.append(kernel.peak)
+            durations.append(kernel.duration)
+            spill_bytes += kernel.spill_bytes
+        movement = dict(original_graph_copy_bytes=self.original_bytes,
+                        scheduled_copy_bytes=boundary_bytes + spill_bytes,
+                        added_copy_bytes=boundary_bytes + spill_bytes - self.original_bytes,
+                        partition_added_copy_bytes=boundary_bytes - self.original_bytes,
+                        spill_added_copy_bytes=spill_bytes)
         result = Compiled(partition, durations, op_ids, task_of, work, ddr, degree,
                           successors, pipes, sizes, peaks, movement)
         self.preparations += 1

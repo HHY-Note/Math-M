@@ -163,7 +163,7 @@ def main():
     families = sorted({row['family'] for row in inventory})
     covered = sorted({row['family'] for row in selected})
     source_paths = sorted((ROOT / 'code/Problem1').glob('*.py')) + sorted((ROOT / 'code/tools').glob('*.py'))
-    manifest = dict(version='2.0', python=sys.version, platform=platform.platform(),
+    manifest = dict(version='3.0', python=sys.version, platform=platform.platform(),
                     config_sha256=digest(args.data / 'config.txt'),
                     source_sha256={str(p.relative_to(ROOT)): digest(p) for p in source_paths},
                     reference_sha256={p.name: digest(p) for p in sorted(REFERENCE.glob('*.py'))},

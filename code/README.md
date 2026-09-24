@@ -33,8 +33,7 @@ code/
 | 问题三 | README 占位；尚无求解程序 | [问题三](Problem3/README.md) |
 
 当前可运行的是问题一，第二、三问的目录不表示其算法已经实现。
-目录采用 Python 命名空间包，不需要只含说明文字的 `__init__.py`。
-求解入口会将本目录加入模块搜索路径。
+目录采用 Python 命名空间包，求解入口会将本目录加入模块搜索路径。
 
 ## 2. 每个文件的职责
 
@@ -58,9 +57,9 @@ code/
 | 文件 | 主要接口 | 职责 |
 | --- | --- | --- |
 | `Problem1/solve.py` | `Solver`、`Solution`、`main()` | 组织候选搜索，保留最好方案，逐核数求解，执行最终官方核验并输出方案 |
-| `Problem1/partition.py` | `Partition`、`describe()`、`candidates()`、`refinements()`、`feedback()` | 描述划分、计算代理成本，生成粗粒度与细粒度划分，提出拆分和合并候选 |
-| `Problem1/scheduling.py` | `list_schedule()`、`lower_bound()`、`neighbors()` | 按关键路径或时长进行列表调度，计算时间下界，生成合法迁移方案 |
-| `Problem1/execution.py` | `Compiled`、`Engine`、`check_schedules()`、`assert_official()` | 缓存核内展开，执行精确多核事件模拟，检查全局依赖环，与官方结果逐操作对照 |
+| `Problem1/partition.py` | `Partition`、`describe()`、`candidates()`、`refinements()`、`feedback()`、`bottleneck_bands()` | 描述划分、计算代理成本，生成结构候选、拆分合并候选和瓶颈 Task 内的分层拆分 |
+| `Problem1/scheduling.py` | `list_schedule()`、`lower_bound()`、`neighbors()`、`schedule_cost()`、`ranked_neighbors()` | 列表调度、时间下界、合法迁移及最终调度候选排序 |
+| `Problem1/execution.py` | `Kernel`、`Compiled`、`Engine`、`check_schedules()`、`assert_official()` | 按张量索引构造局部图，复用子图核内展开，执行精确多核模拟及逐操作核验 |
 | `Problem1/benchmark.py` | `run_case()`、`verify()`、`main()` | 批量求解，汇总逐用例指标和平均加速比，记录复现信息，支持多进程与对照核验 |
 | `Problem1/plot_results.py` | `plot()` | 从批量指标生成 1～5 核平均加速比曲线及曲线数据，可导出 SVG、PNG |
 
@@ -93,7 +92,7 @@ python -m pip install reportlab==4.4.9
 python -m pip install pypdfium2==5.13.0
 ```
 
-这些库仅由绘图脚本使用，不需要单独维护依赖清单文件。
+这些库仅由绘图脚本使用。
 
 ### 3.2 官方题包
 

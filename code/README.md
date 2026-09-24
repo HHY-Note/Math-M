@@ -10,7 +10,10 @@ code/
 ├── README.md
 ├── tools/
 │   ├── graph.py
-│   └── official.py
+│   ├── official.py
+│   ├── preview.py
+│   ├── experiment.py
+│   └── plot_results.py
 ├── Problem1/
 │   ├── README.md
 │   ├── solve.py
@@ -20,7 +23,11 @@ code/
 │   ├── benchmark.py
 │   └── plot_results.py
 ├── Problem2/
-│   └── README.md
+│   ├── README.md
+│   ├── solve.py
+│   ├── partition.py
+│   ├── scheduling.py
+│   └── benchmark.py
 └── Problem3/
     └── README.md
 ```
@@ -29,10 +36,11 @@ code/
 | --- | --- | --- |
 | 通用工具 | 图处理、配置读取、JSON 读写和官方接口适配 | 本文第 2 节 |
 | 问题一 | 完整求解入口、批量评测和绘图程序 | [问题一：模型与算法](Problem1/README.md) |
-| 问题二 | README 占位；尚无求解程序 | [问题二](Problem2/README.md) |
+| 问题二 | 从原图独立求解场景 B、官方评分及批量实验 | [问题二：数学模型、算法与实验分析](Problem2/README.md) |
 | 问题三 | README 占位；尚无求解程序 | [问题三](Problem3/README.md) |
 
-当前可运行的是问题一，第二、三问的目录不表示其算法已经实现。
+当前可运行问题一、二，第三问保留目录。
+第二问不调用第一问求解程序、不读取其方案或缓存；两问共用图处理和官方接口。
 目录采用 Python 命名空间包，求解入口会将本目录加入模块搜索路径。
 
 ## 2. 每个文件的职责
@@ -43,6 +51,10 @@ code/
 | --- | --- | --- |
 | `tools/graph.py` | `Graph`、`topological()` | 校验原图，建立算子 DAG 和张量关系，计算拓扑序、弱连通分量、安全链、深度和结构统计 |
 | `tools/official.py` | `Settings.read()`、`Settings.evaluate()`、`read_json()`、`write_json()` | 读取官方参数、严格读取 JSON、调用官方核内调度及第一问评测器、写出 UTF-8 JSON |
+| `tools/official.py` | `SceneBSettings` | 读取场景 B 参数、调用第二问评测器及整图单核基准 |
+| `tools/preview.py` | `evaluate()` | 第二问候选精评的完成计数加速；原版官方入口另做最终完整核验 |
+| `tools/experiment.py` | `digest()`、`official_summary()`、`write_csv()` | 共用实验输出 |
+| `tools/plot_results.py` | `plot()` | 共用平均加速比绘图；`--problem 2` 选择第二问标题 |
 
 `Graph` 保留两种互补的信息：算子 DAG 用于判断执行先后，张量及其生产者、
 消费者集合用于计算共享输入和切图搬运量。节点 ID 可以稀疏、不连续。
@@ -69,7 +81,7 @@ code/
 | --- | --- |
 | `README.md` | 总体目录、逐文件职责、依赖、命令和方案格式 |
 | `Problem1/README.md` | 按建模论文结构说明第一问的假设、符号、模型、算法、实现和验证方法 |
-| `Problem2/README.md` | 问题二文档占位 |
+| `Problem2/README.md` | 第二问代码职责、运行方法及实验指标说明 |
 | `Problem3/README.md` | 问题三文档占位 |
 
 ## 3. 运行依赖

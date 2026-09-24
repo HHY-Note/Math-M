@@ -4,7 +4,6 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 import argparse
 import csv
-import hashlib
 import json
 import platform
 import statistics
@@ -15,21 +14,10 @@ if __package__ in (None, ''):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from tools.graph import Graph
+from tools.experiment import digest, official_summary
 from tools.official import REFERENCE, ROOT, Settings, read_json, write_json
 from Problem1.execution import assert_official
 from Problem1.solve import Solver
-
-def digest(path):
-    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
-
-
-def official_summary(result):
-    return dict(makespan=result['makespan'], num_cores=result['num_cores'],
-                data_movement_bytes=result['data_movement_bytes'],
-                memory_peak_by_core=result['memory_peak_by_core'],
-                per_core_tasks=[dict(core_id=c['core_id'], tasks=c['tasks'])
-                                for c in result['per_core_timeline']])
-
 
 def verify(solution, raw, settings, previous=None, plan_path=None):
     """相同输入、配置、原评测器和方案复用已有核验；新方案逐操作核验。"""

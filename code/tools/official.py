@@ -14,11 +14,13 @@ from evaluation_validation import read_evaluation_config, validate_graph
 from multicore_cut_evaluate_problem_1 import (
     _copy_traffic_bytes, evaluate_scene_a, read_scene_a_config,
 )
+from multicore_cut_evaluate_problem_2 import evaluate_scene_b, read_scene_b_config
+from singlecore_evaluate import evaluate_singlecore
 from schedule_step1 import step1_schedule
 from schedule_step2 import step2_spill_insertion, _build_extended_graph
 from schedule_step3 import PIPES, _op_duration, _uses_ddr_bandwidth, prepare_step3_execution
 from stub_multicore_cut_and_schedule import (
-    _build_op_adjacency, _contract_excluded_copy_nodes,
+    _build_op_adjacency, _contract_excluded_copy_nodes, derive_multicore_plan,
 )
 
 
@@ -41,6 +43,27 @@ class Settings:
         return evaluate_scene_a(
             graph, plan, self.bandwidth, self.capacity,
             self.cross_wait, self.same_wait)
+
+
+@dataclass(frozen=True)
+class SceneBSettings:
+    capacity: dict
+    bandwidth: int
+    copy_delay: int
+
+    @classmethod
+    def read(cls, path):
+        values = read_evaluation_config(str(path))
+        delay = read_scene_b_config(str(path))
+        return cls(values['capacity'], values['bandwidth'],
+                   delay['cross_core_copy_delay_cycles'])
+
+    def evaluate(self, graph, plan):
+        return evaluate_scene_b(graph, plan, self.bandwidth, self.capacity,
+                                self.copy_delay)
+
+    def singlecore(self, graph):
+        return evaluate_singlecore(graph, self.bandwidth, self.capacity)
 
 
 def write_json(path, value):

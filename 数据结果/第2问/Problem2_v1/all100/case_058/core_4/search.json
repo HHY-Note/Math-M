@@ -1,0 +1,103 @@
+{
+  "version": "2.3",
+  "independent": true,
+  "cores": 4,
+  "selected": "release_runs@components_1",
+  "singlecore_makespan": 4539717,
+  "carry_makespan": 1512607,
+  "initial_makespan": 1154519,
+  "ordered_makespan": 1153881,
+  "final_makespan": 1153881,
+  "elapsed_seconds": 42.5949121000001,
+  "budget": 34.8625,
+  "search_seconds": 34.871847100000195,
+  "verification_seconds": 7.7230531000000155,
+  "budget_exhausted": true,
+  "official_calls": 1,
+  "preview_calls": 7,
+  "rejected": 0,
+  "pruned": 0,
+  "official_verified": true,
+  "history": [
+    {
+      "stage": "partition",
+      "candidate": "components_1",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1154519,
+      "added_bytes": 42622976,
+      "subgraphs": 4,
+      "improved": true,
+      "seconds": 4.385509100000036
+    },
+    {
+      "stage": "partition",
+      "candidate": "coarsen",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1683790,
+      "added_bytes": 89366528,
+      "subgraphs": 15,
+      "improved": false,
+      "seconds": 5.2213009000001875
+    },
+    {
+      "stage": "partition",
+      "candidate": "levels_2",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1207454,
+      "added_bytes": 18907136,
+      "subgraphs": 8,
+      "improved": false,
+      "seconds": 3.974793899999895
+    },
+    {
+      "stage": "partition",
+      "candidate": "resident_4",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1226479,
+      "added_bytes": 14323712,
+      "subgraphs": 5,
+      "improved": false,
+      "seconds": 3.566833200000019
+    },
+    {
+      "stage": "refine",
+      "candidate": "cut_0_5",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1352557,
+      "added_bytes": 53141504,
+      "subgraphs": 11,
+      "improved": false,
+      "seconds": 4.953524699999889
+    },
+    {
+      "stage": "order",
+      "candidate": "release_runs@components_1",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1153881,
+      "added_bytes": 43593728,
+      "subgraphs": 765,
+      "improved": true,
+      "seconds": 4.41129920000003
+    },
+    {
+      "stage": "order",
+      "candidate": "split_release@levels_2",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1203426,
+      "added_bytes": 18792448,
+      "subgraphs": 16,
+      "improved": false,
+      "seconds": 4.195688400000108
+    }
+  ],
+  "global_lower_bound": 1089743,
+  "gap_upper_bound": 0.0588560789103485,
+  "near_optimal": false
+}

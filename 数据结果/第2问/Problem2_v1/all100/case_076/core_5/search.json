@@ -1,0 +1,70 @@
+{
+  "version": "2.3",
+  "independent": true,
+  "cores": 5,
+  "selected": "components_1",
+  "singlecore_makespan": 6185113,
+  "carry_makespan": 1550155,
+  "initial_makespan": 1238120,
+  "ordered_makespan": 1238120,
+  "final_makespan": 1238120,
+  "elapsed_seconds": 64.999721,
+  "budget": 45.0,
+  "search_seconds": 50.124369599999994,
+  "verification_seconds": 14.875338500000026,
+  "budget_exhausted": true,
+  "official_calls": 1,
+  "preview_calls": 4,
+  "rejected": 0,
+  "pruned": 0,
+  "official_verified": true,
+  "history": [
+    {
+      "stage": "partition",
+      "candidate": "components_1",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1238120,
+      "added_bytes": 37194752,
+      "subgraphs": 5,
+      "improved": true,
+      "seconds": 8.623736399999984
+    },
+    {
+      "stage": "partition",
+      "candidate": "coarsen",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1374670,
+      "added_bytes": 56344576,
+      "subgraphs": 19,
+      "improved": false,
+      "seconds": 10.007228399999974
+    },
+    {
+      "stage": "order",
+      "candidate": "release_runs@components_1",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1394168,
+      "added_bytes": 60563456,
+      "subgraphs": 2162,
+      "improved": false,
+      "seconds": 10.400187400000021
+    },
+    {
+      "stage": "order",
+      "candidate": "release_runs@coarsen",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1394966,
+      "added_bytes": 60411904,
+      "subgraphs": 2139,
+      "improved": false,
+      "seconds": 10.568069600000001
+    }
+  ],
+  "global_lower_bound": 1212329,
+  "gap_upper_bound": 0.021273928116872565,
+  "near_optimal": false
+}

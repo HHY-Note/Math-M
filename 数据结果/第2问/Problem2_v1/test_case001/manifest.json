@@ -1,0 +1,79 @@
+{
+  "version": "2.3",
+  "independent": true,
+  "python": "3.7.0 (default, Jun 28 2018, 08:04:48) [MSC v.1912 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19041-SP0",
+  "config_sha256": "dcd10de54b23f8366428fb24e828812b1da9549e6eae4a3c3f38604fe5ae77b9",
+  "config": "G:\\校园经历\\研究生\\竞赛\\2026年\\数模\\中文题目\\A\\data\\config.txt",
+  "settings": {
+    "capacity": {
+      "L1": 524288,
+      "UB": 131072
+    },
+    "bandwidth": 60,
+    "copy_delay": 500
+  },
+  "source_sha256": {
+    "code\\tools\\experiment.py": "921d89501ff5aa3dc0978e07048cc63951eb6d8b7d58747ada327307e747bdbd",
+    "code\\tools\\graph.py": "07a37b3e6d6d1c5e792fe4ef44814816e240d4963f43126521b05e513dafd509",
+    "code\\tools\\official.py": "cacd7d6dec7a4b9c2d31508e0f819a84290896c8d1cbac5817f80b02518318f3",
+    "code\\tools\\plot_results.py": "f3d43631359a72dd89f8f0a65b8e884a4f1bd76413bdac7cb83896e27b193a43",
+    "code\\tools\\preview.py": "7d4fa69af5625b7a0add1a0e05b6ddf617fc81010d7105e9c2fa1702014f46b6",
+    "code\\Problem2\\benchmark.py": "c24064386f67a668b2ffb826014b4ab05e0a8629227bbe81567f31a426c4706d",
+    "code\\Problem2\\partition.py": "9e4a95b54e86b808d77fa0f1ca2072977903d33dc931b26c2740400e866a6f2e",
+    "code\\Problem2\\scheduling.py": "4d1a03626ac99163c77d3b8e1baa43105175c287bd6b19f757699d3b3facd1fd",
+    "code\\Problem2\\solve.py": "5dcc280524c414e31e00cd17946051797d7efa0988dfe6e257f931c47832b021"
+  },
+  "reference_sha256": {},
+  "inputs": {
+    "case_001": "a634cd1151c0e918dd3a143eba421b88907f7f0334bfe6a5ca0412342307f09f"
+  },
+  "selected": {
+    "case_001": {
+      "compute_ops": 600,
+      "tensors": 1202,
+      "edges": 2402,
+      "depth": 3,
+      "width": 200,
+      "components": 200,
+      "largest_component": 3,
+      "max_fanout": 200,
+      "max_tensor": 4096,
+      "critical_compute": 1316,
+      "family": "conv_shallow",
+      "op_counts": {
+        "CONV": 200,
+        "RELU": 200,
+        "ADD": 200
+      },
+      "pipe_work": {
+        "PIPE_M": 232800,
+        "PIPE_V": 30400
+      }
+    }
+  },
+  "all_families": [
+    "attention",
+    "conv_deep",
+    "conv_shallow",
+    "gated",
+    "gemm_reduce",
+    "gemm_shallow",
+    "mixed",
+    "mlp",
+    "transformer",
+    "vector_chain",
+    "vector_elementwise",
+    "vector_norm"
+  ],
+  "covered_families": [
+    "conv_shallow"
+  ],
+  "search": {
+    "budget": 5.0,
+    "candidates": 4,
+    "orders": 2,
+    "moves": 1,
+    "workers": 1
+  }
+}

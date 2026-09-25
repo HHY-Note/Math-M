@@ -1,0 +1,162 @@
+{
+  "version": "2.3",
+  "independent": true,
+  "cores": 3,
+  "selected": "release_runs@coarsen",
+  "singlecore_makespan": 4539717,
+  "carry_makespan": 2232027,
+  "initial_makespan": 1517902,
+  "ordered_makespan": 1512607,
+  "final_makespan": 1512607,
+  "elapsed_seconds": 44.2436745,
+  "budget": 34.8625,
+  "search_seconds": 37.30885280000007,
+  "verification_seconds": 6.934803299999885,
+  "budget_exhausted": true,
+  "official_calls": 1,
+  "preview_calls": 8,
+  "rejected": 0,
+  "pruned": 6,
+  "official_verified": true,
+  "history": [
+    {
+      "stage": "partition",
+      "candidate": "components_1",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1554831,
+      "added_bytes": 30400512,
+      "subgraphs": 3,
+      "improved": true,
+      "seconds": 3.5769939000001614
+    },
+    {
+      "stage": "partition",
+      "candidate": "coarsen",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1517902,
+      "added_bytes": 67706880,
+      "subgraphs": 11,
+      "improved": true,
+      "seconds": 4.571110500000032
+    },
+    {
+      "stage": "partition",
+      "candidate": "dfs_1",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1526307,
+      "added_bytes": 29601792,
+      "subgraphs": 3,
+      "improved": false,
+      "seconds": 3.833010300000069
+    },
+    {
+      "stage": "partition",
+      "candidate": "resident_4",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1576109,
+      "added_bytes": 19709952,
+      "subgraphs": 6,
+      "improved": false,
+      "seconds": 3.830234300000029
+    },
+    {
+      "stage": "refine",
+      "candidate": "cut_0_6",
+      "status": "pruned",
+      "preview_call": false,
+      "lower_bound": 1572648,
+      "seconds": 0.0068334000000049855
+    },
+    {
+      "stage": "refine",
+      "candidate": "cut_0_4",
+      "status": "pruned",
+      "preview_call": false,
+      "lower_bound": 1572648,
+      "seconds": 0.007761699999946359
+    },
+    {
+      "stage": "refine",
+      "candidate": "cut_0_5",
+      "status": "pruned",
+      "preview_call": false,
+      "lower_bound": 1572648,
+      "seconds": 0.006742199999962395
+    },
+    {
+      "stage": "refine",
+      "candidate": "cut_0_3",
+      "status": "pruned",
+      "preview_call": false,
+      "lower_bound": 1572648,
+      "seconds": 0.007099799999878087
+    },
+    {
+      "stage": "refine",
+      "candidate": "cut_0_2",
+      "status": "pruned",
+      "preview_call": false,
+      "lower_bound": 1572648,
+      "seconds": 0.009323999999878652
+    },
+    {
+      "stage": "refine",
+      "candidate": "cut_0_1",
+      "status": "pruned",
+      "preview_call": false,
+      "lower_bound": 1572648,
+      "seconds": 0.007145099999888771
+    },
+    {
+      "stage": "order",
+      "candidate": "release_runs@coarsen",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1512607,
+      "added_bytes": 32886784,
+      "subgraphs": 723,
+      "improved": true,
+      "seconds": 3.9582384000000275
+    },
+    {
+      "stage": "order",
+      "candidate": "release_runs@dfs_1",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1525049,
+      "added_bytes": 30429184,
+      "subgraphs": 522,
+      "improved": false,
+      "seconds": 4.052544599999919
+    },
+    {
+      "stage": "order",
+      "candidate": "split_release@resident_4",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1569345,
+      "added_bytes": 21061632,
+      "subgraphs": 12,
+      "improved": false,
+      "seconds": 3.9174262000001363
+    },
+    {
+      "stage": "move",
+      "candidate": "load_1_to_0_1057",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1513060,
+      "added_bytes": 32079872,
+      "subgraphs": 724,
+      "improved": false,
+      "seconds": 4.131235299999844
+    }
+  ],
+  "global_lower_bound": 1452990,
+  "gap_upper_bound": 0.041030564559976224,
+  "near_optimal": false
+}

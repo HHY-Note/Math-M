@@ -1,0 +1,81 @@
+{
+  "version": "2.3",
+  "independent": true,
+  "cores": 4,
+  "selected": "load_3_to_1_227",
+  "singlecore_makespan": 23897828,
+  "carry_makespan": 7945629,
+  "initial_makespan": 5994354,
+  "ordered_makespan": 5994354,
+  "final_makespan": 5989294,
+  "elapsed_seconds": 66.55371789999998,
+  "budget": 45.0,
+  "search_seconds": 50.7285784,
+  "verification_seconds": 15.825125799999967,
+  "budget_exhausted": true,
+  "official_calls": 1,
+  "preview_calls": 5,
+  "rejected": 0,
+  "pruned": 0,
+  "official_verified": true,
+  "history": [
+    {
+      "stage": "partition",
+      "candidate": "components_1",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 5994354,
+      "added_bytes": 122293024,
+      "subgraphs": 4,
+      "improved": true,
+      "seconds": 7.364558000000045
+    },
+    {
+      "stage": "partition",
+      "candidate": "coarsen",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 6281288,
+      "added_bytes": 157123248,
+      "subgraphs": 15,
+      "improved": false,
+      "seconds": 7.747599600000001
+    },
+    {
+      "stage": "refine",
+      "candidate": "cut_0_62",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 6070298,
+      "added_bytes": 134060720,
+      "subgraphs": 9,
+      "improved": false,
+      "seconds": 7.640493699999979
+    },
+    {
+      "stage": "order",
+      "candidate": "split_release@cut_0_62",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 6004268,
+      "added_bytes": 140348496,
+      "subgraphs": 18,
+      "improved": false,
+      "seconds": 7.9587027000000035
+    },
+    {
+      "stage": "move",
+      "candidate": "load_3_to_1_227",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 5989294,
+      "added_bytes": 122293792,
+      "subgraphs": 6,
+      "improved": true,
+      "seconds": 7.50790029999996
+    }
+  ],
+  "global_lower_bound": 5732024,
+  "gap_upper_bound": 0.04488292442599673,
+  "near_optimal": false
+}

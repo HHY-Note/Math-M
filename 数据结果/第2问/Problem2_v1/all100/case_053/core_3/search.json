@@ -1,0 +1,103 @@
+{
+  "version": "2.3",
+  "independent": true,
+  "cores": 3,
+  "selected": "split_release@fork_reduce",
+  "singlecore_makespan": 1472686,
+  "carry_makespan": 687143,
+  "initial_makespan": 484373,
+  "ordered_makespan": 475495,
+  "final_makespan": 475495,
+  "elapsed_seconds": 35.85985419999997,
+  "budget": 27.505,
+  "search_seconds": 28.45996799999989,
+  "verification_seconds": 7.399872199999891,
+  "budget_exhausted": true,
+  "official_calls": 1,
+  "preview_calls": 7,
+  "rejected": 0,
+  "pruned": 0,
+  "official_verified": true,
+  "history": [
+    {
+      "stage": "partition",
+      "candidate": "fork_reduce",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 484373,
+      "added_bytes": 8589376,
+      "subgraphs": 261,
+      "improved": true,
+      "seconds": 3.6985078000000158
+    },
+    {
+      "stage": "partition",
+      "candidate": "resident_forks",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 500463,
+      "added_bytes": 8165908,
+      "subgraphs": 238,
+      "improved": false,
+      "seconds": 3.274319000000105
+    },
+    {
+      "stage": "partition",
+      "candidate": "stream_86_2",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1033397,
+      "added_bytes": 6064260,
+      "subgraphs": 3,
+      "improved": false,
+      "seconds": 2.114753999999948
+    },
+    {
+      "stage": "partition",
+      "candidate": "window_2",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 489371,
+      "added_bytes": 8680308,
+      "subgraphs": 361,
+      "improved": false,
+      "seconds": 3.662320699999782
+    },
+    {
+      "stage": "order",
+      "candidate": "split_release@fork_reduce",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 475495,
+      "added_bytes": 8589376,
+      "subgraphs": 522,
+      "improved": true,
+      "seconds": 3.5751836999997977
+    },
+    {
+      "stage": "order",
+      "candidate": "split_release@window_2",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 480533,
+      "added_bytes": 8680308,
+      "subgraphs": 720,
+      "improved": false,
+      "seconds": 3.7768005000000358
+    },
+    {
+      "stage": "order",
+      "candidate": "split_release@resident_forks",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 496559,
+      "added_bytes": 8165908,
+      "subgraphs": 476,
+      "improved": false,
+      "seconds": 3.430179199999884
+    }
+  ],
+  "global_lower_bound": 404242,
+  "gap_upper_bound": 0.1762632284621588,
+  "near_optimal": false
+}

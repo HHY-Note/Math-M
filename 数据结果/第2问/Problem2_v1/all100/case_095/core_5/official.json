@@ -1,0 +1,120 @@
+{
+  "makespan": 420017,
+  "num_cores": 5,
+  "data_movement_bytes": {
+    "original_graph_copy_bytes": 11355036,
+    "scheduled_copy_bytes": 11760540,
+    "added_copy_bytes": 405504,
+    "partition_added_copy_bytes": 405504,
+    "spill_added_copy_bytes": 0
+  },
+  "memory_peak_by_core": {
+    "0": {
+      "L1": 49152,
+      "UB": 55488
+    },
+    "1": {
+      "L1": 49152,
+      "UB": 55488
+    },
+    "2": {
+      "L1": 49152,
+      "UB": 55488
+    },
+    "3": {
+      "L1": 49152,
+      "UB": 55488
+    },
+    "4": {
+      "L1": 49152,
+      "UB": 73920
+    }
+  },
+  "per_core_tasks": [
+    {
+      "core_id": 0,
+      "tasks": [
+        {
+          "task_id": 0,
+          "subgraph_ids": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "start": 0,
+          "end": 420017,
+          "duration": 420017
+        }
+      ]
+    },
+    {
+      "core_id": 1,
+      "tasks": [
+        {
+          "task_id": 1,
+          "subgraph_ids": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "start": 0,
+          "end": 418380,
+          "duration": 418380
+        }
+      ]
+    },
+    {
+      "core_id": 2,
+      "tasks": [
+        {
+          "task_id": 2,
+          "subgraph_ids": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "start": 0,
+          "end": 418380,
+          "duration": 418380
+        }
+      ]
+    },
+    {
+      "core_id": 3,
+      "tasks": [
+        {
+          "task_id": 3,
+          "subgraph_ids": [
+            12,
+            13,
+            14,
+            15
+          ],
+          "start": 0,
+          "end": 396173,
+          "duration": 396173
+        }
+      ]
+    },
+    {
+      "core_id": 4,
+      "tasks": [
+        {
+          "task_id": 4,
+          "subgraph_ids": [
+            16,
+            17,
+            18,
+            19
+          ],
+          "start": 0,
+          "end": 418001,
+          "duration": 418001
+        }
+      ]
+    }
+  ]
+}

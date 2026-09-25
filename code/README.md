@@ -10,6 +10,7 @@ code/
 ├── README.md
 ├── tools/
 │   ├── graph.py
+│   ├── plan.py
 │   ├── official.py
 │   ├── preview.py
 │   ├── experiment.py
@@ -29,7 +30,14 @@ code/
 │   ├── scheduling.py
 │   └── benchmark.py
 └── Problem3/
-    └── README.md
+    ├── README.md
+    ├── model.py
+    ├── search.py
+    ├── diagnostics.py
+    ├── solve.py
+    ├── benchmark.py
+    ├── sensitivity.py
+    └── plot_results.py
 ```
 
 | 部分 | 当前提供的内容 | 详细说明 |
@@ -37,10 +45,10 @@ code/
 | 通用工具 | 图处理、配置读取、JSON 读写和官方接口适配 | 本文第 2 节 |
 | 问题一 | 完整求解入口、批量评测和绘图程序 | [问题一：模型与算法](Problem1/README.md) |
 | 问题二 | 从原图独立求解场景 B、官方评分及批量实验 | [问题二：数学模型、算法与实验分析](Problem2/README.md) |
-| 问题三 | README 占位；尚无求解程序 | [问题三](Problem3/README.md) |
+| 问题三 | 独立 Cache 求解、原版双配置核验、结构覆盖实验及绘图 | [问题三](Problem3/README.md) |
 
-当前可运行问题一、二，第三问保留目录。
-第二问不调用第一问求解程序、不读取其方案或缓存；两问共用图处理和官方接口。
+三个问题均可独立从原图运行，不读取其他问题的方案、成绩或中间文件。
+通用工具只共享图处理、方案表示、官方接口及实验输出能力。
 目录采用 Python 命名空间包，求解入口会将本目录加入模块搜索路径。
 
 ## 2. 每个文件的职责
@@ -50,9 +58,11 @@ code/
 | 文件 | 主要接口 | 职责 |
 | --- | --- | --- |
 | `tools/graph.py` | `Graph`、`topological()` | 校验原图，建立算子 DAG 和张量关系，计算拓扑序、弱连通分量、安全链、深度和结构统计 |
+| `tools/plan.py` | `Plan`、`check_plan()`、`arrange()`、`runs()` | 场景 B 通用方案表示、子图 DAG 和核内顺序检查，不含各题搜索算法 |
 | `tools/official.py` | `Settings.read()`、`Settings.evaluate()`、`read_json()`、`write_json()` | 读取官方参数、严格读取 JSON、调用官方核内调度及第一问评测器、写出 UTF-8 JSON |
 | `tools/official.py` | `SceneBSettings` | 读取场景 B 参数、调用第二问评测器及整图单核基准 |
-| `tools/preview.py` | `evaluate()` | 第二问候选精评的完成计数加速；原版官方入口另做最终完整核验 |
+| `tools/official.py` | `CacheSettings` | 官方 Cache 配置与第三问评测，同方案无 L2 对照 |
+| `tools/preview.py` | `evaluate()` | 场景 B 两种配置的候选精评加速；原版官方入口另做最终完整核验 |
 | `tools/experiment.py` | `digest()`、`official_summary()`、`write_csv()` | 共用实验输出 |
 | `tools/plot_results.py` | `plot()` | 共用平均加速比绘图；`--problem 2` 选择第二问标题 |
 
@@ -82,7 +92,7 @@ code/
 | `README.md` | 总体目录、逐文件职责、依赖、命令和方案格式 |
 | `Problem1/README.md` | 按建模论文结构说明第一问的假设、符号、模型、算法、实现和验证方法 |
 | `Problem2/README.md` | 第二问代码职责、运行方法及实验指标说明 |
-| `Problem3/README.md` | 问题三文档占位 |
+| `Problem3/README.md` | 第三问模型、独立算法、核验方式、实验与运行命令 |
 
 ## 3. 运行依赖
 

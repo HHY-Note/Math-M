@@ -15,6 +15,7 @@ from multicore_cut_evaluate_problem_1 import (
     _copy_traffic_bytes, evaluate_scene_a, read_scene_a_config,
 )
 from multicore_cut_evaluate_problem_2 import evaluate_scene_b, read_scene_b_config
+from multicore_cut_evaluate_problem_3 import evaluate_problem_3, read_cache_config
 from singlecore_evaluate import evaluate_singlecore
 from schedule_step1 import step1_schedule
 from schedule_step2 import step2_spill_insertion, _build_extended_graph
@@ -64,6 +65,26 @@ class SceneBSettings:
 
     def singlecore(self, graph):
         return evaluate_singlecore(graph, self.bandwidth, self.capacity)
+
+
+@dataclass(frozen=True)
+class CacheSettings(SceneBSettings):
+    cache_capacity: int
+    cache_bandwidth: float
+
+    @classmethod
+    def read(cls, path):
+        base = SceneBSettings.read(path)
+        cache = read_cache_config(str(path))
+        return cls(base.capacity, base.bandwidth, base.copy_delay,
+                   cache['cache_capacity_bytes'], cache['cache_bandwidth_bytes_per_cycle'])
+
+    def evaluate(self, graph, plan):
+        return evaluate_problem_3(graph, plan, self.bandwidth, self.capacity, self.copy_delay,
+                                  self.cache_capacity, self.cache_bandwidth)
+
+    def without_cache(self, graph, plan):
+        return evaluate_scene_b(graph, plan, self.bandwidth, self.capacity, self.copy_delay)
 
 
 def write_json(path, value):

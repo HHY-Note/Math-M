@@ -1,105 +1,12 @@
 """场景 B 的方案表示、按张量计费和结构初始解。"""
 
 from collections import defaultdict
-from dataclasses import dataclass
 from bisect import bisect_left
 import math
 
 from tools.graph import topological
-from tools.official import PIPES, derive_multicore_plan, step1_schedule
-
-
-@dataclass(frozen=True)
-class Plan:
-    """blocks[core] 是该核心按执行优先级排列的子图；空核心保留。"""
-    blocks: tuple
-
-    @classmethod
-    def build(cls, blocks):
-        return cls(tuple(tuple(tuple(sorted(group)) for group in core if group)
-                         for core in blocks))
-
-    @classmethod
-    def read(cls, graph, value):
-        view = derive_multicore_plan(graph.raw, value)
-        return cls.build([[view['nodes_by_subgraph'][s] for s in order]
-                          for order in value['core_schedules']])
-
-    def as_dict(self):
-        mapping, schedules = {}, []
-        for core in self.blocks:
-            order = []
-            for group in core:
-                sg = sum(map(len, schedules)) + len(order)
-                order.append(sg)
-                mapping.update((str(v), sg) for v in group)
-            schedules.append(order)
-        return dict(node_to_subgraph=dict(sorted(mapping.items(), key=lambda x: int(x[0]))),
-                    core_schedules=schedules)
-
-    def assignment(self):
-        return {v: c for c, groups in enumerate(self.blocks) for group in groups for v in group}
-
-    def padded(self, cores):
-        if cores < len(self.blocks):
-            raise ValueError('不能通过补空核减少核心数')
-        return Plan(self.blocks + ((),) * (cores - len(self.blocks)))
-
-
-def block_graph(graph, plan):
-    items = [(c, group) for c, core in enumerate(plan.blocks) for group in core]
-    owner = {v: s for s, (_, group) in enumerate(items) for v in group}
-    if len(owner) != sum(len(group) for _, group in items) or set(owner) != set(graph.ops):
-        raise ValueError('方案必须恰好覆盖全部非 COPY 操作')
-    preds, succs = {s: set() for s in range(len(items))}, {s: set() for s in range(len(items))}
-    for v in graph.order:
-        for w in graph.succs[v]:
-            a, b = owner[v], owner[w]
-            if a != b:
-                preds[b].add(a)
-                succs[a].add(b)
-    return items, preds, succs
-
-
-def check_plan(graph, plan):
-    items, preds, succs = block_graph(graph, plan)
-    topological(preds, succs)
-    for a, after in succs.items():
-        if any(items[a][0] == items[b][0] and a > b for b in after):
-            raise ValueError('同核子图顺序违反依赖')
-
-
-def arrange(graph, groups, cores, priority):
-    """将同一个子图 DAG 的拓扑序投影到各核；不添加 Task 完成屏障。"""
-    blocks = [[] for _ in range(cores)]
-    for core, group in groups:
-        if group:
-            blocks[core].append(group)
-    plan = Plan.build(blocks)
-    items, preds, succs = block_graph(graph, plan)
-    ranks = {s: min(priority[v] for v in group) for s, (_, group) in enumerate(items)}
-    ordered = [[] for _ in range(cores)]
-    for s in topological(preds, succs, ranks):
-        c, group = items[s]
-        ordered[c].append(group)
-    return Plan.build(ordered)
-
-
-def runs(graph, owner, cores, order, width=256, limit=8192):
-    """全局拓扑序的同核连续段保证子图 DAG 无环；限制只控制搜索规模。"""
-    groups, previous = [], None
-    for v in order:
-        core = owner[v]
-        if core != previous or len(groups[-1][1]) >= width:
-            if len(groups) >= limit:
-                return None
-            groups.append((core, []))
-            previous = core
-        groups[-1][1].append(v)
-    blocks = [[] for _ in range(cores)]
-    for core, group in groups:
-        blocks[core].append(group)
-    return Plan.build(blocks)
+from tools.official import PIPES, step1_schedule
+from tools.plan import Plan, arrange, block_graph, check_plan, runs
 
 
 class CostModel:

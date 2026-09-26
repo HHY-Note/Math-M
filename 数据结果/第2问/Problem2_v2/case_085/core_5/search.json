@@ -1,0 +1,81 @@
+{
+  "version": "2.3",
+  "independent": true,
+  "cores": 5,
+  "selected": "split_release@fork_reduce",
+  "singlecore_makespan": 3187899,
+  "carry_makespan": 838246,
+  "initial_makespan": 795215,
+  "ordered_makespan": 770159,
+  "final_makespan": 770159,
+  "elapsed_seconds": 56.44537280000077,
+  "budget": 39.6055,
+  "search_seconds": 40.19264760000078,
+  "verification_seconds": 16.25271470000007,
+  "budget_exhausted": true,
+  "official_calls": 1,
+  "preview_calls": 5,
+  "rejected": 0,
+  "pruned": 0,
+  "official_verified": true,
+  "history": [
+    {
+      "stage": "partition",
+      "candidate": "fork_reduce",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 822522,
+      "added_bytes": 25100728,
+      "subgraphs": 635,
+      "improved": true,
+      "seconds": 7.063082599999689
+    },
+    {
+      "stage": "partition",
+      "candidate": "resident_forks",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 1157777,
+      "added_bytes": 24239102,
+      "subgraphs": 430,
+      "improved": false,
+      "seconds": 6.529472799999894
+    },
+    {
+      "stage": "partition",
+      "candidate": "window_2",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 795215,
+      "added_bytes": 25638488,
+      "subgraphs": 1125,
+      "improved": true,
+      "seconds": 7.097664000000805
+    },
+    {
+      "stage": "order",
+      "candidate": "split_release@window_2",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 782278,
+      "added_bytes": 25638488,
+      "subgraphs": 2250,
+      "improved": true,
+      "seconds": 6.936155499999586
+    },
+    {
+      "stage": "order",
+      "candidate": "split_release@fork_reduce",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 770159,
+      "added_bytes": 25100728,
+      "subgraphs": 1270,
+      "improved": true,
+      "seconds": 7.041935500000363
+    }
+  ],
+  "global_lower_bound": 513044,
+  "gap_upper_bound": 0.5011558462821901,
+  "near_optimal": false
+}

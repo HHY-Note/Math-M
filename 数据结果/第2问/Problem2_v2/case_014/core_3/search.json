@@ -1,0 +1,94 @@
+{
+  "version": "2.3",
+  "independent": true,
+  "cores": 3,
+  "selected": "merge_neighbors@coarsen",
+  "singlecore_makespan": 17698626,
+  "carry_makespan": 8859399,
+  "initial_makespan": 5965680,
+  "ordered_makespan": 5965005,
+  "final_makespan": 5965005,
+  "elapsed_seconds": 64.41581439999982,
+  "budget": 45,
+  "search_seconds": 46.84905519999984,
+  "verification_seconds": 17.56674359999988,
+  "budget_exhausted": true,
+  "official_calls": 1,
+  "preview_calls": 4,
+  "rejected": 0,
+  "pruned": 3,
+  "official_verified": true,
+  "history": [
+    {
+      "stage": "partition",
+      "candidate": "components_1",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 5980632,
+      "added_bytes": 77640360,
+      "subgraphs": 3,
+      "improved": true,
+      "seconds": 7.919061500000225
+    },
+    {
+      "stage": "partition",
+      "candidate": "coarsen",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 5965680,
+      "added_bytes": 118925496,
+      "subgraphs": 11,
+      "improved": true,
+      "seconds": 8.786877900000036
+    },
+    {
+      "stage": "refine",
+      "candidate": "cut_0_9",
+      "status": "pruned",
+      "preview_call": false,
+      "lower_bound": 6218688,
+      "seconds": 0.012624999999843567
+    },
+    {
+      "stage": "refine",
+      "candidate": "cut_0_16",
+      "status": "pruned",
+      "preview_call": false,
+      "lower_bound": 6219012,
+      "seconds": 0.012799700000414305
+    },
+    {
+      "stage": "refine",
+      "candidate": "cut_0_4",
+      "status": "pruned",
+      "preview_call": false,
+      "lower_bound": 6218988,
+      "seconds": 0.01575589999993099
+    },
+    {
+      "stage": "order",
+      "candidate": "merge_neighbors@coarsen",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 5965005,
+      "added_bytes": 116750520,
+      "subgraphs": 10,
+      "improved": true,
+      "seconds": 9.026403200000004
+    },
+    {
+      "stage": "order",
+      "candidate": "release_runs@components_1",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 5967583,
+      "added_bytes": 106338480,
+      "subgraphs": 6154,
+      "improved": false,
+      "seconds": 9.87529829999994
+    }
+  ],
+  "global_lower_bound": 5741916,
+  "gap_upper_bound": 0.03885271048897265,
+  "near_optimal": false
+}

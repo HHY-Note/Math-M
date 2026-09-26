@@ -1,0 +1,168 @@
+{
+  "version": "2.3",
+  "independent": true,
+  "cores": 3,
+  "selected": "split_release@fork_reduce",
+  "singlecore_makespan": 1441809,
+  "carry_makespan": 649943,
+  "initial_makespan": 620089,
+  "ordered_makespan": 607622,
+  "final_makespan": 607622,
+  "elapsed_seconds": 26.947160100000474,
+  "budget": 21.115000000000002,
+  "search_seconds": 22.83641009999974,
+  "verification_seconds": 4.11073690000012,
+  "budget_exhausted": true,
+  "official_calls": 1,
+  "preview_calls": 10,
+  "rejected": 0,
+  "pruned": 4,
+  "official_verified": true,
+  "history": [
+    {
+      "stage": "partition",
+      "candidate": "window_4",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 758338,
+      "added_bytes": 4667372,
+      "subgraphs": 335,
+      "improved": false,
+      "seconds": 1.7507304999999178
+    },
+    {
+      "stage": "partition",
+      "candidate": "resident_4",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 840859,
+      "added_bytes": 4817388,
+      "subgraphs": 198,
+      "improved": false,
+      "seconds": 1.7015487000007852
+    },
+    {
+      "stage": "partition",
+      "candidate": "window_2",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 636880,
+      "added_bytes": 7199564,
+      "subgraphs": 690,
+      "improved": true,
+      "seconds": 2.135404099999505
+    },
+    {
+      "stage": "partition",
+      "candidate": "fork_reduce",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 620089,
+      "added_bytes": 7307148,
+      "subgraphs": 423,
+      "improved": true,
+      "seconds": 2.0737590000007913
+    },
+    {
+      "stage": "partition",
+      "candidate": "stream_307_2",
+      "status": "pruned",
+      "preview_call": false,
+      "lower_bound": 740032,
+      "seconds": 0.004680300000472926
+    },
+    {
+      "stage": "partition",
+      "candidate": "levels_4",
+      "status": "pruned",
+      "preview_call": false,
+      "lower_bound": 1103648,
+      "seconds": 0.0045446000003721565
+    },
+    {
+      "stage": "partition",
+      "candidate": "dfs_1",
+      "status": "pruned",
+      "preview_call": false,
+      "lower_bound": 1107520,
+      "seconds": 0.003922899999452056
+    },
+    {
+      "stage": "partition",
+      "candidate": "topo_1",
+      "status": "pruned",
+      "preview_call": false,
+      "lower_bound": 1107520,
+      "seconds": 0.004319399999985762
+    },
+    {
+      "stage": "partition",
+      "candidate": "resident_forks",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 665376,
+      "added_bytes": 7421740,
+      "subgraphs": 309,
+      "improved": false,
+      "seconds": 2.254795899999408
+    },
+    {
+      "stage": "order",
+      "candidate": "split_release@fork_reduce",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 607622,
+      "added_bytes": 7307148,
+      "subgraphs": 846,
+      "improved": true,
+      "seconds": 2.2767350000003717
+    },
+    {
+      "stage": "order",
+      "candidate": "split_release@window_2",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 640267,
+      "added_bytes": 7199564,
+      "subgraphs": 1380,
+      "improved": false,
+      "seconds": 1.9319215999994412
+    },
+    {
+      "stage": "order",
+      "candidate": "split_release@carry_2",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 666659,
+      "added_bytes": 2703046,
+      "subgraphs": 564,
+      "improved": false,
+      "seconds": 1.8779574999998658
+    },
+    {
+      "stage": "order",
+      "candidate": "critical_runs@fork_reduce",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 728050,
+      "added_bytes": 7307148,
+      "subgraphs": 4793,
+      "improved": false,
+      "seconds": 1.960644599999796
+    },
+    {
+      "stage": "move",
+      "candidate": "sync_1_to_0_11",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 759179,
+      "added_bytes": 7307148,
+      "subgraphs": 847,
+      "improved": false,
+      "seconds": 2.2015308999998524
+    }
+  ],
+  "global_lower_bound": 369174,
+  "gap_upper_bound": 0.645895973172542,
+  "near_optimal": false
+}

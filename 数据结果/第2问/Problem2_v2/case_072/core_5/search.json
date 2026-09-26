@@ -1,0 +1,81 @@
+{
+  "version": "2.3",
+  "independent": true,
+  "cores": 5,
+  "selected": "components_1",
+  "singlecore_makespan": 23897828,
+  "carry_makespan": 5989294,
+  "initial_makespan": 4863110,
+  "ordered_makespan": 4863110,
+  "final_makespan": 4863110,
+  "elapsed_seconds": 67.35338819999924,
+  "budget": 45,
+  "search_seconds": 52.273953099999744,
+  "verification_seconds": 15.07942120000007,
+  "budget_exhausted": true,
+  "official_calls": 1,
+  "preview_calls": 5,
+  "rejected": 0,
+  "pruned": 0,
+  "official_verified": true,
+  "history": [
+    {
+      "stage": "partition",
+      "candidate": "components_1",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 4863110,
+      "added_bytes": 121488048,
+      "subgraphs": 5,
+      "improved": true,
+      "seconds": 7.335647300000346
+    },
+    {
+      "stage": "partition",
+      "candidate": "coarsen",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 5181513,
+      "added_bytes": 163742384,
+      "subgraphs": 19,
+      "improved": false,
+      "seconds": 7.988288799999282
+    },
+    {
+      "stage": "refine",
+      "candidate": "cut_0_15",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 4925027,
+      "added_bytes": 130802364,
+      "subgraphs": 14,
+      "improved": false,
+      "seconds": 7.8488745999993625
+    },
+    {
+      "stage": "order",
+      "candidate": "split_release@cut_0_15",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 4912685,
+      "added_bytes": 137350236,
+      "subgraphs": 28,
+      "improved": false,
+      "seconds": 8.156359599999632
+    },
+    {
+      "stage": "move",
+      "candidate": "load_2_to_3_352",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 9298885,
+      "added_bytes": 121488816,
+      "subgraphs": 7,
+      "improved": false,
+      "seconds": 7.639016000000083
+    }
+  ],
+  "global_lower_bound": 4585619,
+  "gap_upper_bound": 0.06051331346978461,
+  "near_optimal": false
+}

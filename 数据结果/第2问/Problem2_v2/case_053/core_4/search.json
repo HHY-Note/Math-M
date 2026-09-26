@@ -1,0 +1,92 @@
+{
+  "version": "2.3",
+  "independent": true,
+  "cores": 4,
+  "selected": "split_release@window_2",
+  "singlecore_makespan": 1472686,
+  "carry_makespan": 475495,
+  "initial_makespan": 419986,
+  "ordered_makespan": 411764,
+  "final_makespan": 411764,
+  "elapsed_seconds": 35.75315480000063,
+  "budget": 27.505,
+  "search_seconds": 28.123999800000092,
+  "verification_seconds": 7.629142799999499,
+  "budget_exhausted": true,
+  "official_calls": 1,
+  "preview_calls": 6,
+  "rejected": 0,
+  "pruned": 0,
+  "official_verified": true,
+  "history": [
+    {
+      "stage": "partition",
+      "candidate": "fork_reduce",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 429350,
+      "added_bytes": 12679198,
+      "subgraphs": 347,
+      "improved": true,
+      "seconds": 3.9805005999996865
+    },
+    {
+      "stage": "partition",
+      "candidate": "resident_forks",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 453496,
+      "added_bytes": 11468410,
+      "subgraphs": 296,
+      "improved": false,
+      "seconds": 3.3432339000000866
+    },
+    {
+      "stage": "partition",
+      "candidate": "window_2",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 419986,
+      "added_bytes": 12151738,
+      "subgraphs": 480,
+      "improved": true,
+      "seconds": 4.073527300000023
+    },
+    {
+      "stage": "refine",
+      "candidate": "cut_0_1",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 424000,
+      "added_bytes": 12372466,
+      "subgraphs": 487,
+      "improved": false,
+      "seconds": 3.9572353000003204
+    },
+    {
+      "stage": "order",
+      "candidate": "split_release@window_2",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 411764,
+      "added_bytes": 12151738,
+      "subgraphs": 958,
+      "improved": true,
+      "seconds": 3.9893784000005326
+    },
+    {
+      "stage": "order",
+      "candidate": "split_release@cut_0_1",
+      "status": "ok",
+      "preview_call": true,
+      "makespan": 416817,
+      "added_bytes": 12372466,
+      "subgraphs": 971,
+      "improved": false,
+      "seconds": 4.048505699999623
+    }
+  ],
+  "global_lower_bound": 303182,
+  "gap_upper_bound": 0.35814131445798236,
+  "near_optimal": false
+}

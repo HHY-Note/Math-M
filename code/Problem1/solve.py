@@ -1,17 +1,10 @@
-"""场景 A 求解入口：python code/Problem1/solve.py GRAPH -n 4 --config CONFIG。"""
+"""问题一场景 A 的切图、分核与调度搜索。"""
 
 from dataclasses import dataclass
-from pathlib import Path
-import argparse
-import sys
 import time
 
-if __package__ in (None, ''):
-    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-
 from tools.graph import Graph
-from tools.official import ROOT, Settings, read_json, write_json
-from Problem1.execution import Engine, assert_official
+from Problem1.execution import Engine
 from Problem1.partition import candidates, canonical, describe, feedback, refinements, bottleneck_bands
 from Problem1.scheduling import list_schedule, neighbors, lower_bound, ranked_neighbors
 
@@ -259,41 +252,3 @@ class Solver:
             features=features)
         return best, baseline, report
 
-
-def main():
-    parser = argparse.ArgumentParser(description='问题一：保持无环的切图与多核调度')
-    parser.add_argument('graph', type=Path)
-    parser.add_argument('-n', '--num-cores', type=int, choices=range(1, 6), required=True)
-    parser.add_argument('--config', type=Path)
-    parser.add_argument('-o', '--output', type=Path)
-    parser.add_argument('--budget', type=float, default=180)
-    parser.add_argument('--max-candidates', type=int, default=3)
-    parser.add_argument('--moves', type=int, default=8)
-    args = parser.parse_args()
-    try:
-        settings = Settings.read(args.config or args.graph.parent / 'config.txt')
-        solver = Solver(read_json(args.graph), settings)
-        start = time.perf_counter()
-        for n in range(2, args.num_cores):
-            solver.solve(n, args.budget, args.max_candidates, args.moves)
-        best, _, report = solver.solve(args.num_cores, args.budget, args.max_candidates, args.moves)
-        report['total_search_seconds'] = time.perf_counter() - start
-        start = time.perf_counter()
-        official = settings.evaluate(solver.graph.raw, best.plan)
-        assert_official(best.compiled, best.result, official)
-        report['official_evaluation_seconds'] = time.perf_counter() - start
-        report['official_verified'] = True
-        report['data_movement_bytes'] = official['data_movement_bytes']
-        path = args.output or (ROOT / 'results/Problem1/current' / args.graph.stem
-                               / f'core_{args.num_cores}' / (args.graph.stem + '_multicore_res.json'))
-        write_json(path, best.plan)
-        write_json(path.with_name(path.stem + '_search.json'), report)
-        print(f'OK: makespan={best.score[0]} cycles; added_bytes={best.score[1]}; plan={path}')
-    except (ValueError, RuntimeError, OSError) as error:
-        print(f'[SOLVER ERROR] {error}', file=sys.stderr)
-        return 1
-    return 0
-
-
-if __name__ == '__main__':
-    raise SystemExit(main())

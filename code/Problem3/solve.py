@@ -1,24 +1,17 @@
 """问题三独立入口：原图 -> 候选与反馈搜索 -> 提交 JSON -> 原版官方双配置核验。"""
 
 from dataclasses import dataclass
-from pathlib import Path
-import argparse
 import math
-import sys
 import time
 
-if __package__ in (None, ''):
-    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-
 from tools.graph import Graph
-from tools.official import CacheSettings, PIPES, read_json, write_json
+from tools.official import PIPES, read_json, write_json
 from tools.plan import Plan, check_plan
 from tools.preview import Evaluator
 from tools.experiment import digest
 from Problem3.model import Model
 from Problem3.search import (orders, split_order, refinements, moves,
                              cache_neighbors, coarse_neighbors, timeline_neighbors)
-from Problem3.diagnostics import compact
 from evaluation_validation import EvaluationValidationError
 from multicore_cut_evaluate_problem_3 import SceneBEvaluationError
 from schedule_step2 import Step2SchedulingError
@@ -339,44 +332,3 @@ def save_verified(solver, solution, output):
                                  verification_seconds=time.perf_counter() - started, verified=True)
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('graph', type=Path)
-    parser.add_argument('--config', type=Path)
-    parser.add_argument('--cores', type=int, required=True, choices=range(1, 6))
-    parser.add_argument('-o', '--output', type=Path, required=True)
-    parser.add_argument('--budget', type=float, default=45, help='每种核数的搜索秒数；不含最终核验')
-    parser.add_argument('--seeds', type=int, default=18)
-    parser.add_argument('--local', type=int, default=32)
-    parser.add_argument('--cache', type=int, default=16)
-    parser.add_argument('--rounds', type=int, default=2)
-    parser.add_argument('--refine-budget', type=float, default=15, help='原搜索结束后的独立追加秒数；0关闭')
-    parser.add_argument('--refine-candidates', type=int, default=64)
-    parser.add_argument('--initial-plan', type=Path, help='仅继续优化给定第三问方案，先由当前官方重新评分')
-    args = parser.parse_args()
-    config = args.config or args.graph.parent / 'config.txt'
-    if args.output.resolve() in (args.graph.resolve(), config.resolve(),
-                                  args.initial_plan.resolve() if args.initial_plan else None):
-        parser.error('输出方案不能覆盖原始计算图或配置')
-    solver = Solver(read_json(args.graph), CacheSettings.read(config))
-    reports = []
-    if args.initial_plan:
-        plan = Plan.read(solver.graph, read_json(args.initial_plan))
-        if len(plan.blocks) != args.cores:
-            parser.error('初始方案核数与 --cores 不一致')
-        solution = Solution(plan, solver.settings.evaluate(solver.graph.raw, plan.as_dict()), 'initial_plan')
-    else:
-        for n in range(1, args.cores + 1):
-            solution, report = solver.solve(n, args.budget, args.seeds, args.local, args.cache, args.rounds)
-            reports.append(report)
-    solution, refinement = solver.refine(solution, args.refine_budget, args.refine_candidates)
-    result, without, verified = save_verified(solver, solution, args.output)
-    write_json(args.output.with_name(args.output.stem + '_metrics.json'),
-               dict(l2=compact(result), no_l2=compact(without), search=reports, refinement=refinement,
-                    input_sha256=digest(args.graph), config_sha256=digest(config), **verified))
-    print(f'T3={result["makespan"]}; T2(same plan)={without["makespan"]}; '
-          f'cache speedup={without["makespan"] / max(1, result["makespan"]):.6f}; verified=True')
-
-
-if __name__ == '__main__':
-    main()

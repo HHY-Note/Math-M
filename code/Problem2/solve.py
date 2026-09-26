@@ -1,17 +1,10 @@
 """场景 B 独立求解：原图构造初始解，按官方结果改进排序和分核。"""
 
 from dataclasses import dataclass
-from pathlib import Path
-import argparse
 import math
-import sys
 import time
 
-if __package__ in (None, ''):
-    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-
 from tools.graph import Graph
-from tools.official import ROOT, SceneBSettings, read_json, write_json
 from tools.experiment import official_summary
 from tools.preview import evaluate as preview
 from Problem2.partition import CostModel, Plan, check_plan
@@ -236,29 +229,3 @@ class Solver:
                       gap_upper_bound=best.score[0] / lower_bound - 1 if lower_bound else 0,
                       near_optimal=near_optimal())
         return best, report
-
-
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('graph', type=Path)
-    parser.add_argument('-n', '--num-cores', type=int, choices=range(1, 6), required=True)
-    parser.add_argument('--config', type=Path)
-    parser.add_argument('-o', '--output', type=Path)
-    parser.add_argument('--budget', type=float, default=45)
-    parser.add_argument('--candidates', type=int, default=24)
-    parser.add_argument('--orders', type=int, default=16)
-    parser.add_argument('--moves', type=int, default=8)
-    args = parser.parse_args()
-    solver = Solver(read_json(args.graph), SceneBSettings.read(args.config or args.graph.parent / 'config.txt'))
-    for n in ([1] if args.num_cores == 1 else range(2, args.num_cores + 1)):
-        best, report = solver.solve(n, args.budget, args.candidates, args.orders, args.moves)
-    output = args.output or ROOT / 'results/Problem2/single' / (args.graph.stem + '_multicore_res.json')
-    write_json(output, best.plan.as_dict())
-    write_json(output.with_name(output.stem + '_search.json'), report)
-    write_json(output.with_name(output.stem + '_official.json'), official_summary(best.result))
-    print(f'{args.graph.stem}: N={args.num_cores}; T={best.score[0]}; '
-          f'added_bytes={best.score[1]}; independent=True; official_verified=True')
-
-
-if __name__ == '__main__':
-    main()

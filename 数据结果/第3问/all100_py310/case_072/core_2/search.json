@@ -1,0 +1,95 @@
+{
+  "independent": true,
+  "cores": 2,
+  "origin": "recut_0_62",
+  "carry_makespan": 23656065,
+  "initial_makespan": 11819724,
+  "structural_makespan": 11817956,
+  "final_makespan": 11817956,
+  "classic_makespan": 11819724,
+  "certified_optimal": false,
+  "minimum_added_bytes": 0,
+  "cache_makespan": 11817956,
+  "global_lower_bound": 11464055,
+  "gap_upper_bound": 0.030870490415476848,
+  "search_seconds": 51.96970719995443,
+  "setup_seconds": 2.500019036233425e-06,
+  "budget_seconds": 45.0,
+  "budget_exhausted": true,
+  "preview_calls": 5,
+  "preparation_hits": 0,
+  "preparation_misses": 17,
+  "simulation_hits": 0,
+  "rejected": 1,
+  "pruned": 1,
+  "history": [
+    {
+      "stage": "seed",
+      "candidate": "components_1",
+      "lower_bound": 11477956,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 11819724,
+      "added_bytes": 113945376,
+      "improved": true,
+      "seconds": 6.3031539000803605
+    },
+    {
+      "stage": "seed",
+      "candidate": "wave_16",
+      "lower_bound": 11472689,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 11901233,
+      "added_bytes": 106458776,
+      "seconds": 7.3387357000028715
+    },
+    {
+      "stage": "seed",
+      "candidate": "components_2",
+      "lower_bound": 11465993,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 11978602,
+      "added_bytes": 130992928,
+      "seconds": 7.455472399946302
+    },
+    {
+      "stage": "refine",
+      "candidate": "recut_0_62",
+      "lower_bound": 11465339,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 11817956,
+      "added_bytes": 121251128,
+      "improved": true,
+      "seconds": 8.041805399931036
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000053_1_2_0_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_hot_runs_r0_b0",
+      "lower_bound": 12392426,
+      "called": false,
+      "status": "pruned",
+      "seconds": 0.2534904999192804
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000053_0_1_0_r0_b0",
+      "lower_bound": 11482504,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 14830675,
+      "added_bytes": 121454328,
+      "seconds": 7.647573399939574
+    }
+  ]
+}

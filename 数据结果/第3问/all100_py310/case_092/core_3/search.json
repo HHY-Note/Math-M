@@ -1,0 +1,400 @@
+{
+  "independent": true,
+  "cores": 3,
+  "origin": "recut_0_1",
+  "carry_makespan": 2006630,
+  "initial_makespan": 1349260,
+  "structural_makespan": 1334355,
+  "final_makespan": 1334355,
+  "classic_makespan": 1349260,
+  "certified_optimal": false,
+  "minimum_added_bytes": 0,
+  "cache_makespan": 1334355,
+  "global_lower_bound": 1238330,
+  "gap_upper_bound": 0.07754395032018935,
+  "search_seconds": 45.12886589998379,
+  "setup_seconds": 3.400025889277458e-06,
+  "budget_seconds": 45.0,
+  "budget_exhausted": true,
+  "preview_calls": 9,
+  "preparation_hits": 0,
+  "preparation_misses": 56,
+  "simulation_hits": 0,
+  "rejected": 33,
+  "pruned": 2,
+  "history": [
+    {
+      "stage": "seed",
+      "candidate": "fork_reduce",
+      "lower_bound": 1255521,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1357267,
+      "added_bytes": 3863744,
+      "improved": true,
+      "seconds": 3.9334223000332713
+    },
+    {
+      "stage": "seed",
+      "candidate": "forkrelease",
+      "lower_bound": 1255521,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1349260,
+      "added_bytes": 3843264,
+      "improved": true,
+      "seconds": 3.680337999947369
+    },
+    {
+      "stage": "seed",
+      "candidate": "wave_32",
+      "lower_bound": 1241541,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1364403,
+      "added_bytes": 18409664,
+      "seconds": 4.133715300005861
+    },
+    {
+      "stage": "seed",
+      "candidate": "resident_forks",
+      "lower_bound": 1242845,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1359060,
+      "added_bytes": 7696576,
+      "seconds": 4.914576300070621
+    },
+    {
+      "stage": "seed",
+      "candidate": "components_4",
+      "lower_bound": 1255521,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1792534,
+      "added_bytes": 66784736,
+      "seconds": 3.8058182999957353
+    },
+    {
+      "stage": "stage",
+      "candidate": "stage_cut_1",
+      "lower_bound": 1255521,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1799097,
+      "added_bytes": 68995872,
+      "seconds": 3.853414799901657
+    },
+    {
+      "stage": "stage",
+      "candidate": "stage_cut_2",
+      "lower_bound": 1255521,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1794831,
+      "added_bytes": 68995872,
+      "seconds": 3.8482299000024796
+    },
+    {
+      "stage": "refine",
+      "candidate": "recut_0_1",
+      "lower_bound": 1243915,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1334355,
+      "added_bytes": 5270720,
+      "improved": true,
+      "seconds": 4.160372900078073
+    },
+    {
+      "stage": "structure",
+      "candidate": "merge_per_core_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "划分或任务顺序产生了依赖环",
+      "seconds": 0
+    },
+    {
+      "stage": "structure",
+      "candidate": "merge_per_core_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "划分或任务顺序产生了依赖环",
+      "seconds": 0
+    },
+    {
+      "stage": "structure",
+      "candidate": "merge_per_core_b2",
+      "status": "invalid",
+      "called": false,
+      "reason": "划分或任务顺序产生了依赖环",
+      "seconds": 0
+    },
+    {
+      "stage": "structure",
+      "candidate": "merge_adjacent_b2",
+      "lower_bound": 1242845,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1361334,
+      "added_bytes": 7725248,
+      "seconds": 5.134799299994484
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000063_1_32_30_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000063_1_32_31_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000063_1_32_33_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000063_1_32_34_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000065_1_34_32_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000065_1_34_33_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000065_1_34_35_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000065_1_34_36_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000031_1_0_1_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000031_1_0_2_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000057_0_26_24_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000057_0_26_28_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000057_2_26_24_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000057_2_26_25_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000057_2_26_27_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000057_2_26_28_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000059_0_28_26_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000059_0_28_30_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000059_2_28_26_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000059_2_28_27_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000059_2_28_29_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000059_2_28_30_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000043_2_12_10_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000043_2_12_11_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000043_2_12_13_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000043_2_12_14_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000045_2_14_12_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000045_2_14_13_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000045_2_14_15_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000045_2_14_16_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_gather_1000000031_0_2_r0_b0",
+      "lower_bound": 1942711,
+      "called": false,
+      "status": "pruned",
+      "seconds": 0.1357415000675246
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_gather_1000000031_1_2_r0_b0",
+      "lower_bound": 2052490,
+      "called": false,
+      "status": "pruned",
+      "seconds": 0.139003699994646
+    }
+  ]
+}

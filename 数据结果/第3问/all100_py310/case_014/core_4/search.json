@@ -1,0 +1,77 @@
+{
+  "independent": true,
+  "cores": 4,
+  "origin": "stage_width_16",
+  "carry_makespan": 5891208,
+  "initial_makespan": 4443382,
+  "structural_makespan": 4443382,
+  "final_makespan": 4443382,
+  "classic_makespan": 4502666,
+  "certified_optimal": false,
+  "minimum_added_bytes": 0,
+  "cache_makespan": 4443382,
+  "global_lower_bound": 4306501,
+  "gap_upper_bound": 0.03178473661099801,
+  "search_seconds": 47.63991109991912,
+  "setup_seconds": 1.9000144675374031e-06,
+  "budget_seconds": 45.0,
+  "budget_exhausted": true,
+  "preview_calls": 4,
+  "preparation_hits": 0,
+  "preparation_misses": 41,
+  "simulation_hits": 0,
+  "rejected": 1,
+  "pruned": 0,
+  "history": [
+    {
+      "stage": "seed",
+      "candidate": "components_1",
+      "lower_bound": 4308312,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 4502666,
+      "added_bytes": 82469784,
+      "improved": true,
+      "seconds": 8.246598800062202
+    },
+    {
+      "stage": "seed",
+      "candidate": "input_affinity",
+      "lower_bound": 4307424,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 4564244,
+      "added_bytes": 69525432,
+      "seconds": 8.130874200025573
+    },
+    {
+      "stage": "stage",
+      "candidate": "stage_width_16",
+      "lower_bound": 4317457,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 4443382,
+      "added_bytes": 80649492,
+      "improved": true,
+      "seconds": 9.952585000079125
+    },
+    {
+      "stage": "structure",
+      "candidate": "merge_per_core_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "划分或任务顺序产生了依赖环",
+      "seconds": 0
+    },
+    {
+      "stage": "structure",
+      "candidate": "runs_dfs_b2",
+      "lower_bound": 4313101,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 4594078,
+      "added_bytes": 85562808,
+      "seconds": 9.184868500102311
+    }
+  ]
+}

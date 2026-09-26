@@ -5,6 +5,8 @@ from pathlib import Path
 import argparse
 import csv
 import gc
+import hashlib
+import json
 import math
 import platform
 import statistics
@@ -15,12 +17,20 @@ if __package__ in (None, ''):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from tools.graph import Graph
+from tools.plan import Plan
 from tools.official import CacheSettings, ROOT, REFERENCE, read_json, write_json
 from tools.experiment import digest, write_csv
-from Problem3.solve import Solver, save_verified
+from Problem3.solve import Solver, Solution, save_verified
 from Problem3.diagnostics import analyze, compact
 
 DEFAULT_CASES = (1, 2, 4, 8, 10, 14, 16, 20, 25, 29, 37, 44, 51, 58, 62, 67, 69, 84, 85, 93)
+
+
+def config_matches(manifest, path):
+    """允许 Windows 检出的换行差异，同时逐值核对全部物理参数。"""
+    normalized = hashlib.sha256(path.read_bytes().replace(b'\r\n', b'\n')).hexdigest()
+    return (manifest['config_sha256'] in (digest(path), normalized)
+            and manifest['settings'] == vars(CacheSettings.read(path)))
 
 
 def features(raw):
@@ -38,7 +48,7 @@ def source_hashes():
 
 
 def run_case(job):
-    path, config, output, options = job
+    path, config, output, options, refine_options, previous = job
     started = time.perf_counter()
     solver = Solver(read_json(path), CacheSettings.read(config))
     folder = output / path.stem
@@ -49,13 +59,29 @@ def run_case(job):
     info, rows = solver.graph.features(), []
     for n in range(1, 6):
         solve_started = time.perf_counter()
-        solution, report = solver.solve(n, **options)
+        if previous:
+            source = previous / path.stem / f'core_{n}'
+            plan = Plan.read(solver.graph, read_json(source / f'{path.stem}_multicore_res.json'))
+            if len(plan.blocks) != n:
+                raise ValueError(f'{path.stem}: 初始方案核数不符')
+            result = solver.settings.evaluate(solver.graph.raw, plan.as_dict())
+            without = solver.settings.without_cache(solver.graph.raw, plan.as_dict())
+            recorded = read_json(source / 'official.json')
+            if (json.loads(json.dumps(compact(result))) != recorded['l2'] or
+                    json.loads(json.dumps(compact(without))) != recorded['no_l2']):
+                raise ValueError(f'{path.stem}/{n}: 历史方案与当前官方双配置重评不一致')
+            solution = Solution(plan, result, 'initial_plan')
+            report = read_json(source / 'search.json')
+        else:
+            solution, report = solver.solve(n, **options)
+        solution, refinement = solver.refine(solution, **refine_options)
         directory = folder / f'core_{n}'
         plan_path = directory / f'{path.stem}_multicore_res.json'
         result, without, verified = save_verified(solver, solution, plan_path)
         diag = analyze(result, solver.settings)
         write_json(directory / 'official.json', dict(l2=compact(result), no_l2=compact(without), **verified))
         write_json(directory / 'search.json', report)
+        write_json(directory / 'refinement.json', refinement)
         write_json(directory / 'diagnostics.json', diag)
         movement, stats = result['data_movement_bytes'], result['cache_stats']
         t, no_l2, single = result['makespan'], without['makespan'], whole_without['makespan']
@@ -89,6 +115,12 @@ def run_case(job):
                    preparation_hits=report['preparation_hits'], preparation_misses=report['preparation_misses'],
                    simulation_hits=report['simulation_hits'],
                    budget_exhausted=report['budget_exhausted'], selected=solution.origin,
+                   reference_verified=bool(previous),
+                   before_refine_makespan=refinement['baseline_makespan'],
+                   before_refine_no_l2=refinement['baseline_no_l2_makespan'],
+                   before_refine_added_bytes=refinement['baseline_added_bytes'],
+                   refine_candidates=refinement['candidates'],
+                   refine_seconds=refinement['search_seconds'],
                    plan_sha256=verified['plan_sha256'], verified=True)
         rows.append(row)
         write_json(folder / 'rows.json', rows)
@@ -125,18 +157,25 @@ def summarize(rows):
                            budget_exhausted=sum(r['budget_exhausted'] for r in values)))
     for case in cases:
         values = sorted((r for r in rows if r['case'] == case), key=lambda r: r['cores'])
-        scores = [(r['makespan'], r['added_bytes']) for r in values]
+        scores = [(r.get('before_refine_makespan', r['makespan']),
+                   r.get('before_refine_added_bytes', r['added_bytes'])) for r in values]
         if any(b > a for a, b in zip(scores, scores[1:])):
             raise AssertionError(f'{case}: 增加可用核心后的保底方案丢失')
     return curves
 
 
 def compare(rows, previous, manifest):
-    """仅在独立求解结束后读取旧指标；历史方案不进入求解器。"""
+    """核对相同输入、配置与评测标准；旧散列缺失时必须逐方案双配置重评。"""
     old_manifest = read_json(previous / 'manifest.json')
     for key in ('config_sha256', 'reference_sha256'):
         if old_manifest[key] != manifest[key]:
-            raise ValueError(f'两次实验的 {key} 不同，不能作为同标准对照')
+            if key == 'config_sha256' and config_matches(old_manifest, Path(manifest['config'])):
+                continue
+            verified_missing_hash = (key == 'reference_sha256' and not old_manifest[key]
+                and manifest.get('refine_from') == str(previous.resolve())
+                and all(r.get('reference_verified') for r in rows))
+            if not verified_missing_hash:
+                raise ValueError(f'两次实验的 {key} 不同，不能作为同标准对照')
     with (previous / 'metrics.csv').open(encoding='utf-8-sig', newline='') as stream:
         old = {(r['case'], int(r['cores'])): r for r in csv.DictReader(stream)}
     comparisons = []
@@ -154,13 +193,17 @@ def compare(rows, previous, manifest):
             score_nonregression=(row['makespan'], row['added_bytes']) <= (t, a),
             old_speedup=float(before['speedup_l2']), new_speedup=row['speedup_l2'],
             old_cache_speedup=float(before['cache_speedup']), new_cache_speedup=row['cache_speedup'],
+            old_no_l2_makespan=int(before['no_l2_makespan']), new_no_l2_makespan=row['no_l2_makespan'],
+            all_metrics_nonregression=(row['makespan'] <= t and row['added_bytes'] <= a
+                and row['no_l2_makespan'] <= int(before['no_l2_makespan'])
+                and row['no_l2_makespan'] * t >= int(before['no_l2_makespan']) * row['makespan']),
             old_search_seconds=float(before['search_seconds']), new_search_seconds=row['search_seconds']))
     return comparisons
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--data', type=Path, default=ROOT / '题目/data')
+    parser.add_argument('--data', type=Path, default=REFERENCE.parent / 'data')
     parser.add_argument('--config', type=Path)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--cases', type=int, nargs='+', default=DEFAULT_CASES)
@@ -170,32 +213,46 @@ def main():
     parser.add_argument('--local', type=int, default=32)
     parser.add_argument('--cache', type=int, default=16)
     parser.add_argument('--rounds', type=int, default=2)
+    parser.add_argument('--refine-budget', type=float, default=15)
+    parser.add_argument('--refine-candidates', type=int, default=64)
+    parser.add_argument('--refine-from', type=Path, help='对已保存的第三问方案做同源核验和非退化追加优化')
     parser.add_argument('--compare', type=Path, help='独立求解后与此目录的历史指标对照')
     args = parser.parse_args()
     if args.workers < 1 or len(set(args.cases)) != len(args.cases):
         parser.error('workers 必须为正整数；用例编号不得重复')
     if not math.isfinite(args.budget) or args.budget <= 0 or min(args.seeds, args.local, args.cache, args.rounds) < 0:
         parser.error('预算须为有限正数；搜索数量须为非负整数')
+    if not math.isfinite(args.refine_budget) or args.refine_budget < 0 or args.refine_candidates < 0:
+        parser.error('追加时间与候选数量须为非负数')
     if args.output.exists() and any(args.output.iterdir()):
         parser.error('输出目录必须为空，避免覆盖其他实验')
     selected = [args.data / f'case_{i:03d}.json' for i in sorted(args.cases)]
     if any(not p.is_file() for p in selected):
         parser.error('存在找不到的用例文件')
     config = args.config or args.data / 'config.txt'
+    if args.refine_from:
+        source_manifest = read_json(args.refine_from / 'manifest.json')
+        if not config_matches(source_manifest, config):
+            parser.error('初始方案的配置与当前配置不同')
+        if any(source_manifest['inputs'].get(p.stem) != digest(p) for p in selected):
+            parser.error('初始方案的输入图与当前输入图不同')
+        args.compare = args.compare or args.refine_from
     inventory = {p.stem: features(read_json(p)) for p in sorted(args.data.glob('case_*.json'))}
     options = dict(budget=args.budget, seeds=args.seeds, local=args.local, cache=args.cache, rounds=args.rounds)
-    manifest = dict(version='3.3', independent=True, python=sys.version, platform=platform.platform(),
+    refine_options = dict(budget=args.refine_budget, candidates=args.refine_candidates)
+    manifest = dict(version='3.4', independent=not bool(args.refine_from), python=sys.version, platform=platform.platform(),
                     config=str(config.resolve()), config_sha256=digest(config), settings=vars(CacheSettings.read(config)),
                     source_sha256=source_hashes(), reference_sha256={p.name: digest(p) for p in REFERENCE.glob('*.py')},
                     inputs={p.stem: digest(p) for p in selected},
                     selected={p.stem: inventory[p.stem] for p in selected},
                     all_families=sorted({x['family'] for x in inventory.values()}),
                     covered_families=sorted({inventory[p.stem]['family'] for p in selected}),
-                    search=options, workers=args.workers,
+                    search=options, refinement=refine_options, workers=args.workers,
+                    refine_from=str(args.refine_from.resolve()) if args.refine_from else None,
                     comparison='same submitted plan, original problem_2/problem_3 evaluators')
     write_json(args.output / 'manifest.json', manifest)
     started, rows, failures = time.perf_counter(), [], {}
-    jobs = [(p, config, args.output, options) for p in
+    jobs = [(p, config, args.output, options, refine_options, args.refine_from) for p in
             sorted(selected, key=lambda p: -inventory[p.stem]['compute_ops'])]
     with ProcessPoolExecutor(max_workers=args.workers) as pool:
         futures = {pool.submit(run_case, job): job[0].stem for job in jobs}
@@ -235,6 +292,7 @@ def main():
             ties=sum(r['new_makespan'] == r['old_makespan'] for r in comparisons),
             losses=sum(r['new_makespan'] > r['old_makespan'] for r in comparisons),
             score_nonregressions=sum(r['score_nonregression'] for r in comparisons),
+            all_metrics_nonregressions=sum(r['all_metrics_nonregression'] for r in comparisons),
             old_mean_speedup=statistics.mean(r['old_speedup'] for r in comparisons),
             new_mean_speedup=statistics.mean(r['new_speedup'] for r in comparisons),
             old_mean_cache_speedup=statistics.mean(r['old_cache_speedup'] for r in comparisons),

@@ -6,6 +6,8 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 REFERENCE = ROOT / "题目" / "code"
+if not REFERENCE.is_dir():
+    REFERENCE = ROOT / "Math-M" / "A题" / "code"
 if str(REFERENCE) not in sys.path:
     sys.path.insert(0, str(REFERENCE))
 

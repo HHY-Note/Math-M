@@ -2,6 +2,7 @@
 
 from collections import Counter, defaultdict
 
+from tools.graph import topological
 from tools.plan import Plan, arrange, block_graph, runs
 
 
@@ -212,6 +213,62 @@ def cache_neighbors(model, solution):
     # 同核重读也可能需要较大范围的重排；依据真实热点优先级重建合法拓扑序。
     if pressure:
         priorities = {v: (-sum(pressure[t] for t in g.inputs[v]), -model.rank[v]) for v in g.ops}
-        from tools.graph import topological
         order = topological(g.preds, g.succs, priorities)
         yield 'cache_hot_runs', runs(g, owner, cores, order, width=32)
+
+
+def timeline_neighbors(model, solution):
+    """保持分核，以真实发射/完成顺序细分，再在合法区间错开热点读取。"""
+    g, plan = model.graph, solution.plan
+    owner, cores = plan.assignment(), len(plan.blocks)
+    times = {op['op_id']: (op['start'], op['end'])
+             for row in solution.result['per_core_timeline'] for op in row['ops']
+             if op['op_id'] in g.ops}
+    if not times:
+        return
+    fine = None
+    for key in (0, 1):
+        order = topological(g.preds, g.succs, {v: (times[v][key], v) for v in g.ops})
+        for width in (4, 16, 1, 64):
+            candidate = runs(g, owner, cores, order, width)
+            if key == 0 and width == 4:
+                fine = candidate
+            yield f'timeline_{key}_{width}', candidate
+    if fine is None:
+        return
+
+    # Cache 事件使用 logical_tid；聚合其全部物理张量消费者。
+    consumers = defaultdict(set)
+    for t, tensor in g.tensors.items():
+        consumers[tensor.get('logical_tid', t)].update(g.consumers[t])
+    requested, pressure, touched = set(), Counter(), defaultdict(set)
+    for event in solution.result['cache_events']:
+        if event['event'] != 'miss' or not 0 < event['size_bytes'] <= model.settings.cache_capacity:
+            continue
+        t = event['tensor_id']
+        touched[t].add(event['core_id'])
+        if t in requested:
+            pressure[t] += event['size_bytes']
+        requested.add(t)
+
+    items, preds, succs = block_graph(g, fine)
+    locations = [(c, i) for c, core in enumerate(fine.blocks) for i in range(len(core))]
+    indices = {location: s for s, location in enumerate(locations)}
+    for t, _ in pressure.most_common(4):
+        for c in sorted(touched[t]):
+            index = next((i for i, group in enumerate(fine.blocks[c])
+                          if consumers[t].intersection(group)), None)
+            if index is None:
+                continue
+            s = indices[c, index]
+            # 只移动一个子图：不得跨越其同核前驱或后继。
+            low = max((locations[p][1] + 1 for p in preds[s] if items[p][0] == c), default=0)
+            high = min((locations[w][1] - 1 for w in succs[s] if items[w][0] == c),
+                       default=len(fine.blocks[c]) - 1)
+            for offset in (-1, 1, -2, 2, -4, 4):
+                target = index + offset
+                if not low <= target <= high:
+                    continue
+                blocks = [list(core) for core in fine.blocks]
+                blocks[c].insert(target, blocks[c].pop(index))
+                yield f'phase_{t}_{c}_{offset}', Plan.build(blocks)

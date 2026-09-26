@@ -16,7 +16,8 @@ from tools.plan import Plan, check_plan
 from tools.preview import Evaluator
 from tools.experiment import digest
 from Problem3.model import Model
-from Problem3.search import orders, split_order, refinements, moves, cache_neighbors, coarse_neighbors
+from Problem3.search import (orders, split_order, refinements, moves,
+                             cache_neighbors, coarse_neighbors, timeline_neighbors)
 from Problem3.diagnostics import compact
 from evaluation_validation import EvaluationValidationError
 from multicore_cut_evaluate_problem_3 import SceneBEvaluationError
@@ -260,6 +261,66 @@ class Solver:
                       pruned=sum(r['status'] == 'pruned' for r in history), history=history)
         return best, report
 
+    def refine(self, solution, budget=15.0, candidates=64):
+        """在固定方案上追加有界搜索；不改变原求解过程或跨核数保底状态。"""
+        if not math.isfinite(budget) or budget < 0:
+            raise ValueError('追加搜索时间须为有限非负数')
+        if type(candidates) is not int or candidates < 0:
+            raise ValueError('追加候选数须为非负整数')
+        started = time.perf_counter()
+        check_plan(self.graph, solution.plan)
+        baseline = self.settings.without_cache(self.graph.raw, solution.plan.as_dict())
+        best, best_without = solution, baseline
+        seen, history, calls = {solution.plan}, [], 0
+        # 核验原方案的时间不占追加搜索预算；不同机器只影响改进机会，不丢保底。
+        prepared_seconds = time.perf_counter() - started
+        started = time.perf_counter()
+        for iteration in range(2):
+            source = best
+            for name, plan in timeline_neighbors(self.model, source):
+                if calls >= candidates or time.perf_counter() - started >= budget:
+                    break
+                if plan is None or plan in seen:
+                    continue
+                seen.add(plan)
+                entry = dict(candidate=name, iteration=iteration, called=False)
+                try:
+                    check_plan(self.graph, plan)
+                    if self.model.estimate(plan)[0] > best.score[0]:
+                        entry['status'] = 'pruned'
+                        continue
+                    calls += 1
+                    entry['called'] = True
+                    result = self.evaluate(plan.as_dict())
+                    value = Solution(plan, result, name)
+                    entry.update(makespan=value.score[0], added_bytes=value.score[1], status='evaluated')
+                    if value.score >= best.score or value.score[1] > solution.score[1]:
+                        continue
+                    without = self.settings.without_cache(self.graph.raw, plan.as_dict())
+                    entry['no_l2_makespan'] = without['makespan']
+                    # 始终与进入本阶段的固定基准比较，不能用不断抬高的比值阻塞更快候选。
+                    if (without['makespan'] > baseline['makespan'] or
+                            without['makespan'] * solution.score[0] <
+                            baseline['makespan'] * value.score[0]):
+                        entry['status'] = 'guarded'
+                        continue
+                    best, best_without = value, without
+                    entry['improved'] = True
+                except EVALUATION_ERRORS as error:
+                    entry.update(status='rejected', reason=str(error)[:180])
+                finally:
+                    history.append(entry)
+            if best.plan == source.plan:
+                break
+        return best, dict(baseline_makespan=solution.score[0],
+                          baseline_added_bytes=solution.score[1],
+                          baseline_no_l2_makespan=baseline['makespan'],
+                          final_makespan=best.score[0], final_added_bytes=best.score[1],
+                          final_no_l2_makespan=best_without['makespan'],
+                          candidates=calls, budget_seconds=budget,
+                          preparation_seconds=prepared_seconds,
+                          search_seconds=time.perf_counter() - started, history=history)
+
 
 def save_verified(solver, solution, output):
     """先导出两字段提交文件，再读取该文件进行原版双配置完整核验。"""
@@ -289,18 +350,29 @@ def main():
     parser.add_argument('--local', type=int, default=32)
     parser.add_argument('--cache', type=int, default=16)
     parser.add_argument('--rounds', type=int, default=2)
+    parser.add_argument('--refine-budget', type=float, default=15, help='原搜索结束后的独立追加秒数；0关闭')
+    parser.add_argument('--refine-candidates', type=int, default=64)
+    parser.add_argument('--initial-plan', type=Path, help='仅继续优化给定第三问方案，先由当前官方重新评分')
     args = parser.parse_args()
     config = args.config or args.graph.parent / 'config.txt'
-    if args.output.resolve() in (args.graph.resolve(), config.resolve()):
+    if args.output.resolve() in (args.graph.resolve(), config.resolve(),
+                                  args.initial_plan.resolve() if args.initial_plan else None):
         parser.error('输出方案不能覆盖原始计算图或配置')
     solver = Solver(read_json(args.graph), CacheSettings.read(config))
     reports = []
-    for n in range(1, args.cores + 1):
-        solution, report = solver.solve(n, args.budget, args.seeds, args.local, args.cache, args.rounds)
-        reports.append(report)
+    if args.initial_plan:
+        plan = Plan.read(solver.graph, read_json(args.initial_plan))
+        if len(plan.blocks) != args.cores:
+            parser.error('初始方案核数与 --cores 不一致')
+        solution = Solution(plan, solver.settings.evaluate(solver.graph.raw, plan.as_dict()), 'initial_plan')
+    else:
+        for n in range(1, args.cores + 1):
+            solution, report = solver.solve(n, args.budget, args.seeds, args.local, args.cache, args.rounds)
+            reports.append(report)
+    solution, refinement = solver.refine(solution, args.refine_budget, args.refine_candidates)
     result, without, verified = save_verified(solver, solution, args.output)
     write_json(args.output.with_name(args.output.stem + '_metrics.json'),
-               dict(l2=compact(result), no_l2=compact(without), search=reports,
+               dict(l2=compact(result), no_l2=compact(without), search=reports, refinement=refinement,
                     input_sha256=digest(args.graph), config_sha256=digest(config), **verified))
     print(f'T3={result["makespan"]}; T2(same plan)={without["makespan"]}; '
           f'cache speedup={without["makespan"] / max(1, result["makespan"]):.6f}; verified=True')

@@ -1,0 +1,3038 @@
+{
+  "version": "3.4",
+  "independent": true,
+  "python": "3.13.9 (tags/v3.13.9:8183fa5, Oct 14 2025, 14:09:13) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "config": "C:\\Users\\hhhhh\\Desktop\\数模\\题目\\data\\config.txt",
+  "config_sha256": "dcd10de54b23f8366428fb24e828812b1da9549e6eae4a3c3f38604fe5ae77b9",
+  "settings": {
+    "capacity": {
+      "L1": 524288,
+      "UB": 131072
+    },
+    "bandwidth": 60,
+    "copy_delay": 500,
+    "cache_capacity": 1048576,
+    "cache_bandwidth": 250
+  },
+  "source_sha256": {
+    "code\\Problem3\\benchmark.py": "0720c108297f892b0b878b050c57cc0010c7e5ce5efcfd9766764d03ea737254",
+    "code\\Problem3\\diagnostics.py": "9668fad31a9138933a432fe7f99d7bd30b91a9dcce4d985d63bea50fb63d1949",
+    "code\\Problem3\\model.py": "bdd712b83c39cac626abfd2c3a01d50aad6bbbf33ebbad7b3a4547d2dc56bd5a",
+    "code\\Problem3\\plot_results.py": "ec6991b4a4c68bf43777d6b170b35cf39b3e9b4c297574818d69e576925fd7a1",
+    "code\\Problem3\\search.py": "bf5cc9eed8f416aec65cd466c81f51fd63e64ff168c8bd1dec3cb7c24aa166de",
+    "code\\Problem3\\sensitivity.py": "d03e0f34489feab03c556d0f9e7fc7141dafade08b808a229542d9a964a0a94f",
+    "code\\Problem3\\solve.py": "46d9ca33bc1707ebc579c60ea26add03bfab82a959beb2378fd332973da399df",
+    "code\\Problem3\\test_refine.py": "dc0889aff1c46f968a1cec71033683b567591ad6867b82b9afc2311a55a7ae0f",
+    "code\\tools\\experiment.py": "bccf675e32ed303bcaa65bc0ef1cab1c0de0ce800004cded93aec04a2e16f2ea",
+    "code\\tools\\graph.py": "f601bfc6e35f431f68b9206c3d2a5cb8de5fe22ed97fc3d3e9bfdd0ccf18fa9d",
+    "code\\tools\\official.py": "b165a0fdad609dd455bf7ce11d7259d017c506783d6cda242299c154ab84c6c9",
+    "code\\tools\\plan.py": "eca11d34c6831d0ea8774dbd615ece71fc75da19235dee4337663d96dcba14c3",
+    "code\\tools\\plot_results.py": "3b02a3804578d69a9d2e4822a973ec3511a25aff1458f9140012bc5e8f56b59e",
+    "code\\tools\\preview.py": "e00ed5d6058b7ceb0096b13d247c86d522e720426498c42a5f3933dcfa89f57a"
+  },
+  "reference_sha256": {
+    "contest_io.py": "d5936908e4c261c7003b78e783f30bd7d65cb38d6b53a269ea67f0103cac848e",
+    "evaluation_validation.py": "103206b8c5c25e37de50cc3193de3989d7c1e01d4a11cc5f509dedd8f9be9a64",
+    "multicore_cut_evaluate_problem_1.py": "2095f188a6c24ce3899f156bef21d50dcd87cbd9368488046b1e77e2bf91af3f",
+    "multicore_cut_evaluate_problem_2.py": "0b39f84d5ec0a7fba9a4c92a598a9044b97ab79c71393824c1ba130ecfe6c464",
+    "multicore_cut_evaluate_problem_3.py": "eab1504dead881f4b67c0f0498cbc2dbbd9039dc3c9d198c6af58773c127eeb0",
+    "schedule_step1.py": "d8fe721ff3dbe036e34a20c00cce6430960860000a49eb467e63465f76b84034",
+    "schedule_step2.py": "2836baac176f4e0bdd9eec59b8d9ce254e209e5f7a251e23837ab684312fa0c3",
+    "schedule_step3.py": "50053db0436f1d166dd75436693ba3af49b5c339576beb6e7299477f6b69fc7a",
+    "singlecore_evaluate.py": "446b753ee134ef1fec8e052356bb077a2602fbe95572ccd3dddd7928e894b77a",
+    "stub_multicore_cut_and_schedule.py": "0a3a3b79b5173b466fc05fc8d33b72d11d90b4df78995435853d91c632a35892"
+  },
+  "inputs": {
+    "case_001": "a634cd1151c0e918dd3a143eba421b88907f7f0334bfe6a5ca0412342307f09f",
+    "case_002": "578fceeb9f66a3c083b9f27d8464cf75c1e7602cbc7290920c02aa1aef7ca352",
+    "case_003": "2c80acfd37edcf811ce76b7e7b1f7194c706bd4d4aa6449e6a19e9eac1028ced",
+    "case_004": "3e01adde3c4ad143ab3d7faabcf36d849f26b5428e7c8446a7e9f89345a55faa",
+    "case_005": "c2b378c882a3039e3d66bac6cbcba39317107339b6f38d5bce1b09379839799f",
+    "case_006": "c68392cd599b63039669ca54360ab21b514c41285151cd69180ee9be99af1a48",
+    "case_007": "6e786044ca1fa5d4632f8b7d03e95364da8d88f4fff5e403d3ab8153da84b518",
+    "case_008": "c93bb7ab5deec5112aff0cc001fbd76d001d3de5ea7463fba59b1f1ff2ba3e1d",
+    "case_009": "06b73d07c450878db8f6dace8ed08e362b45f5dd6e06fb80b098f165190f222a",
+    "case_010": "fd0b07588473d8b2ce05fab4798808cbc7f60cf1638e05608adc3d62061b8775",
+    "case_011": "2da7df4ccc8a4eb86347f0a567aacac628e7d30ab943cd99996f2c74620d80b9",
+    "case_012": "1a07d3a4c6d1305bec2fbdc4d106fb5c0078ec098cbf09e1b8eaa5134968e079",
+    "case_013": "b95d97cf90bdd0fe64a0fd1ecd5a36a7b091ecadef204ef8c6ae430f6ccfac3c",
+    "case_014": "e27abb053ac57786e510ba80e60a6ec60a8b0df11b2a818010a1df17c29d94dd",
+    "case_015": "d27dfc39289fa442f29f597191ab6b05142ce6ad68b4396056b2adccb9c93253",
+    "case_016": "76537aa7163cf0748adcff2ecbd84fbc9a02a2d129ffcecd2bfebb89685e71ef",
+    "case_017": "282c5840d8e8581fb7827a6d4c996f90384bdfe566ffa665574721568b9dc85c",
+    "case_018": "70cf2a124573fe0ccad84b16d902efe7e28938761db791d2f4321ab2e98f0c0a",
+    "case_019": "199ccf5f40c65b63ef88efcf05a0ccbf6b9368963d7a62cabd240d7b98847429",
+    "case_020": "932287c2c204e475df824a3914b7b179226625caf37ae288bac90716ffe16ec4",
+    "case_021": "d1b1b8a543eab9b359421f0d67baaee43f2890b2562bf2bfa1dfeb5fa5f87b37",
+    "case_022": "b93af0605cda612b707a91a1e9fc76348b527284a03e779b65cbe55813e331e7",
+    "case_023": "73e1a5d3abe5f7b36fb7a386d586e8ed492f7fae5e7a736c475b629ab6e12739",
+    "case_024": "f974fbf1a23b4a145b5f8c9c691eb1b247f93d8785d98bb46a9cdd8626399aec",
+    "case_025": "f27ba0f332109eb62541879ddbc9c9d283531c191afdd7299a365134af3e0deb",
+    "case_026": "0ed6209c59170dc0da94703702b17402cee14c1a61624e666ed8938637b6765b",
+    "case_027": "74ff3486f7a3fd5561250ac336ed57e02a998f4f34d3be742e9f3dceb98d402b",
+    "case_028": "89fe60e6529c5c02cf6ffd700254e003b1f51ceafc252140ef64add47ad2e212",
+    "case_029": "997bcbaa3acdff628346af91df1c6ce0127372b10c71890967ec9dd685b7187b",
+    "case_030": "ad80a952c48ff4d7c339349167fa9054e515009787692608863240a3546c0f90",
+    "case_031": "a8d03d16b7eff2c3c84186b32994279143fd1628937e4e9bdf753f869a333f82",
+    "case_032": "7b325807b10636edbb8ada6fe9086e639ece5d42d4aad151b0fc7cd8f6277385",
+    "case_033": "e14316f8ccbe3bf16bcee2bad80efc3a527cdc2488d9e3f616518b6e3aa9657b",
+    "case_034": "c4128788442a023c2224d582f7114181ca9e9439a5978deaec6a1c52c0d729d6",
+    "case_035": "ab4d5e39b4d3ad430a992d6d87d7510a869b6cb03a5d9a7ba124b039ba4486e2",
+    "case_036": "3924c8904db3f85eb38d4e4b345e55f689c9d908f329dbb8caf16a3774759d21",
+    "case_037": "c5ce3776f9b28b17c7e1d23c9a47395ddfaeecf2533228ab0a5cf444e3f112e3",
+    "case_038": "69575019d0670552c74f386508042357a94419ed2f49d18a382a71a8cf39e5ac",
+    "case_039": "8e999d9db7fe3b1060baef4bff52304267c4034700290fe0a7520f777cbc78ed",
+    "case_040": "7d595de282221534f949ab7ffae0ff026d5c7652b9110c18c0031aa78400cc57",
+    "case_041": "97d875b7e79ef0257342689d0c348f86ab591d74dfa9a9c28a72f47abb531491",
+    "case_042": "c098a559bbb2f888a39d47b81fee2e93ae04365d4ce377982758cd3373ac33c5",
+    "case_043": "23270b8e711405157c6b29fd36a4a182bdccf090b2beb69f63d9580aa22e780c",
+    "case_044": "9abd4468a4be365e384de47431ac914ee44fd6e7b6221dffc584561f388cd57e",
+    "case_045": "64dff8e23ba176573a054ef2dc00a23a3487484bad65cb719acc4f087d611793",
+    "case_046": "1917fbb2bfe1141fd8dc4bdac6119dd44014df9a13eb18faa3e55f25bcc91659",
+    "case_047": "7c6328650b8e50e4d15a0ddf1ad0715a40d64d51f3c86c2c3b9c22e4cbb6a83f",
+    "case_048": "9932aaca8ab23d020c5f5102fa3d436dd3cdf3ca8d1ee458d4c235c556c11764",
+    "case_049": "444854fe118a208ddfa10fa0ddd48d7b5e6cfd3780a8049f2145fc1a9b674a08",
+    "case_050": "3b6b1abd65fbfbb2a40972bdbd643c43107c4b232512741740ff351c366367aa",
+    "case_051": "884e8b12ac1f7a9b569958909680e8c2f6055966a59c9f929ffd5cee48aae43b",
+    "case_052": "6196e8c72258ff26d0ab4dcee50c4f5b39f78142729a2223cfcbd4a9181ab7d0",
+    "case_053": "f3593af4c9aa960385c5fdfaf8ad98c396f05746d9e1fe6cc731adeae7019dbc",
+    "case_054": "4c874b67351e0a6d336af3117c1289099c54993581f90de11e8f49fb33bb9828",
+    "case_055": "1121ee10f030be119d0930fe518d63aedd8cf65167627c7f66f1a7ffffd9d134",
+    "case_056": "fda213426382a3810afd172eadc10b9221330b906888537cb13b16369be3369d",
+    "case_057": "89778038db7db919a13c5885aa555c8ae054a3f43845c73fe346b6123d12a525",
+    "case_058": "95027788c05772259091802889106c7104efdecdaaabd002ed11a87f8f2f209d",
+    "case_059": "50b062952359dc9aa22880856093e8ec7a69c66d358607de49fd5f559ac232e9",
+    "case_060": "29889cfaea8c831c2620d19191abf871694e61d4850ced26a9710847096c1e96",
+    "case_061": "5da175170152a6beab3dcbda84a0910f72b079091c2ad1fdd489aaf5e31fcaf3",
+    "case_062": "fa99943eab55b174047687337a4bcd81c3967e052e22eaabf3fb7740914df2b4",
+    "case_063": "511c05c1ec9c19bb3cc108e173a46e7952b92fca9b1ac21728c43713056d429d",
+    "case_064": "871f65b73fc1da6a48501998fbfde6684fc78e5dd022ddc68085d1384d2e2280",
+    "case_065": "23342b7c3e75f58cec3d0bdaff89bf8d6f18de4930d35ec2ceade91670f0a400",
+    "case_066": "30e61f8760d7d595b0fc4ad76262b179c72509a0cb5b2be72333ebd9b926b465",
+    "case_067": "f49b5087689e18c6bf231843f8f3bbaca238a547ea5309b2492c76d5f170b542",
+    "case_068": "dfd9a58ef9d26a8a4567026b50af8b4499d87eebb3d98f8208b909b11e963c6d",
+    "case_069": "9632392d98cfc04291ba0546accf1f4c3ede8ff71befd3cd0ae67caf27659e52",
+    "case_070": "b645c07133b0d98a63ab192cdfe8b35bdc089ad49eb5a8f1e476196344b97aa0",
+    "case_071": "437cc74cae9e0fc0cb89b05403c62062ceff8d5bc2224c8834c519e69524e897",
+    "case_072": "09ecc7be74ccdd06b00843fa6cd0696fb76ed623ca2ea3c9f36590450bc2749f",
+    "case_073": "aabaff04d990bac77150639be7f410acc46db644d19fd046367dc70725aea7f9",
+    "case_074": "a8a94915cbac32e098d7c54cfc73af8ea2050eb51199b949a92cfe18ae62162e",
+    "case_075": "5c24beddea6d09e1df3c8f8843d3593b90affb117ba38450fa9bea8a8db3351c",
+    "case_076": "543a082b17fe8de0dbab92b19f27335e4c8d1db389f75251378f1f4704368307",
+    "case_077": "b14c3c29f9427de1db1d12c6ebf5d15914a99299298d20a908d97285947e67b6",
+    "case_078": "d30ea13a65ed4d85fd62753d3e300a04c17fdbe592b6ca19c52a3a744e4affdd",
+    "case_079": "ee341b011b5ff7f1c975fd6ba8f876217612ecd8d9e4e2127e617cecac1edad5",
+    "case_080": "20b2fa1e14bf879ac7c5b0321f69731c8a8102bb65bbd96d7543f54f4974f98c",
+    "case_081": "7c642799a54f8083f56c74d1e260ec010e3a83c37702770c862d722408c7a41e",
+    "case_082": "f230fbc200ad75797f3024f84431d1d26f7747d6a284378ee83eabde77b7e70c",
+    "case_083": "26bebaecfa0ed9c4bcf57127779a198c367a5576eb7b40b9c56cc343621c5549",
+    "case_084": "1af22ac8dd69090ed25be62ae1bbb18a922ce99a8cffb2be4f89e7a1234794ee",
+    "case_085": "b63169e9cd0f21dc2da6617e7138472e95937465c703b7e4bf4dbc80125ed4f6",
+    "case_086": "ef91fda2692fd0add63db3c7f677e4e03c8d115d97db3cb959cffc62fff2434a",
+    "case_087": "a234839f266f63270c7d42c558eabd68085d415029ce73bfac9d3fc47d58de83",
+    "case_088": "2ff71575ba33875431f54823fc1f2214e018edcfc9d568edfb7c47b0f264b825",
+    "case_089": "9561e0638071147e99d937b802f61f8a67fe2b96985159c174b47a777fd6ce84",
+    "case_090": "a91d3ad4c40e53d5731b81b3eb72bcf922f5ef06094e860b5c5729619cb2d312",
+    "case_091": "6fa7e61f09003382ba36061d74d4be90ed3acbe750a3d46c3b6d1e1fc27579f3",
+    "case_092": "ddb267b7178d1b240f76fb7ed508799fbc7621b45156064b2a229c5c0d90996d",
+    "case_093": "3a68ca960cc21b10a94b0524f5c16d2ee4995f2e5a75e667d58099571a7cdc36",
+    "case_094": "06e7b0eb1eecb9a98b6691dfe5f8039c6f7b21ab0f3ea8e6a072ade002a68fec",
+    "case_095": "99875b1d3025c71f87e04818e28c08915928813f495d080ae6436879f6cb540f",
+    "case_096": "c26df1f4c6e282279a2f86c24d13be04e5c0e8b24b36149899bf7e7a91cf579a",
+    "case_097": "7dc5c8ebf92052dbdd1bf59794a8fcef74e3ab3c59d5f0b4e753bf38a741ffaf",
+    "case_098": "8cc92ed83866234532487abacb106e0298a00cf309ef75fa12e413bfb17d58f8",
+    "case_099": "6a07bc2eba4657ec873f015cb53404696202df8fe912a94340cbdc674cbd7938",
+    "case_100": "bb78167d482a9e1663bb947945def049c2d66392c3897613ce5cb145d3a2eb19"
+  },
+  "selected": {
+    "case_001": {
+      "compute_ops": 600,
+      "tensors": 1202,
+      "edges": 2402,
+      "depth": 3,
+      "width": 200,
+      "components": 200,
+      "largest_component": 3,
+      "max_fanout": 200,
+      "max_tensor": 4096,
+      "critical_compute": 1316,
+      "family": "conv_shallow",
+      "op_counts": {
+        "CONV": 200,
+        "RELU": 200,
+        "ADD": 200
+      },
+      "pipe_work": {
+        "PIPE_M": 232800,
+        "PIPE_V": 30400
+      },
+      "input_bytes": 820352,
+      "shared_inputs": 201
+    },
+    "case_002": {
+      "compute_ops": 1798,
+      "tensors": 2595,
+      "edges": 5392,
+      "depth": 24,
+      "width": 199,
+      "components": 1,
+      "largest_component": 1798,
+      "max_fanout": 8,
+      "max_tensor": 4608,
+      "critical_compute": 2976,
+      "family": "mlp",
+      "op_counts": {
+        "MATMUL": 800,
+        "RELU": 800,
+        "ADD": 198
+      },
+      "pipe_work": {
+        "PIPE_M": 240000,
+        "PIPE_V": 35928
+      },
+      "input_bytes": 1222656,
+      "shared_inputs": 199
+    },
+    "case_003": {
+      "compute_ops": 13455,
+      "tensors": 13868,
+      "edges": 36295,
+      "depth": 305,
+      "width": 325,
+      "components": 10,
+      "largest_component": 13194,
+      "max_fanout": 972,
+      "max_tensor": 32768,
+      "critical_compute": 28285,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 2550,
+        "REDUCE": 2235,
+        "SUB": 1946,
+        "MUL": 345,
+        "ADD": 3034,
+        "SQRT": 108,
+        "DIV": 1188,
+        "RELU": 946,
+        "EXP": 972,
+        "SIGMOID": 125,
+        "NEG": 6
+      },
+      "pipe_work": {
+        "PIPE_M": 438792,
+        "PIPE_V": 325189
+      },
+      "input_bytes": 1284230,
+      "shared_inputs": 93
+    },
+    "case_004": {
+      "compute_ops": 777,
+      "tensors": 1116,
+      "edges": 2670,
+      "depth": 6,
+      "width": 222,
+      "components": 111,
+      "largest_component": 7,
+      "max_fanout": 111,
+      "max_tensor": 36864,
+      "critical_compute": 2748,
+      "family": "gated",
+      "op_counts": {
+        "MATMUL": 333,
+        "SIGMOID": 111,
+        "MUL": 222,
+        "ADD": 111
+      },
+      "pipe_work": {
+        "PIPE_M": 385614,
+        "PIPE_V": 47952
+      },
+      "input_bytes": 451584,
+      "shared_inputs": 114
+    },
+    "case_005": {
+      "compute_ops": 4113,
+      "tensors": 4298,
+      "edges": 11187,
+      "depth": 138,
+      "width": 196,
+      "components": 1,
+      "largest_component": 4113,
+      "max_fanout": 294,
+      "max_tensor": 9216,
+      "critical_compute": 6894,
+      "family": "transformer",
+      "op_counts": {
+        "MATMUL": 816,
+        "REDUCE": 672,
+        "SUB": 588,
+        "MUL": 126,
+        "ADD": 903,
+        "SQRT": 42,
+        "DIV": 378,
+        "RELU": 252,
+        "EXP": 294,
+        "SIGMOID": 42
+      },
+      "pipe_work": {
+        "PIPE_M": 63882,
+        "PIPE_V": 60930
+      },
+      "input_bytes": 318822,
+      "shared_inputs": 71
+    },
+    "case_006": {
+      "compute_ops": 678,
+      "tensors": 982,
+      "edges": 1995,
+      "depth": 22,
+      "width": 116,
+      "components": 27,
+      "largest_component": 136,
+      "max_fanout": 11,
+      "max_tensor": 16384,
+      "critical_compute": 2836,
+      "family": "mixed",
+      "op_counts": {
+        "RELU": 154,
+        "REDUCE": 146,
+        "ADD": 130,
+        "MATMUL": 59,
+        "SIGMOID": 30,
+        "MUL": 58,
+        "DIV": 41,
+        "SUB": 32,
+        "EXP": 4,
+        "SQRT": 6,
+        "NEG": 18
+      },
+      "pipe_work": {
+        "PIPE_V": 69000,
+        "PIPE_M": 18660
+      },
+      "input_bytes": 543264,
+      "shared_inputs": 72
+    },
+    "case_007": {
+      "compute_ops": 3885,
+      "tensors": 5556,
+      "edges": 13326,
+      "depth": 6,
+      "width": 1110,
+      "components": 555,
+      "largest_component": 7,
+      "max_fanout": 555,
+      "max_tensor": 9216,
+      "critical_compute": 1632,
+      "family": "gated",
+      "op_counts": {
+        "MATMUL": 1665,
+        "SIGMOID": 555,
+        "MUL": 1110,
+        "ADD": 555
+      },
+      "pipe_work": {
+        "PIPE_M": 979020,
+        "PIPE_V": 253080
+      },
+      "input_bytes": 880128,
+      "shared_inputs": 558
+    },
+    "case_008": {
+      "compute_ops": 864,
+      "tensors": 1836,
+      "edges": 3348,
+      "depth": 8,
+      "width": 108,
+      "components": 108,
+      "largest_component": 8,
+      "max_fanout": 2,
+      "max_tensor": 18432,
+      "critical_compute": 4512,
+      "family": "attention",
+      "op_counts": {
+        "MATMUL": 216,
+        "DIV": 216,
+        "REDUCE": 216,
+        "SUB": 108,
+        "EXP": 108
+      },
+      "pipe_work": {
+        "PIPE_M": 250128,
+        "PIPE_V": 237168
+      },
+      "input_bytes": 1990872,
+      "shared_inputs": 0
+    },
+    "case_009": {
+      "compute_ops": 5671,
+      "tensors": 6376,
+      "edges": 15754,
+      "depth": 366,
+      "width": 217,
+      "components": 25,
+      "largest_component": 4774,
+      "max_fanout": 288,
+      "max_tensor": 8192,
+      "critical_compute": 9965,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 966,
+        "REDUCE": 959,
+        "SUB": 690,
+        "MUL": 421,
+        "ADD": 1212,
+        "SQRT": 109,
+        "DIV": 510,
+        "RELU": 359,
+        "EXP": 288,
+        "SIGMOID": 137,
+        "NEG": 20
+      },
+      "pipe_work": {
+        "PIPE_M": 65160,
+        "PIPE_V": 119992
+      },
+      "input_bytes": 495194,
+      "shared_inputs": 213
+    },
+    "case_010": {
+      "compute_ops": 667,
+      "tensors": 889,
+      "edges": 1899,
+      "depth": 62,
+      "width": 80,
+      "components": 36,
+      "largest_component": 133,
+      "max_fanout": 28,
+      "max_tensor": 16384,
+      "critical_compute": 3146,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 131,
+        "SIGMOID": 47,
+        "MUL": 48,
+        "ADD": 107,
+        "REDUCE": 110,
+        "RELU": 177,
+        "DIV": 14,
+        "SUB": 7,
+        "EXP": 7,
+        "NEG": 19
+      },
+      "pipe_work": {
+        "PIPE_M": 44610,
+        "PIPE_V": 55496
+      },
+      "input_bytes": 384078,
+      "shared_inputs": 58
+    },
+    "case_011": {
+      "compute_ops": 688,
+      "tensors": 1056,
+      "edges": 2448,
+      "depth": 22,
+      "width": 352,
+      "components": 16,
+      "largest_component": 43,
+      "max_fanout": 4,
+      "max_tensor": 4096,
+      "critical_compute": 2120,
+      "family": "gemm_reduce",
+      "op_counts": {
+        "MATMUL": 352,
+        "ADD": 336
+      },
+      "pipe_work": {
+        "PIPE_M": 184448,
+        "PIPE_V": 25536
+      },
+      "input_bytes": 540672,
+      "shared_inputs": 176
+    },
+    "case_012": {
+      "compute_ops": 972,
+      "tensors": 1555,
+      "edges": 3131,
+      "depth": 19,
+      "width": 195,
+      "components": 50,
+      "largest_component": 98,
+      "max_fanout": 12,
+      "max_tensor": 9216,
+      "critical_compute": 2506,
+      "family": "mixed",
+      "op_counts": {
+        "CONV": 8,
+        "RELU": 92,
+        "ADD": 193,
+        "MATMUL": 127,
+        "DIV": 84,
+        "REDUCE": 214,
+        "SUB": 65,
+        "EXP": 10,
+        "MUL": 99,
+        "SQRT": 11,
+        "SIGMOID": 45,
+        "NEG": 24
+      },
+      "pipe_work": {
+        "PIPE_M": 35572,
+        "PIPE_V": 32237
+      },
+      "input_bytes": 484096,
+      "shared_inputs": 108
+    },
+    "case_013": {
+      "compute_ops": 1968,
+      "tensors": 4190,
+      "edges": 8126,
+      "depth": 4,
+      "width": 984,
+      "components": 246,
+      "largest_component": 8,
+      "max_fanout": 246,
+      "max_tensor": 2048,
+      "critical_compute": 400,
+      "family": "gemm_shallow",
+      "op_counts": {
+        "MATMUL": 984,
+        "ADD": 738,
+        "RELU": 246
+      },
+      "pipe_work": {
+        "PIPE_M": 263712,
+        "PIPE_V": 43296
+      },
+      "input_bytes": 2023424,
+      "shared_inputs": 4
+    },
+    "case_014": {
+      "compute_ops": 35705,
+      "tensors": 40287,
+      "edges": 108272,
+      "depth": 124,
+      "width": 15921,
+      "components": 1340,
+      "largest_component": 124,
+      "max_fanout": 38,
+      "max_tensor": 165888,
+      "critical_compute": 31968,
+      "family": "mixed",
+      "op_counts": {
+        "CONV": 300,
+        "RELU": 912,
+        "ADD": 14722,
+        "MATMUL": 15915,
+        "REDUCE": 2682,
+        "MUL": 2,
+        "SUB": 1,
+        "SIGMOID": 603,
+        "NEG": 568
+      },
+      "pipe_work": {
+        "PIPE_M": 17225748,
+        "PIPE_V": 1651424
+      },
+      "input_bytes": 9911640,
+      "shared_inputs": 1615
+    },
+    "case_015": {
+      "compute_ops": 1013,
+      "tensors": 1501,
+      "edges": 3107,
+      "depth": 29,
+      "width": 172,
+      "components": 46,
+      "largest_component": 145,
+      "max_fanout": 11,
+      "max_tensor": 32768,
+      "critical_compute": 7913,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 130,
+        "SIGMOID": 50,
+        "MUL": 112,
+        "ADD": 192,
+        "REDUCE": 241,
+        "DIV": 76,
+        "SUB": 57,
+        "EXP": 13,
+        "RELU": 106,
+        "SQRT": 10,
+        "NEG": 26
+      },
+      "pipe_work": {
+        "PIPE_M": 94980,
+        "PIPE_V": 101497
+      },
+      "input_bytes": 884482,
+      "shared_inputs": 101
+    },
+    "case_016": {
+      "compute_ops": 17995,
+      "tensors": 18020,
+      "edges": 43019,
+      "depth": 2440,
+      "width": 12,
+      "components": 1,
+      "largest_component": 17995,
+      "max_fanout": 305,
+      "max_tensor": 32768,
+      "critical_compute": 655140,
+      "family": "vector_chain",
+      "op_counts": {
+        "RELU": 7332,
+        "REDUCE": 3660,
+        "ADD": 7003
+      },
+      "pipe_work": {
+        "PIPE_V": 7714975
+      },
+      "input_bytes": 393216,
+      "shared_inputs": 12
+    },
+    "case_017": {
+      "compute_ops": 1373,
+      "tensors": 2015,
+      "edges": 4245,
+      "depth": 18,
+      "width": 233,
+      "components": 60,
+      "largest_component": 162,
+      "max_fanout": 10,
+      "max_tensor": 24576,
+      "critical_compute": 5980,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 82,
+        "SIGMOID": 57,
+        "MUL": 191,
+        "ADD": 280,
+        "REDUCE": 313,
+        "DIV": 133,
+        "SUB": 109,
+        "EXP": 13,
+        "CONV": 28,
+        "RELU": 114,
+        "SQRT": 13,
+        "NEG": 40
+      },
+      "pipe_work": {
+        "PIPE_M": 110600,
+        "PIPE_V": 67202
+      },
+      "input_bytes": 535118,
+      "shared_inputs": 178
+    },
+    "case_018": {
+      "compute_ops": 2727,
+      "tensors": 3717,
+      "edges": 8718,
+      "depth": 28,
+      "width": 1084,
+      "components": 126,
+      "largest_component": 59,
+      "max_fanout": 20,
+      "max_tensor": 8192,
+      "critical_compute": 3539,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 1092,
+        "ADD": 1019,
+        "RELU": 173,
+        "REDUCE": 270,
+        "DIV": 20,
+        "SUB": 10,
+        "EXP": 10,
+        "SIGMOID": 70,
+        "MUL": 9,
+        "NEG": 54
+      },
+      "pipe_work": {
+        "PIPE_M": 971320,
+        "PIPE_V": 112731
+      },
+      "input_bytes": 1592596,
+      "shared_inputs": 242
+    },
+    "case_019": {
+      "compute_ops": 647,
+      "tensors": 854,
+      "edges": 1841,
+      "depth": 79,
+      "width": 57,
+      "components": 31,
+      "largest_component": 170,
+      "max_fanout": 36,
+      "max_tensor": 8192,
+      "critical_compute": 12234,
+      "family": "mixed",
+      "op_counts": {
+        "RELU": 216,
+        "ADD": 122,
+        "REDUCE": 75,
+        "MATMUL": 124,
+        "SIGMOID": 27,
+        "MUL": 26,
+        "DIV": 20,
+        "SUB": 12,
+        "EXP": 10,
+        "CONV": 5,
+        "NEG": 10
+      },
+      "pipe_work": {
+        "PIPE_V": 40276,
+        "PIPE_M": 48436
+      },
+      "input_bytes": 179252,
+      "shared_inputs": 39
+    },
+    "case_020": {
+      "compute_ops": 7008,
+      "tensors": 7872,
+      "edges": 18048,
+      "depth": 24,
+      "width": 576,
+      "components": 288,
+      "largest_component": 28,
+      "max_fanout": 7,
+      "max_tensor": 4096,
+      "critical_compute": 1824,
+      "family": "vector_elementwise",
+      "op_counts": {
+        "RELU": 4032,
+        "ADD": 2976
+      },
+      "pipe_work": {
+        "PIPE_V": 532608
+      },
+      "input_bytes": 1179648,
+      "shared_inputs": 288
+    },
+    "case_021": {
+      "compute_ops": 3920,
+      "tensors": 4900,
+      "edges": 12820,
+      "depth": 7,
+      "width": 2000,
+      "components": 80,
+      "largest_component": 49,
+      "max_fanout": 10,
+      "max_tensor": 12288,
+      "critical_compute": 5544,
+      "family": "gemm_reduce",
+      "op_counts": {
+        "MATMUL": 2000,
+        "ADD": 1920
+      },
+      "pipe_work": {
+        "PIPE_M": 6192000,
+        "PIPE_V": 783360
+      },
+      "input_bytes": 2355200,
+      "shared_inputs": 450
+    },
+    "case_022": {
+      "compute_ops": 1356,
+      "tensors": 1705,
+      "edges": 3720,
+      "depth": 36,
+      "width": 149,
+      "components": 32,
+      "largest_component": 183,
+      "max_fanout": 10,
+      "max_tensor": 8192,
+      "critical_compute": 1986,
+      "family": "mixed",
+      "op_counts": {
+        "RELU": 367,
+        "ADD": 375,
+        "REDUCE": 254,
+        "DIV": 71,
+        "MUL": 115,
+        "SUB": 62,
+        "SQRT": 7,
+        "MATMUL": 23,
+        "SIGMOID": 44,
+        "EXP": 4,
+        "NEG": 34
+      },
+      "pipe_work": {
+        "PIPE_V": 54087,
+        "PIPE_M": 4484
+      },
+      "input_bytes": 213540,
+      "shared_inputs": 113
+    },
+    "case_023": {
+      "compute_ops": 1011,
+      "tensors": 1336,
+      "edges": 2869,
+      "depth": 31,
+      "width": 96,
+      "components": 43,
+      "largest_component": 127,
+      "max_fanout": 8,
+      "max_tensor": 24576,
+      "critical_compute": 4218,
+      "family": "mixed",
+      "op_counts": {
+        "RELU": 291,
+        "ADD": 266,
+        "REDUCE": 154,
+        "MATMUL": 60,
+        "SIGMOID": 37,
+        "MUL": 64,
+        "DIV": 54,
+        "SUB": 38,
+        "SQRT": 3,
+        "EXP": 15,
+        "CONV": 4,
+        "NEG": 25
+      },
+      "pipe_work": {
+        "PIPE_V": 69558,
+        "PIPE_M": 63384
+      },
+      "input_bytes": 434122,
+      "shared_inputs": 71
+    },
+    "case_024": {
+      "compute_ops": 5959,
+      "tensors": 5984,
+      "edges": 14255,
+      "depth": 808,
+      "width": 12,
+      "components": 1,
+      "largest_component": 5959,
+      "max_fanout": 101,
+      "max_tensor": 32768,
+      "critical_compute": 216948,
+      "family": "vector_chain",
+      "op_counts": {
+        "RELU": 2436,
+        "REDUCE": 1212,
+        "ADD": 2311
+      },
+      "pipe_work": {
+        "PIPE_V": 2554795
+      },
+      "input_bytes": 393216,
+      "shared_inputs": 12
+    },
+    "case_025": {
+      "compute_ops": 18662,
+      "tensors": 26666,
+      "edges": 63990,
+      "depth": 6,
+      "width": 5332,
+      "components": 2666,
+      "largest_component": 7,
+      "max_fanout": 2666,
+      "max_tensor": 9216,
+      "critical_compute": 1632,
+      "family": "gated",
+      "op_counts": {
+        "MATMUL": 7998,
+        "SIGMOID": 2666,
+        "MUL": 5332,
+        "ADD": 2666
+      },
+      "pipe_work": {
+        "PIPE_M": 4702824,
+        "PIPE_V": 1215696
+      },
+      "input_bytes": 4122624,
+      "shared_inputs": 2669
+    },
+    "case_026": {
+      "compute_ops": 636,
+      "tensors": 871,
+      "edges": 1849,
+      "depth": 49,
+      "width": 76,
+      "components": 31,
+      "largest_component": 198,
+      "max_fanout": 20,
+      "max_tensor": 24576,
+      "critical_compute": 4319,
+      "family": "mixed",
+      "op_counts": {
+        "CONV": 15,
+        "RELU": 215,
+        "ADD": 190,
+        "MATMUL": 87,
+        "SIGMOID": 11,
+        "MUL": 10,
+        "REDUCE": 88,
+        "DIV": 6,
+        "SUB": 3,
+        "EXP": 3,
+        "NEG": 8
+      },
+      "pipe_work": {
+        "PIPE_M": 40992,
+        "PIPE_V": 70768
+      },
+      "input_bytes": 488886,
+      "shared_inputs": 58
+    },
+    "case_027": {
+      "compute_ops": 1424,
+      "tensors": 2160,
+      "edges": 5024,
+      "depth": 45,
+      "width": 720,
+      "components": 16,
+      "largest_component": 89,
+      "max_fanout": 4,
+      "max_tensor": 12288,
+      "critical_compute": 21048,
+      "family": "gemm_reduce",
+      "op_counts": {
+        "MATMUL": 720,
+        "ADD": 704
+      },
+      "pipe_work": {
+        "PIPE_M": 2229120,
+        "PIPE_V": 287232
+      },
+      "input_bytes": 1843200,
+      "shared_inputs": 360
+    },
+    "case_028": {
+      "compute_ops": 19584,
+      "tensors": 20151,
+      "edges": 51822,
+      "depth": 124,
+      "width": 306,
+      "components": 153,
+      "largest_component": 128,
+      "max_fanout": 153,
+      "max_tensor": 165888,
+      "critical_compute": 246816,
+      "family": "conv_deep",
+      "op_counts": {
+        "CONV": 8262,
+        "RELU": 7650,
+        "ADD": 3672
+      },
+      "pipe_work": {
+        "PIPE_M": 38974608,
+        "PIPE_V": 1975536
+      },
+      "input_bytes": 4028544,
+      "shared_inputs": 54
+    },
+    "case_029": {
+      "compute_ops": 861,
+      "tensors": 1281,
+      "edges": 2772,
+      "depth": 12,
+      "width": 168,
+      "components": 21,
+      "largest_component": 41,
+      "max_fanout": 5,
+      "max_tensor": 2048,
+      "critical_compute": 407,
+      "family": "vector_norm",
+      "op_counts": {
+        "REDUCE": 168,
+        "ADD": 231,
+        "DIV": 126,
+        "MUL": 189,
+        "SUB": 105,
+        "RELU": 21,
+        "SQRT": 21
+      },
+      "pipe_work": {
+        "PIPE_V": 37485
+      },
+      "input_bytes": 258132,
+      "shared_inputs": 147
+    },
+    "case_030": {
+      "compute_ops": 10070,
+      "tensors": 11940,
+      "edges": 30954,
+      "depth": 12,
+      "width": 4472,
+      "components": 486,
+      "largest_component": 57,
+      "max_fanout": 22,
+      "max_tensor": 6144,
+      "critical_compute": 1494,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 4472,
+        "ADD": 3984,
+        "RELU": 206,
+        "REDUCE": 976,
+        "SUB": 2,
+        "NEG": 214,
+        "SIGMOID": 216
+      },
+      "pipe_work": {
+        "PIPE_M": 2776480,
+        "PIPE_V": 406822
+      },
+      "input_bytes": 2393088,
+      "shared_inputs": 596
+    },
+    "case_031": {
+      "compute_ops": 6135,
+      "tensors": 7365,
+      "edges": 18435,
+      "depth": 136,
+      "width": 1659,
+      "components": 107,
+      "largest_component": 2147,
+      "max_fanout": 144,
+      "max_tensor": 13824,
+      "critical_compute": 13057,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 2122,
+        "ADD": 2138,
+        "REDUCE": 555,
+        "SUB": 283,
+        "MUL": 92,
+        "SQRT": 24,
+        "DIV": 218,
+        "RELU": 426,
+        "EXP": 151,
+        "SIGMOID": 83,
+        "NEG": 43
+      },
+      "pipe_work": {
+        "PIPE_M": 1334492,
+        "PIPE_V": 221025
+      },
+      "input_bytes": 2184820,
+      "shared_inputs": 497
+    },
+    "case_032": {
+      "compute_ops": 827,
+      "tensors": 1186,
+      "edges": 2469,
+      "depth": 30,
+      "width": 137,
+      "components": 25,
+      "largest_component": 189,
+      "max_fanout": 11,
+      "max_tensor": 4608,
+      "critical_compute": 1146,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 45,
+        "DIV": 68,
+        "REDUCE": 199,
+        "SUB": 55,
+        "EXP": 6,
+        "ADD": 185,
+        "MUL": 91,
+        "RELU": 112,
+        "SQRT": 8,
+        "CONV": 3,
+        "NEG": 26,
+        "SIGMOID": 29
+      },
+      "pipe_work": {
+        "PIPE_M": 10150,
+        "PIPE_V": 33995
+      },
+      "input_bytes": 279156,
+      "shared_inputs": 80
+    },
+    "case_033": {
+      "compute_ops": 3465,
+      "tensors": 4572,
+      "edges": 11073,
+      "depth": 34,
+      "width": 1439,
+      "components": 95,
+      "largest_component": 64,
+      "max_fanout": 24,
+      "max_tensor": 13824,
+      "critical_compute": 6300,
+      "family": "mixed",
+      "op_counts": {
+        "CONV": 6,
+        "RELU": 227,
+        "ADD": 1474,
+        "REDUCE": 194,
+        "DIV": 18,
+        "MUL": 32,
+        "SUB": 14,
+        "SQRT": 4,
+        "MATMUL": 1407,
+        "SIGMOID": 43,
+        "NEG": 46
+      },
+      "pipe_work": {
+        "PIPE_M": 1728108,
+        "PIPE_V": 192042
+      },
+      "input_bytes": 2889776,
+      "shared_inputs": 427
+    },
+    "case_034": {
+      "compute_ops": 3745,
+      "tensors": 5144,
+      "edges": 11907,
+      "depth": 24,
+      "width": 1374,
+      "components": 155,
+      "largest_component": 94,
+      "max_fanout": 14,
+      "max_tensor": 8192,
+      "critical_compute": 3677,
+      "family": "mixed",
+      "op_counts": {
+        "RELU": 221,
+        "ADD": 1344,
+        "REDUCE": 463,
+        "DIV": 85,
+        "MUL": 119,
+        "SUB": 71,
+        "SQRT": 9,
+        "MATMUL": 1262,
+        "EXP": 6,
+        "NEG": 79,
+        "SIGMOID": 86
+      },
+      "pipe_work": {
+        "PIPE_V": 194956,
+        "PIPE_M": 749160
+      },
+      "input_bytes": 2279984,
+      "shared_inputs": 468
+    },
+    "case_035": {
+      "compute_ops": 3857,
+      "tensors": 4538,
+      "edges": 10712,
+      "depth": 333,
+      "width": 224,
+      "components": 16,
+      "largest_component": 2430,
+      "max_fanout": 128,
+      "max_tensor": 8192,
+      "critical_compute": 17200,
+      "family": "mixed",
+      "op_counts": {
+        "RELU": 445,
+        "REDUCE": 696,
+        "ADD": 841,
+        "MATMUL": 513,
+        "SUB": 368,
+        "MUL": 343,
+        "SQRT": 74,
+        "DIV": 314,
+        "EXP": 128,
+        "SIGMOID": 97,
+        "CONV": 3,
+        "NEG": 35
+      },
+      "pipe_work": {
+        "PIPE_V": 143909,
+        "PIPE_M": 62192
+      },
+      "input_bytes": 396878,
+      "shared_inputs": 184
+    },
+    "case_036": {
+      "compute_ops": 2400,
+      "tensors": 4802,
+      "edges": 9602,
+      "depth": 3,
+      "width": 800,
+      "components": 800,
+      "largest_component": 3,
+      "max_fanout": 800,
+      "max_tensor": 4096,
+      "critical_compute": 1316,
+      "family": "conv_shallow",
+      "op_counts": {
+        "CONV": 800,
+        "RELU": 800,
+        "ADD": 800
+      },
+      "pipe_work": {
+        "PIPE_M": 931200,
+        "PIPE_V": 121600
+      },
+      "input_bytes": 3277952,
+      "shared_inputs": 801
+    },
+    "case_037": {
+      "compute_ops": 780,
+      "tensors": 1160,
+      "edges": 2740,
+      "depth": 6,
+      "width": 400,
+      "components": 20,
+      "largest_component": 39,
+      "max_fanout": 5,
+      "max_tensor": 4096,
+      "critical_compute": 904,
+      "family": "gemm_reduce",
+      "op_counts": {
+        "MATMUL": 400,
+        "ADD": 380
+      },
+      "pipe_work": {
+        "PIPE_M": 209600,
+        "PIPE_V": 28880
+      },
+      "input_bytes": 532480,
+      "shared_inputs": 180
+    },
+    "case_038": {
+      "compute_ops": 5907,
+      "tensors": 7649,
+      "edges": 18941,
+      "depth": 36,
+      "width": 2594,
+      "components": 130,
+      "largest_component": 116,
+      "max_fanout": 15,
+      "max_tensor": 32768,
+      "critical_compute": 8754,
+      "family": "mixed",
+      "op_counts": {
+        "RELU": 287,
+        "ADD": 2602,
+        "REDUCE": 252,
+        "MATMUL": 2626,
+        "DIV": 10,
+        "SUB": 6,
+        "EXP": 5,
+        "SIGMOID": 56,
+        "MUL": 10,
+        "CONV": 4,
+        "NEG": 49
+      },
+      "pipe_work": {
+        "PIPE_V": 167776,
+        "PIPE_M": 1325000
+      },
+      "input_bytes": 2794506,
+      "shared_inputs": 773
+    },
+    "case_039": {
+      "compute_ops": 5250,
+      "tensors": 6612,
+      "edges": 17182,
+      "depth": 8,
+      "width": 2660,
+      "components": 70,
+      "largest_component": 75,
+      "max_fanout": 10,
+      "max_tensor": 8192,
+      "critical_compute": 784,
+      "family": "gemm_reduce",
+      "op_counts": {
+        "MATMUL": 2660,
+        "ADD": 2590
+      },
+      "pipe_work": {
+        "PIPE_M": 1377880,
+        "PIPE_V": 98420
+      },
+      "input_bytes": 4202496,
+      "shared_inputs": 646
+    },
+    "case_040": {
+      "compute_ops": 3083,
+      "tensors": 3647,
+      "edges": 8621,
+      "depth": 229,
+      "width": 196,
+      "components": 28,
+      "largest_component": 2194,
+      "max_fanout": 125,
+      "max_tensor": 16384,
+      "critical_compute": 16120,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 571,
+        "ADD": 706,
+        "RELU": 445,
+        "REDUCE": 475,
+        "SUB": 275,
+        "MUL": 157,
+        "SQRT": 50,
+        "DIV": 200,
+        "EXP": 125,
+        "SIGMOID": 66,
+        "NEG": 13
+      },
+      "pipe_work": {
+        "PIPE_M": 111972,
+        "PIPE_V": 185751
+      },
+      "input_bytes": 911174,
+      "shared_inputs": 68
+    },
+    "case_041": {
+      "compute_ops": 16594,
+      "tensors": 19210,
+      "edges": 51024,
+      "depth": 49,
+      "width": 7574,
+      "components": 494,
+      "largest_component": 182,
+      "max_fanout": 20,
+      "max_tensor": 6144,
+      "critical_compute": 1767,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 7558,
+        "ADD": 7167,
+        "REDUCE": 1052,
+        "RELU": 377,
+        "MUL": 1,
+        "NEG": 220,
+        "SIGMOID": 219
+      },
+      "pipe_work": {
+        "PIPE_M": 5895240,
+        "PIPE_V": 607750
+      },
+      "input_bytes": 4948992,
+      "shared_inputs": 1057
+    },
+    "case_042": {
+      "compute_ops": 4733,
+      "tensors": 5853,
+      "edges": 14855,
+      "depth": 53,
+      "width": 2057,
+      "components": 104,
+      "largest_component": 258,
+      "max_fanout": 24,
+      "max_tensor": 18432,
+      "critical_compute": 5685,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 2077,
+        "RELU": 224,
+        "ADD": 2058,
+        "REDUCE": 246,
+        "CONV": 6,
+        "SIGMOID": 53,
+        "MUL": 25,
+        "NEG": 44
+      },
+      "pipe_work": {
+        "PIPE_M": 1599076,
+        "PIPE_V": 226026
+      },
+      "input_bytes": 2364192,
+      "shared_inputs": 492
+    },
+    "case_043": {
+      "compute_ops": 9309,
+      "tensors": 10140,
+      "edges": 25867,
+      "depth": 202,
+      "width": 547,
+      "components": 38,
+      "largest_component": 4910,
+      "max_fanout": 324,
+      "max_tensor": 16384,
+      "critical_compute": 27474,
+      "family": "mixed",
+      "op_counts": {
+        "RELU": 561,
+        "ADD": 2261,
+        "REDUCE": 1444,
+        "MATMUL": 1968,
+        "SUB": 1142,
+        "MUL": 367,
+        "SQRT": 114,
+        "DIV": 750,
+        "EXP": 540,
+        "SIGMOID": 135,
+        "NEG": 27
+      },
+      "pipe_work": {
+        "PIPE_V": 343841,
+        "PIPE_M": 517752
+      },
+      "input_bytes": 1430996,
+      "shared_inputs": 336
+    },
+    "case_044": {
+      "compute_ops": 1364,
+      "tensors": 1497,
+      "edges": 3686,
+      "depth": 124,
+      "width": 11,
+      "components": 11,
+      "largest_component": 124,
+      "max_fanout": 11,
+      "max_tensor": 73728,
+      "critical_compute": 7672,
+      "family": "conv_deep",
+      "op_counts": {
+        "CONV": 550,
+        "RELU": 550,
+        "ADD": 264
+      },
+      "pipe_work": {
+        "PIPE_M": 74404,
+        "PIPE_V": 9988
+      },
+      "input_bytes": 952928,
+      "shared_inputs": 50
+    },
+    "case_045": {
+      "compute_ops": 1651,
+      "tensors": 1855,
+      "edges": 4253,
+      "depth": 24,
+      "width": 136,
+      "components": 68,
+      "largest_component": 28,
+      "max_fanout": 7,
+      "max_tensor": 4096,
+      "critical_compute": 1824,
+      "family": "vector_elementwise",
+      "op_counts": {
+        "RELU": 950,
+        "ADD": 701
+      },
+      "pipe_work": {
+        "PIPE_V": 125476
+      },
+      "input_bytes": 278528,
+      "shared_inputs": 68
+    },
+    "case_046": {
+      "compute_ops": 992,
+      "tensors": 1116,
+      "edges": 2708,
+      "depth": 124,
+      "width": 8,
+      "components": 8,
+      "largest_component": 124,
+      "max_fanout": 8,
+      "max_tensor": 73728,
+      "critical_compute": 28456,
+      "family": "conv_deep",
+      "op_counts": {
+        "CONV": 400,
+        "RELU": 400,
+        "ADD": 192
+      },
+      "pipe_work": {
+        "PIPE_M": 209248,
+        "PIPE_V": 18400
+      },
+      "input_bytes": 995936,
+      "shared_inputs": 50
+    },
+    "case_047": {
+      "compute_ops": 13710,
+      "tensors": 14259,
+      "edges": 37206,
+      "depth": 460,
+      "width": 196,
+      "components": 1,
+      "largest_component": 13710,
+      "max_fanout": 980,
+      "max_tensor": 4096,
+      "critical_compute": 19990,
+      "family": "transformer",
+      "op_counts": {
+        "MATMUL": 2720,
+        "REDUCE": 2240,
+        "SUB": 1960,
+        "MUL": 420,
+        "ADD": 3010,
+        "SQRT": 140,
+        "DIV": 1260,
+        "RELU": 840,
+        "EXP": 980,
+        "SIGMOID": 140
+      },
+      "pipe_work": {
+        "PIPE_M": 153760,
+        "PIPE_V": 259370
+      },
+      "input_bytes": 457286,
+      "shared_inputs": 111
+    },
+    "case_048": {
+      "compute_ops": 1728,
+      "tensors": 2069,
+      "edges": 4961,
+      "depth": 369,
+      "width": 57,
+      "components": 1,
+      "largest_component": 1728,
+      "max_fanout": 81,
+      "max_tensor": 4096,
+      "critical_compute": 75960,
+      "family": "transformer",
+      "op_counts": {
+        "MATMUL": 378,
+        "REDUCE": 270,
+        "SUB": 189,
+        "MUL": 162,
+        "ADD": 324,
+        "SQRT": 54,
+        "DIV": 162,
+        "RELU": 54,
+        "EXP": 81,
+        "SIGMOID": 54
+      },
+      "pipe_work": {
+        "PIPE_M": 139536,
+        "PIPE_V": 120060
+      },
+      "input_bytes": 410182,
+      "shared_inputs": 61
+    },
+    "case_049": {
+      "compute_ops": 4303,
+      "tensors": 4609,
+      "edges": 11684,
+      "depth": 186,
+      "width": 134,
+      "components": 11,
+      "largest_component": 3952,
+      "max_fanout": 256,
+      "max_tensor": 8192,
+      "critical_compute": 8921,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 794,
+        "REDUCE": 723,
+        "SUB": 554,
+        "MUL": 192,
+        "ADD": 908,
+        "SQRT": 64,
+        "DIV": 370,
+        "RELU": 355,
+        "EXP": 265,
+        "SIGMOID": 72,
+        "NEG": 6
+      },
+      "pipe_work": {
+        "PIPE_M": 95464,
+        "PIPE_V": 165715
+      },
+      "input_bytes": 152504,
+      "shared_inputs": 46
+    },
+    "case_050": {
+      "compute_ops": 4555,
+      "tensors": 4969,
+      "edges": 12462,
+      "depth": 186,
+      "width": 134,
+      "components": 23,
+      "largest_component": 4011,
+      "max_fanout": 256,
+      "max_tensor": 8192,
+      "critical_compute": 6829,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 781,
+        "REDUCE": 752,
+        "SUB": 569,
+        "MUL": 225,
+        "ADD": 1021,
+        "SQRT": 68,
+        "DIV": 386,
+        "RELU": 392,
+        "EXP": 263,
+        "SIGMOID": 79,
+        "NEG": 19
+      },
+      "pipe_work": {
+        "PIPE_M": 51968,
+        "PIPE_V": 133411
+      },
+      "input_bytes": 319300,
+      "shared_inputs": 93
+    },
+    "case_051": {
+      "compute_ops": 1416,
+      "tensors": 1441,
+      "edges": 3398,
+      "depth": 192,
+      "width": 12,
+      "components": 1,
+      "largest_component": 1416,
+      "max_fanout": 24,
+      "max_tensor": 32768,
+      "critical_compute": 51552,
+      "family": "vector_chain",
+      "op_counts": {
+        "RELU": 588,
+        "REDUCE": 288,
+        "ADD": 540
+      },
+      "pipe_work": {
+        "PIPE_V": 607080
+      },
+      "input_bytes": 393216,
+      "shared_inputs": 12
+    },
+    "case_052": {
+      "compute_ops": 1008,
+      "tensors": 1606,
+      "edges": 3272,
+      "depth": 17,
+      "width": 218,
+      "components": 52,
+      "largest_component": 120,
+      "max_fanout": 12,
+      "max_tensor": 13824,
+      "critical_compute": 3665,
+      "family": "mixed",
+      "op_counts": {
+        "REDUCE": 226,
+        "ADD": 202,
+        "DIV": 80,
+        "MUL": 108,
+        "SUB": 58,
+        "RELU": 61,
+        "SQRT": 8,
+        "MATMUL": 174,
+        "EXP": 14,
+        "SIGMOID": 45,
+        "NEG": 32
+      },
+      "pipe_work": {
+        "PIPE_V": 62595,
+        "PIPE_M": 141528
+      },
+      "input_bytes": 810044,
+      "shared_inputs": 91
+    },
+    "case_053": {
+      "compute_ops": 11670,
+      "tensors": 12377,
+      "edges": 31833,
+      "depth": 241,
+      "width": 318,
+      "components": 39,
+      "largest_component": 9853,
+      "max_fanout": 735,
+      "max_tensor": 73728,
+      "critical_compute": 56912,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 2080,
+        "ADD": 2512,
+        "RELU": 1265,
+        "REDUCE": 1684,
+        "CONV": 648,
+        "SIGMOID": 88,
+        "MUL": 223,
+        "SUB": 1438,
+        "SQRT": 70,
+        "DIV": 910,
+        "EXP": 735,
+        "NEG": 17
+      },
+      "pipe_work": {
+        "PIPE_M": 1212726,
+        "PIPE_V": 344076
+      },
+      "input_bytes": 2896918,
+      "shared_inputs": 217
+    },
+    "case_054": {
+      "compute_ops": 15751,
+      "tensors": 16484,
+      "edges": 42855,
+      "depth": 354,
+      "width": 324,
+      "components": 24,
+      "largest_component": 15390,
+      "max_fanout": 1134,
+      "max_tensor": 8192,
+      "critical_compute": 20291,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 3090,
+        "REDUCE": 2588,
+        "SUB": 2270,
+        "MUL": 379,
+        "ADD": 3590,
+        "SQRT": 126,
+        "DIV": 1386,
+        "RELU": 1044,
+        "EXP": 1134,
+        "SIGMOID": 138,
+        "NEG": 6
+      },
+      "pipe_work": {
+        "PIPE_M": 574216,
+        "PIPE_V": 440672
+      },
+      "input_bytes": 1606214,
+      "shared_inputs": 159
+    },
+    "case_055": {
+      "compute_ops": 1236,
+      "tensors": 1641,
+      "edges": 3467,
+      "depth": 28,
+      "width": 200,
+      "components": 24,
+      "largest_component": 183,
+      "max_fanout": 12,
+      "max_tensor": 13824,
+      "critical_compute": 6962,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 91,
+        "ADD": 281,
+        "RELU": 318,
+        "REDUCE": 261,
+        "DIV": 56,
+        "MUL": 102,
+        "SUB": 50,
+        "SQRT": 7,
+        "SIGMOID": 38,
+        "NEG": 32
+      },
+      "pipe_work": {
+        "PIPE_M": 61796,
+        "PIPE_V": 69049
+      },
+      "input_bytes": 625692,
+      "shared_inputs": 114
+    },
+    "case_056": {
+      "compute_ops": 7678,
+      "tensors": 8157,
+      "edges": 20894,
+      "depth": 300,
+      "width": 162,
+      "components": 19,
+      "largest_component": 7464,
+      "max_fanout": 486,
+      "max_tensor": 4096,
+      "critical_compute": 13737,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 1372,
+        "REDUCE": 1322,
+        "SUB": 1061,
+        "MUL": 352,
+        "ADD": 1655,
+        "SQRT": 110,
+        "DIV": 704,
+        "RELU": 458,
+        "EXP": 506,
+        "SIGMOID": 122,
+        "NEG": 16
+      },
+      "pipe_work": {
+        "PIPE_M": 131016,
+        "PIPE_V": 245953
+      },
+      "input_bytes": 221526,
+      "shared_inputs": 103
+    },
+    "case_057": {
+      "compute_ops": 865,
+      "tensors": 1180,
+      "edges": 2563,
+      "depth": 101,
+      "width": 126,
+      "components": 21,
+      "largest_component": 193,
+      "max_fanout": 48,
+      "max_tensor": 4608,
+      "critical_compute": 8189,
+      "family": "mixed",
+      "op_counts": {
+        "CONV": 5,
+        "RELU": 118,
+        "ADD": 158,
+        "REDUCE": 172,
+        "DIV": 74,
+        "MUL": 123,
+        "SUB": 63,
+        "SQRT": 10,
+        "MATMUL": 94,
+        "EXP": 2,
+        "SIGMOID": 23,
+        "NEG": 23
+      },
+      "pipe_work": {
+        "PIPE_M": 14062,
+        "PIPE_V": 47565
+      },
+      "input_bytes": 336588,
+      "shared_inputs": 102
+    },
+    "case_058": {
+      "compute_ops": 16575,
+      "tensors": 18942,
+      "edges": 52347,
+      "depth": 7,
+      "width": 8415,
+      "components": 255,
+      "largest_component": 65,
+      "max_fanout": 17,
+      "max_tensor": 8192,
+      "critical_compute": 746,
+      "family": "gemm_reduce",
+      "op_counts": {
+        "MATMUL": 8415,
+        "ADD": 8160
+      },
+      "pipe_work": {
+        "PIPE_M": 4358970,
+        "PIPE_V": 310080
+      },
+      "input_bytes": 6623232,
+      "shared_inputs": 1056
+    },
+    "case_059": {
+      "compute_ops": 2752,
+      "tensors": 3520,
+      "edges": 9088,
+      "depth": 22,
+      "width": 1408,
+      "components": 64,
+      "largest_component": 43,
+      "max_fanout": 8,
+      "max_tensor": 4096,
+      "critical_compute": 2120,
+      "family": "gemm_reduce",
+      "op_counts": {
+        "MATMUL": 1408,
+        "ADD": 1344
+      },
+      "pipe_work": {
+        "PIPE_M": 737792,
+        "PIPE_V": 102144
+      },
+      "input_bytes": 1081344,
+      "shared_inputs": 352
+    },
+    "case_060": {
+      "compute_ops": 5281,
+      "tensors": 6752,
+      "edges": 16435,
+      "depth": 41,
+      "width": 1977,
+      "components": 89,
+      "largest_component": 183,
+      "max_fanout": 12,
+      "max_tensor": 8192,
+      "critical_compute": 4252,
+      "family": "mixed",
+      "op_counts": {
+        "RELU": 417,
+        "ADD": 2196,
+        "REDUCE": 384,
+        "MATMUL": 1835,
+        "SIGMOID": 76,
+        "MUL": 151,
+        "DIV": 80,
+        "SUB": 72,
+        "SQRT": 10,
+        "NEG": 60
+      },
+      "pipe_work": {
+        "PIPE_V": 273539,
+        "PIPE_M": 720232
+      },
+      "input_bytes": 2098728,
+      "shared_inputs": 638
+    },
+    "case_061": {
+      "compute_ops": 1115,
+      "tensors": 1709,
+      "edges": 3505,
+      "depth": 45,
+      "width": 232,
+      "components": 40,
+      "largest_component": 167,
+      "max_fanout": 20,
+      "max_tensor": 8192,
+      "critical_compute": 11506,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 202,
+        "ADD": 237,
+        "RELU": 157,
+        "REDUCE": 201,
+        "DIV": 63,
+        "MUL": 103,
+        "SUB": 54,
+        "SQRT": 9,
+        "SIGMOID": 48,
+        "NEG": 41
+      },
+      "pipe_work": {
+        "PIPE_M": 71456,
+        "PIPE_V": 27572
+      },
+      "input_bytes": 544036,
+      "shared_inputs": 112
+    },
+    "case_062": {
+      "compute_ops": 19636,
+      "tensors": 28361,
+      "edges": 58906,
+      "depth": 28,
+      "width": 2181,
+      "components": 1,
+      "largest_component": 19636,
+      "max_fanout": 8,
+      "max_tensor": 4608,
+      "critical_compute": 3120,
+      "family": "mlp",
+      "op_counts": {
+        "MATMUL": 8728,
+        "RELU": 8728,
+        "ADD": 2180
+      },
+      "pipe_work": {
+        "PIPE_M": 2618400,
+        "PIPE_V": 392688
+      },
+      "input_bytes": 13400064,
+      "shared_inputs": 2181
+    },
+    "case_063": {
+      "compute_ops": 7360,
+      "tensors": 10629,
+      "edges": 22078,
+      "depth": 26,
+      "width": 817,
+      "components": 1,
+      "largest_component": 7360,
+      "max_fanout": 8,
+      "max_tensor": 4608,
+      "critical_compute": 3048,
+      "family": "mlp",
+      "op_counts": {
+        "MATMUL": 3272,
+        "RELU": 3272,
+        "ADD": 816
+      },
+      "pipe_work": {
+        "PIPE_M": 981600,
+        "PIPE_V": 147168
+      },
+      "input_bytes": 5019648,
+      "shared_inputs": 817
+    },
+    "case_064": {
+      "compute_ops": 906,
+      "tensors": 1034,
+      "edges": 2550,
+      "depth": 123,
+      "width": 32,
+      "components": 1,
+      "largest_component": 906,
+      "max_fanout": 48,
+      "max_tensor": 1024,
+      "critical_compute": 3528,
+      "family": "transformer",
+      "op_counts": {
+        "MATMUL": 186,
+        "REDUCE": 144,
+        "SUB": 108,
+        "MUL": 72,
+        "ADD": 180,
+        "SQRT": 24,
+        "DIV": 84,
+        "RELU": 36,
+        "EXP": 48,
+        "SIGMOID": 24
+      },
+      "pipe_work": {
+        "PIPE_M": 7308,
+        "PIPE_V": 15744
+      },
+      "input_bytes": 35622,
+      "shared_inputs": 26
+    },
+    "case_065": {
+      "compute_ops": 704,
+      "tensors": 1067,
+      "edges": 2164,
+      "depth": 28,
+      "width": 98,
+      "components": 42,
+      "largest_component": 61,
+      "max_fanout": 9,
+      "max_tensor": 4608,
+      "critical_compute": 1265,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 59,
+        "ADD": 140,
+        "RELU": 127,
+        "REDUCE": 150,
+        "DIV": 65,
+        "MUL": 50,
+        "SUB": 43,
+        "SQRT": 6,
+        "CONV": 8,
+        "EXP": 16,
+        "SIGMOID": 22,
+        "NEG": 18
+      },
+      "pipe_work": {
+        "PIPE_M": 28260,
+        "PIPE_V": 29518
+      },
+      "input_bytes": 299720,
+      "shared_inputs": 56
+    },
+    "case_066": {
+      "compute_ops": 5962,
+      "tensors": 6362,
+      "edges": 16324,
+      "depth": 154,
+      "width": 192,
+      "components": 28,
+      "largest_component": 3675,
+      "max_fanout": 243,
+      "max_tensor": 36864,
+      "critical_compute": 32240,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 1160,
+        "REDUCE": 990,
+        "SUB": 805,
+        "MUL": 252,
+        "ADD": 1280,
+        "SQRT": 74,
+        "DIV": 524,
+        "RELU": 362,
+        "EXP": 393,
+        "SIGMOID": 100,
+        "CONV": 15,
+        "NEG": 7
+      },
+      "pipe_work": {
+        "PIPE_M": 269694,
+        "PIPE_V": 170683
+      },
+      "input_bytes": 1027116,
+      "shared_inputs": 151
+    },
+    "case_067": {
+      "compute_ops": 8804,
+      "tensors": 9117,
+      "edges": 23246,
+      "depth": 124,
+      "width": 71,
+      "components": 71,
+      "largest_component": 124,
+      "max_fanout": 71,
+      "max_tensor": 294912,
+      "critical_compute": 863040,
+      "family": "conv_deep",
+      "op_counts": {
+        "CONV": 3550,
+        "RELU": 3550,
+        "ADD": 1704
+      },
+      "pipe_work": {
+        "PIPE_M": 58915232,
+        "PIPE_V": 2360608
+      },
+      "input_bytes": 4884864,
+      "shared_inputs": 50
+    },
+    "case_068": {
+      "compute_ops": 5351,
+      "tensors": 6260,
+      "edges": 15148,
+      "depth": 264,
+      "width": 220,
+      "components": 32,
+      "largest_component": 4176,
+      "max_fanout": 288,
+      "max_tensor": 36864,
+      "critical_compute": 48319,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 1001,
+        "RELU": 370,
+        "ADD": 1112,
+        "REDUCE": 929,
+        "SUB": 641,
+        "MUL": 294,
+        "SQRT": 58,
+        "DIV": 514,
+        "EXP": 296,
+        "SIGMOID": 87,
+        "CONV": 9,
+        "NEG": 40
+      },
+      "pipe_work": {
+        "PIPE_M": 249101,
+        "PIPE_V": 154696
+      },
+      "input_bytes": 2739974,
+      "shared_inputs": 207
+    },
+    "case_069": {
+      "compute_ops": 1032,
+      "tensors": 1110,
+      "edges": 2844,
+      "depth": 46,
+      "width": 144,
+      "components": 1,
+      "largest_component": 1032,
+      "max_fanout": 72,
+      "max_tensor": 9216,
+      "critical_compute": 2298,
+      "family": "transformer",
+      "op_counts": {
+        "MATMUL": 210,
+        "REDUCE": 168,
+        "SUB": 144,
+        "MUL": 36,
+        "ADD": 222,
+        "SQRT": 12,
+        "DIV": 96,
+        "RELU": 60,
+        "EXP": 72,
+        "SIGMOID": 12
+      },
+      "pipe_work": {
+        "PIPE_M": 16674,
+        "PIPE_V": 15288
+      },
+      "input_bytes": 113766,
+      "shared_inputs": 30
+    },
+    "case_070": {
+      "compute_ops": 1191,
+      "tensors": 1630,
+      "edges": 3424,
+      "depth": 35,
+      "width": 213,
+      "components": 38,
+      "largest_component": 285,
+      "max_fanout": 14,
+      "max_tensor": 24576,
+      "critical_compute": 4054,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 162,
+        "SIGMOID": 48,
+        "MUL": 82,
+        "ADD": 271,
+        "REDUCE": 223,
+        "RELU": 321,
+        "DIV": 30,
+        "SUB": 26,
+        "SQRT": 3,
+        "EXP": 3,
+        "NEG": 22
+      },
+      "pipe_work": {
+        "PIPE_M": 91832,
+        "PIPE_V": 47214
+      },
+      "input_bytes": 419858,
+      "shared_inputs": 92
+    },
+    "case_071": {
+      "compute_ops": 741,
+      "tensors": 816,
+      "edges": 2063,
+      "depth": 46,
+      "width": 100,
+      "components": 1,
+      "largest_component": 741,
+      "max_fanout": 50,
+      "max_tensor": 9216,
+      "critical_compute": 2298,
+      "family": "transformer",
+      "op_counts": {
+        "MATMUL": 156,
+        "REDUCE": 120,
+        "SUB": 100,
+        "MUL": 30,
+        "ADD": 155,
+        "SQRT": 10,
+        "DIV": 70,
+        "RELU": 40,
+        "EXP": 50,
+        "SIGMOID": 10
+      },
+      "pipe_work": {
+        "PIPE_M": 12534,
+        "PIPE_V": 10954
+      },
+      "input_bytes": 111462,
+      "shared_inputs": 29
+    },
+    "case_072": {
+      "compute_ops": 29666,
+      "tensors": 32624,
+      "edges": 88639,
+      "depth": 251,
+      "width": 11082,
+      "components": 476,
+      "largest_component": 6140,
+      "max_fanout": 405,
+      "max_tensor": 165888,
+      "critical_compute": 31968,
+      "family": "mixed",
+      "op_counts": {
+        "CONV": 150,
+        "RELU": 714,
+        "ADD": 11986,
+        "MATMUL": 12150,
+        "REDUCE": 1968,
+        "SUB": 858,
+        "MUL": 271,
+        "SQRT": 90,
+        "DIV": 540,
+        "EXP": 405,
+        "SIGMOID": 309,
+        "NEG": 225
+      },
+      "pipe_work": {
+        "PIPE_M": 22928094,
+        "PIPE_V": 1708199
+      },
+      "input_bytes": 11093006,
+      "shared_inputs": 1204
+    },
+    "case_073": {
+      "compute_ops": 4836,
+      "tensors": 5053,
+      "edges": 12814,
+      "depth": 124,
+      "width": 39,
+      "components": 39,
+      "largest_component": 124,
+      "max_fanout": 39,
+      "max_tensor": 294912,
+      "critical_compute": 220224,
+      "family": "conv_deep",
+      "op_counts": {
+        "CONV": 1950,
+        "RELU": 1950,
+        "ADD": 936
+      },
+      "pipe_work": {
+        "PIPE_M": 8160672,
+        "PIPE_V": 428064
+      },
+      "input_bytes": 3881344,
+      "shared_inputs": 50
+    },
+    "case_074": {
+      "compute_ops": 3609,
+      "tensors": 4833,
+      "edges": 11541,
+      "depth": 39,
+      "width": 1474,
+      "components": 73,
+      "largest_component": 269,
+      "max_fanout": 21,
+      "max_tensor": 8192,
+      "critical_compute": 3091,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 1400,
+        "ADD": 1493,
+        "RELU": 217,
+        "REDUCE": 277,
+        "DIV": 42,
+        "MUL": 67,
+        "SUB": 37,
+        "SQRT": 6,
+        "SIGMOID": 44,
+        "NEG": 26
+      },
+      "pipe_work": {
+        "PIPE_M": 1579424,
+        "PIPE_V": 198420
+      },
+      "input_bytes": 3776536,
+      "shared_inputs": 429
+    },
+    "case_075": {
+      "compute_ops": 7410,
+      "tensors": 7953,
+      "edges": 20378,
+      "depth": 460,
+      "width": 105,
+      "components": 1,
+      "largest_component": 7410,
+      "max_fanout": 500,
+      "max_tensor": 16384,
+      "critical_compute": 182300,
+      "family": "transformer",
+      "op_counts": {
+        "MATMUL": 1560,
+        "REDUCE": 1200,
+        "SUB": 1000,
+        "MUL": 300,
+        "ADD": 1550,
+        "SQRT": 100,
+        "DIV": 700,
+        "RELU": 400,
+        "EXP": 500,
+        "SIGMOID": 100
+      },
+      "pipe_work": {
+        "PIPE_M": 1107520,
+        "PIPE_V": 644660
+      },
+      "input_bytes": 1819782,
+      "shared_inputs": 109
+    },
+    "case_076": {
+      "compute_ops": 32528,
+      "tensors": 36815,
+      "edges": 99916,
+      "depth": 13,
+      "width": 15270,
+      "components": 809,
+      "largest_component": 122,
+      "max_fanout": 34,
+      "max_tensor": 16384,
+      "critical_compute": 2774,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 15281,
+        "ADD": 14458,
+        "REDUCE": 1628,
+        "RELU": 420,
+        "SIGMOID": 358,
+        "MUL": 23,
+        "SUB": 2,
+        "NEG": 358
+      },
+      "pipe_work": {
+        "PIPE_M": 6061644,
+        "PIPE_V": 947248
+      },
+      "input_bytes": 4269056,
+      "shared_inputs": 1655
+    },
+    "case_077": {
+      "compute_ops": 4486,
+      "tensors": 5208,
+      "edges": 12652,
+      "depth": 135,
+      "width": 213,
+      "components": 41,
+      "largest_component": 2096,
+      "max_fanout": 144,
+      "max_tensor": 20736,
+      "critical_compute": 15619,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 920,
+        "REDUCE": 672,
+        "SUB": 487,
+        "MUL": 156,
+        "ADD": 1056,
+        "SQRT": 52,
+        "DIV": 344,
+        "RELU": 459,
+        "EXP": 242,
+        "SIGMOID": 74,
+        "NEG": 24
+      },
+      "pipe_work": {
+        "PIPE_M": 415406,
+        "PIPE_V": 136672
+      },
+      "input_bytes": 2141260,
+      "shared_inputs": 110
+    },
+    "case_078": {
+      "compute_ops": 1024,
+      "tensors": 1156,
+      "edges": 2812,
+      "depth": 124,
+      "width": 16,
+      "components": 8,
+      "largest_component": 128,
+      "max_fanout": 8,
+      "max_tensor": 165888,
+      "critical_compute": 246816,
+      "family": "conv_deep",
+      "op_counts": {
+        "CONV": 432,
+        "RELU": 400,
+        "ADD": 192
+      },
+      "pipe_work": {
+        "PIPE_M": 2037888,
+        "PIPE_V": 103296
+      },
+      "input_bytes": 2246784,
+      "shared_inputs": 54
+    },
+    "case_079": {
+      "compute_ops": 18720,
+      "tensors": 21252,
+      "edges": 58980,
+      "depth": 8,
+      "width": 9504,
+      "components": 288,
+      "largest_component": 65,
+      "max_fanout": 18,
+      "max_tensor": 12288,
+      "critical_compute": 5952,
+      "family": "gemm_reduce",
+      "op_counts": {
+        "MATMUL": 9504,
+        "ADD": 9216
+      },
+      "pipe_work": {
+        "PIPE_M": 29424384,
+        "PIPE_V": 3760128
+      },
+      "input_bytes": 5812224,
+      "shared_inputs": 1122
+    },
+    "case_080": {
+      "compute_ops": 1098,
+      "tensors": 1674,
+      "edges": 3888,
+      "depth": 7,
+      "width": 558,
+      "components": 18,
+      "largest_component": 61,
+      "max_fanout": 6,
+      "max_tensor": 8192,
+      "critical_compute": 746,
+      "family": "gemm_reduce",
+      "op_counts": {
+        "MATMUL": 558,
+        "ADD": 540
+      },
+      "pipe_work": {
+        "PIPE_M": 289044,
+        "PIPE_V": 20520
+      },
+      "input_bytes": 1904640,
+      "shared_inputs": 279
+    },
+    "case_081": {
+      "compute_ops": 3485,
+      "tensors": 5185,
+      "edges": 11220,
+      "depth": 12,
+      "width": 680,
+      "components": 85,
+      "largest_component": 41,
+      "max_fanout": 5,
+      "max_tensor": 2048,
+      "critical_compute": 407,
+      "family": "vector_norm",
+      "op_counts": {
+        "REDUCE": 680,
+        "ADD": 935,
+        "DIV": 510,
+        "MUL": 765,
+        "SUB": 425,
+        "RELU": 85,
+        "SQRT": 85
+      },
+      "pipe_work": {
+        "PIPE_V": 151725
+      },
+      "input_bytes": 1044820,
+      "shared_inputs": 595
+    },
+    "case_082": {
+      "compute_ops": 4113,
+      "tensors": 4298,
+      "edges": 11187,
+      "depth": 138,
+      "width": 196,
+      "components": 1,
+      "largest_component": 4113,
+      "max_fanout": 294,
+      "max_tensor": 16384,
+      "critical_compute": 54690,
+      "family": "transformer",
+      "op_counts": {
+        "MATMUL": 816,
+        "REDUCE": 672,
+        "SUB": 588,
+        "MUL": 126,
+        "ADD": 903,
+        "SQRT": 42,
+        "DIV": 378,
+        "RELU": 252,
+        "EXP": 294,
+        "SIGMOID": 42
+      },
+      "pipe_work": {
+        "PIPE_M": 567936,
+        "PIPE_V": 359766
+      },
+      "input_bytes": 566406,
+      "shared_inputs": 41
+    },
+    "case_083": {
+      "compute_ops": 3844,
+      "tensors": 4037,
+      "edges": 10206,
+      "depth": 124,
+      "width": 31,
+      "components": 31,
+      "largest_component": 124,
+      "max_fanout": 31,
+      "max_tensor": 73728,
+      "critical_compute": 28456,
+      "family": "conv_deep",
+      "op_counts": {
+        "CONV": 1550,
+        "RELU": 1550,
+        "ADD": 744
+      },
+      "pipe_work": {
+        "PIPE_M": 810836,
+        "PIPE_V": 71300
+      },
+      "input_bytes": 1184352,
+      "shared_inputs": 50
+    },
+    "case_084": {
+      "compute_ops": 8616,
+      "tensors": 18309,
+      "edges": 33387,
+      "depth": 8,
+      "width": 1077,
+      "components": 1077,
+      "largest_component": 8,
+      "max_fanout": 2,
+      "max_tensor": 4608,
+      "critical_compute": 2328,
+      "family": "attention",
+      "op_counts": {
+        "MATMUL": 2154,
+        "DIV": 2154,
+        "REDUCE": 2154,
+        "SUB": 1077,
+        "EXP": 1077
+      },
+      "pipe_work": {
+        "PIPE_M": 1266552,
+        "PIPE_V": 1240704
+      },
+      "input_bytes": 9927786,
+      "shared_inputs": 0
+    },
+    "case_085": {
+      "compute_ops": 19737,
+      "tensors": 20240,
+      "edges": 53243,
+      "depth": 450,
+      "width": 324,
+      "components": 1,
+      "largest_component": 19737,
+      "max_fanout": 1458,
+      "max_tensor": 16384,
+      "critical_compute": 165564,
+      "family": "transformer",
+      "op_counts": {
+        "MATMUL": 3780,
+        "REDUCE": 3240,
+        "SUB": 2916,
+        "MUL": 486,
+        "ADD": 4455,
+        "SQRT": 162,
+        "DIV": 1782,
+        "RELU": 1296,
+        "EXP": 1458,
+        "SIGMOID": 162
+      },
+      "pipe_work": {
+        "PIPE_M": 2565216,
+        "PIPE_V": 1724706
+      },
+      "input_bytes": 1655942,
+      "shared_inputs": 103
+    },
+    "case_086": {
+      "compute_ops": 5274,
+      "tensors": 5462,
+      "edges": 14290,
+      "depth": 138,
+      "width": 256,
+      "components": 1,
+      "largest_component": 5274,
+      "max_fanout": 384,
+      "max_tensor": 9216,
+      "critical_compute": 6894,
+      "family": "transformer",
+      "op_counts": {
+        "MATMUL": 1026,
+        "REDUCE": 864,
+        "SUB": 768,
+        "MUL": 144,
+        "ADD": 1176,
+        "SQRT": 48,
+        "DIV": 480,
+        "RELU": 336,
+        "EXP": 384,
+        "SIGMOID": 48
+      },
+      "pipe_work": {
+        "PIPE_M": 79182,
+        "PIPE_V": 78060
+      },
+      "input_bytes": 321126,
+      "shared_inputs": 72
+    },
+    "case_087": {
+      "compute_ops": 27556,
+      "tensors": 29569,
+      "edges": 77339,
+      "depth": 382,
+      "width": 3066,
+      "components": 196,
+      "largest_component": 12693,
+      "max_fanout": 960,
+      "max_tensor": 36864,
+      "critical_compute": 82063,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 7288,
+        "REDUCE": 3877,
+        "SUB": 3042,
+        "MUL": 481,
+        "ADD": 7396,
+        "SQRT": 160,
+        "DIV": 1960,
+        "RELU": 1456,
+        "EXP": 1560,
+        "SIGMOID": 255,
+        "NEG": 81
+      },
+      "pipe_work": {
+        "PIPE_M": 3593280,
+        "PIPE_V": 882784
+      },
+      "input_bytes": 5918684,
+      "shared_inputs": 713
+    },
+    "case_088": {
+      "compute_ops": 3309,
+      "tensors": 3811,
+      "edges": 9270,
+      "depth": 176,
+      "width": 100,
+      "components": 31,
+      "largest_component": 2798,
+      "max_fanout": 192,
+      "max_tensor": 36864,
+      "critical_compute": 32229,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 690,
+        "SIGMOID": 48,
+        "MUL": 106,
+        "ADD": 672,
+        "REDUCE": 535,
+        "SUB": 382,
+        "SQRT": 32,
+        "DIV": 300,
+        "RELU": 321,
+        "EXP": 206,
+        "NEG": 17
+      },
+      "pipe_work": {
+        "PIPE_M": 173608,
+        "PIPE_V": 99744
+      },
+      "input_bytes": 1829730,
+      "shared_inputs": 85
+    },
+    "case_089": {
+      "compute_ops": 5120,
+      "tensors": 5348,
+      "edges": 13628,
+      "depth": 124,
+      "width": 80,
+      "components": 40,
+      "largest_component": 128,
+      "max_fanout": 40,
+      "max_tensor": 18432,
+      "critical_compute": 16272,
+      "family": "conv_deep",
+      "op_counts": {
+        "CONV": 2160,
+        "RELU": 2000,
+        "ADD": 960
+      },
+      "pipe_work": {
+        "PIPE_M": 589120,
+        "PIPE_V": 109760
+      },
+      "input_bytes": 402560,
+      "shared_inputs": 54
+    },
+    "case_090": {
+      "compute_ops": 1664,
+      "tensors": 1811,
+      "edges": 4502,
+      "depth": 124,
+      "width": 26,
+      "components": 13,
+      "largest_component": 128,
+      "max_fanout": 13,
+      "max_tensor": 165888,
+      "critical_compute": 63936,
+      "family": "conv_deep",
+      "op_counts": {
+        "CONV": 702,
+        "RELU": 650,
+        "ADD": 312
+      },
+      "pipe_work": {
+        "PIPE_M": 840528,
+        "PIPE_V": 59280
+      },
+      "input_bytes": 2188416,
+      "shared_inputs": 54
+    },
+    "case_091": {
+      "compute_ops": 31554,
+      "tensors": 34927,
+      "edges": 96492,
+      "depth": 124,
+      "width": 14803,
+      "components": 513,
+      "largest_component": 147,
+      "max_fanout": 30,
+      "max_tensor": 73728,
+      "critical_compute": 56912,
+      "family": "mixed",
+      "op_counts": {
+        "CONV": 270,
+        "RELU": 559,
+        "ADD": 14437,
+        "REDUCE": 1044,
+        "MATMUL": 14790,
+        "MUL": 1,
+        "SIGMOID": 239,
+        "NEG": 214
+      },
+      "pipe_work": {
+        "PIPE_M": 8981360,
+        "PIPE_V": 931710
+      },
+      "input_bytes": 6535680,
+      "shared_inputs": 1421
+    },
+    "case_092": {
+      "compute_ops": 17608,
+      "tensors": 18134,
+      "edges": 46392,
+      "depth": 124,
+      "width": 142,
+      "components": 142,
+      "largest_component": 124,
+      "max_fanout": 142,
+      "max_tensor": 73728,
+      "critical_compute": 28456,
+      "family": "conv_deep",
+      "op_counts": {
+        "CONV": 7100,
+        "RELU": 7100,
+        "ADD": 3408
+      },
+      "pipe_work": {
+        "PIPE_M": 3714152,
+        "PIPE_V": 326600
+      },
+      "input_bytes": 2093664,
+      "shared_inputs": 50
+    },
+    "case_093": {
+      "compute_ops": 552,
+      "tensors": 1181,
+      "edges": 2285,
+      "depth": 4,
+      "width": 276,
+      "components": 69,
+      "largest_component": 8,
+      "max_fanout": 69,
+      "max_tensor": 2048,
+      "critical_compute": 400,
+      "family": "gemm_shallow",
+      "op_counts": {
+        "MATMUL": 276,
+        "ADD": 207,
+        "RELU": 69
+      },
+      "pipe_work": {
+        "PIPE_M": 73968,
+        "PIPE_V": 12144
+      },
+      "input_bytes": 573440,
+      "shared_inputs": 4
+    },
+    "case_094": {
+      "compute_ops": 647,
+      "tensors": 895,
+      "edges": 1925,
+      "depth": 36,
+      "width": 108,
+      "components": 40,
+      "largest_component": 44,
+      "max_fanout": 12,
+      "max_tensor": 18432,
+      "critical_compute": 2484,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 110,
+        "SIGMOID": 32,
+        "MUL": 37,
+        "ADD": 193,
+        "REDUCE": 62,
+        "RELU": 190,
+        "CONV": 6,
+        "NEG": 17
+      },
+      "pipe_work": {
+        "PIPE_M": 70944,
+        "PIPE_V": 36616
+      },
+      "input_bytes": 471328,
+      "shared_inputs": 48
+    },
+    "case_095": {
+      "compute_ops": 3696,
+      "tensors": 7854,
+      "edges": 14322,
+      "depth": 8,
+      "width": 462,
+      "components": 462,
+      "largest_component": 8,
+      "max_fanout": 2,
+      "max_tensor": 18432,
+      "critical_compute": 4512,
+      "family": "attention",
+      "op_counts": {
+        "MATMUL": 924,
+        "DIV": 924,
+        "REDUCE": 924,
+        "SUB": 462,
+        "EXP": 462
+      },
+      "pipe_work": {
+        "PIPE_M": 1069992,
+        "PIPE_V": 1014552
+      },
+      "input_bytes": 8516508,
+      "shared_inputs": 0
+    },
+    "case_096": {
+      "compute_ops": 1198,
+      "tensors": 1476,
+      "edges": 3200,
+      "depth": 119,
+      "width": 93,
+      "components": 50,
+      "largest_component": 397,
+      "max_fanout": 55,
+      "max_tensor": 18432,
+      "critical_compute": 9417,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 161,
+        "DIV": 20,
+        "REDUCE": 153,
+        "SUB": 10,
+        "EXP": 10,
+        "CONV": 9,
+        "RELU": 481,
+        "ADD": 233,
+        "SIGMOID": 52,
+        "MUL": 45,
+        "NEG": 24
+      },
+      "pipe_work": {
+        "PIPE_M": 40144,
+        "PIPE_V": 53130
+      },
+      "input_bytes": 210260,
+      "shared_inputs": 66
+    },
+    "case_097": {
+      "compute_ops": 6592,
+      "tensors": 8320,
+      "edges": 21568,
+      "depth": 52,
+      "width": 3328,
+      "components": 64,
+      "largest_component": 103,
+      "max_fanout": 8,
+      "max_tensor": 12288,
+      "critical_compute": 23904,
+      "family": "gemm_reduce",
+      "op_counts": {
+        "MATMUL": 3328,
+        "ADD": 3264
+      },
+      "pipe_work": {
+        "PIPE_M": 10303488,
+        "PIPE_V": 1331712
+      },
+      "input_bytes": 4259840,
+      "shared_inputs": 832
+    },
+    "case_098": {
+      "compute_ops": 1365,
+      "tensors": 1700,
+      "edges": 3615,
+      "depth": 51,
+      "width": 98,
+      "components": 27,
+      "largest_component": 389,
+      "max_fanout": 13,
+      "max_tensor": 16384,
+      "critical_compute": 6783,
+      "family": "mixed",
+      "op_counts": {
+        "RELU": 525,
+        "ADD": 353,
+        "REDUCE": 248,
+        "DIV": 63,
+        "MUL": 51,
+        "SUB": 42,
+        "SQRT": 7,
+        "MATMUL": 28,
+        "EXP": 14,
+        "NEG": 20,
+        "SIGMOID": 14
+      },
+      "pipe_work": {
+        "PIPE_V": 162701,
+        "PIPE_M": 17296
+      },
+      "input_bytes": 697912,
+      "shared_inputs": 75
+    },
+    "case_099": {
+      "compute_ops": 6296,
+      "tensors": 7610,
+      "edges": 19599,
+      "depth": 29,
+      "width": 2810,
+      "components": 202,
+      "largest_component": 117,
+      "max_fanout": 20,
+      "max_tensor": 24576,
+      "critical_compute": 2826,
+      "family": "mixed",
+      "op_counts": {
+        "MATMUL": 2859,
+        "RELU": 189,
+        "ADD": 2607,
+        "REDUCE": 410,
+        "SIGMOID": 113,
+        "MUL": 25,
+        "NEG": 93
+      },
+      "pipe_work": {
+        "PIPE_M": 1595484,
+        "PIPE_V": 144720
+      },
+      "input_bytes": 2533632,
+      "shared_inputs": 470
+    },
+    "case_100": {
+      "compute_ops": 1394,
+      "tensors": 1825,
+      "edges": 4014,
+      "depth": 52,
+      "width": 187,
+      "components": 43,
+      "largest_component": 275,
+      "max_fanout": 22,
+      "max_tensor": 18432,
+      "critical_compute": 4830,
+      "family": "mixed",
+      "op_counts": {
+        "CONV": 9,
+        "RELU": 238,
+        "ADD": 358,
+        "MATMUL": 100,
+        "DIV": 78,
+        "REDUCE": 291,
+        "SUB": 69,
+        "EXP": 3,
+        "SIGMOID": 51,
+        "MUL": 156,
+        "SQRT": 8,
+        "NEG": 33
+      },
+      "pipe_work": {
+        "PIPE_M": 62556,
+        "PIPE_V": 102007
+      },
+      "input_bytes": 436006,
+      "shared_inputs": 141
+    }
+  },
+  "all_families": [
+    "attention",
+    "conv_deep",
+    "conv_shallow",
+    "gated",
+    "gemm_reduce",
+    "gemm_shallow",
+    "mixed",
+    "mlp",
+    "transformer",
+    "vector_chain",
+    "vector_elementwise",
+    "vector_norm"
+  ],
+  "covered_families": [
+    "attention",
+    "conv_deep",
+    "conv_shallow",
+    "gated",
+    "gemm_reduce",
+    "gemm_shallow",
+    "mixed",
+    "mlp",
+    "transformer",
+    "vector_chain",
+    "vector_elementwise",
+    "vector_norm"
+  ],
+  "search": {
+    "budget": 45,
+    "seeds": 18,
+    "local": 32,
+    "cache": 16,
+    "rounds": 2
+  },
+  "refinement": {
+    "budget": 15,
+    "candidates": 64
+  },
+  "workers": 5
+}

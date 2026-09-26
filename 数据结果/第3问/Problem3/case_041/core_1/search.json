@@ -1,0 +1,157 @@
+{
+  "independent": true,
+  "cores": 1,
+  "origin": "merge_adjacent_b0",
+  "carry_makespan": 6001575,
+  "initial_makespan": 5983032,
+  "structural_makespan": 5978796,
+  "final_makespan": 5978796,
+  "classic_makespan": 5983032,
+  "certified_optimal": false,
+  "minimum_added_bytes": 0,
+  "cache_makespan": 5978796,
+  "global_lower_bound": 5895276,
+  "gap_upper_bound": 0.014167275628825582,
+  "search_seconds": 48.75345129999914,
+  "setup_seconds": 8.00006091594696e-07,
+  "budget_seconds": 45,
+  "budget_exhausted": true,
+  "preview_calls": 11,
+  "preparation_hits": 0,
+  "preparation_misses": 11,
+  "simulation_hits": 0,
+  "rejected": 0,
+  "pruned": 2,
+  "history": [
+    {
+      "stage": "seed",
+      "candidate": "components_4",
+      "lower_bound": 5895276,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 5998724,
+      "added_bytes": 36950016,
+      "improved": true,
+      "seconds": 3.825038900002255
+    },
+    {
+      "stage": "seed",
+      "candidate": "dfs_4",
+      "lower_bound": 5895276,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 5992128,
+      "added_bytes": 31576064,
+      "improved": true,
+      "seconds": 3.7530608999950346
+    },
+    {
+      "stage": "seed",
+      "candidate": "topo_4",
+      "lower_bound": 5895276,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 6015817,
+      "added_bytes": 26671104,
+      "seconds": 3.70818989998952
+    },
+    {
+      "stage": "seed",
+      "candidate": "coarsen",
+      "lower_bound": 5895276,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 5983032,
+      "added_bytes": 34802688,
+      "improved": true,
+      "seconds": 3.8404429999936838
+    },
+    {
+      "stage": "seed",
+      "candidate": "resident_forks",
+      "lower_bound": 5895276,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 6563376,
+      "added_bytes": 69360640,
+      "seconds": 5.325688099997933
+    },
+    {
+      "stage": "seed",
+      "candidate": "wave_16",
+      "lower_bound": 5895276,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 6012413,
+      "added_bytes": 30937088,
+      "seconds": 4.1595973999938
+    },
+    {
+      "stage": "structure",
+      "candidate": "block_critical_b2",
+      "lower_bound": 5895276,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 5989583,
+      "added_bytes": 37358592,
+      "seconds": 3.9294115000084275
+    },
+    {
+      "stage": "structure",
+      "candidate": "merge_adjacent_b0",
+      "lower_bound": 5895276,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 5978796,
+      "added_bytes": 34114560,
+      "improved": true,
+      "seconds": 4.4787679000000935
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_hot_runs_r0_b0",
+      "lower_bound": 6407326,
+      "called": false,
+      "status": "pruned",
+      "seconds": 0.10827229999995325
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_hot_runs_r0_b1",
+      "lower_bound": 6432286,
+      "called": false,
+      "status": "pruned",
+      "seconds": 0.12306839998927899
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000409_0_0_1_r0_b0",
+      "lower_bound": 5895276,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 5984241,
+      "added_bytes": 33994752,
+      "seconds": 4.212748899997678
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000010481_0_0_1_r0_b1",
+      "lower_bound": 5895276,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 6006482,
+      "added_bytes": 35767296,
+      "seconds": 4.212232899997616
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000010481_0_0_2_r0_b1",
+      "lower_bound": 5895276,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 6002381,
+      "added_bytes": 35632128,
+      "seconds": 4.232289999999921
+    }
+  ]
+}

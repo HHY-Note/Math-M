@@ -1,0 +1,77 @@
+{
+  "independent": true,
+  "cores": 3,
+  "origin": "stage_width_12",
+  "carry_makespan": 3067211,
+  "initial_makespan": 2054626,
+  "structural_makespan": 2054626,
+  "final_makespan": 2054626,
+  "classic_makespan": 2057661,
+  "certified_optimal": false,
+  "minimum_added_bytes": 0,
+  "cache_makespan": 2054626,
+  "global_lower_bound": 2020619,
+  "gap_upper_bound": 0.016829991205665085,
+  "search_seconds": 45.98343829999794,
+  "setup_seconds": 1.3999961083754897e-06,
+  "budget_seconds": 45,
+  "budget_exhausted": true,
+  "preview_calls": 4,
+  "preparation_hits": 0,
+  "preparation_misses": 26,
+  "simulation_hits": 0,
+  "rejected": 1,
+  "pruned": 0,
+  "history": [
+    {
+      "stage": "seed",
+      "candidate": "components_1",
+      "lower_bound": 2020924,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 2057661,
+      "added_bytes": 35117056,
+      "improved": true,
+      "seconds": 8.435261299993726
+    },
+    {
+      "stage": "seed",
+      "candidate": "wave_8",
+      "lower_bound": 2020933,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 2085390,
+      "added_bytes": 16822292,
+      "seconds": 8.257680000009714
+    },
+    {
+      "stage": "stage",
+      "candidate": "stage_width_12",
+      "lower_bound": 2020933,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 2054626,
+      "added_bytes": 35182704,
+      "improved": true,
+      "seconds": 9.461014700005762
+    },
+    {
+      "stage": "structure",
+      "candidate": "merge_per_core_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "划分或任务顺序产生了依赖环",
+      "seconds": 0
+    },
+    {
+      "stage": "structure",
+      "candidate": "merge_adjacent_b2",
+      "lower_bound": 2020924,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 2235495,
+      "added_bytes": 16822292,
+      "seconds": 7.916724099995918
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "independent": true,
+  "cores": 5,
+  "origin": "input_affinity",
+  "carry_makespan": 1491718,
+  "initial_makespan": 1192343,
+  "structural_makespan": 1192343,
+  "final_makespan": 1192343,
+  "classic_makespan": 1192343,
+  "certified_optimal": false,
+  "minimum_added_bytes": 0,
+  "cache_makespan": 1192343,
+  "global_lower_bound": 1179084,
+  "gap_upper_bound": 0.011245169979407832,
+  "search_seconds": 45.09918450000987,
+  "setup_seconds": 1.300009898841381e-06,
+  "budget_seconds": 45,
+  "budget_exhausted": true,
+  "preview_calls": 8,
+  "preparation_hits": 0,
+  "preparation_misses": 135,
+  "simulation_hits": 0,
+  "rejected": 5,
+  "pruned": 2,
+  "history": [
+    {
+      "stage": "seed",
+      "candidate": "fork_reduce",
+      "lower_bound": 1179385,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1517185,
+      "added_bytes": 41702124,
+      "seconds": 5.013637000010931
+    },
+    {
+      "stage": "seed",
+      "candidate": "forkrelease",
+      "lower_bound": 1179385,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1514241,
+      "added_bytes": 40138476,
+      "seconds": 5.469895799993537
+    },
+    {
+      "stage": "seed",
+      "candidate": "wave_8",
+      "lower_bound": 1183285,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1203304,
+      "added_bytes": 21626360,
+      "improved": true,
+      "seconds": 3.6931705999886617
+    },
+    {
+      "stage": "seed",
+      "candidate": "input_affinity",
+      "lower_bound": 1183260,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1192343,
+      "added_bytes": 32544768,
+      "improved": true,
+      "seconds": 3.76334720000159
+    },
+    {
+      "stage": "seed",
+      "candidate": "components_4",
+      "lower_bound": 1180945,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1270365,
+      "added_bytes": 50350080,
+      "seconds": 4.4202427999989595
+    },
+    {
+      "stage": "stage",
+      "candidate": "stage_width_8",
+      "lower_bound": 1183285,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1207928,
+      "added_bytes": 34636448,
+      "seconds": 4.378227799999877
+    },
+    {
+      "stage": "refine",
+      "candidate": "recut_0_11",
+      "lower_bound": 1183285,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1244226,
+      "added_bytes": 35788820,
+      "seconds": 4.369934999995166
+    },
+    {
+      "stage": "structure",
+      "candidate": "merge_per_core_b2",
+      "status": "invalid",
+      "called": false,
+      "reason": "划分或任务顺序产生了依赖环",
+      "seconds": 0
+    },
+    {
+      "stage": "structure",
+      "candidate": "merge_adjacent_b1",
+      "lower_bound": 1183285,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1203304,
+      "added_bytes": 21626360,
+      "seconds": 4.331855500000529
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000010405_2_0_1_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000010405_2_0_2_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000010405_3_0_1_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000010405_3_0_2_r0_b1",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_hot_runs_r0_b1",
+      "lower_bound": 1268521,
+      "called": false,
+      "status": "pruned",
+      "seconds": 0.5199718999938341
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_hot_runs_r0_b0",
+      "lower_bound": 1282853,
+      "called": false,
+      "status": "pruned",
+      "seconds": 0.15431909999460913
+    }
+  ]
+}

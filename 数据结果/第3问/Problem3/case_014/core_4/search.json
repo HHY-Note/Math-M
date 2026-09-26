@@ -1,0 +1,107 @@
+{
+  "independent": true,
+  "cores": 4,
+  "origin": "stage_width_16",
+  "carry_makespan": 5891208,
+  "initial_makespan": 4443382,
+  "structural_makespan": 4443382,
+  "final_makespan": 4443382,
+  "classic_makespan": 4502666,
+  "certified_optimal": false,
+  "minimum_added_bytes": 0,
+  "cache_makespan": 4443382,
+  "global_lower_bound": 4306501,
+  "gap_upper_bound": 0.03178473661099801,
+  "search_seconds": 45.08879270000034,
+  "setup_seconds": 1.2999953469261527e-06,
+  "budget_seconds": 45,
+  "budget_exhausted": true,
+  "preview_calls": 3,
+  "preparation_hits": 0,
+  "preparation_misses": 38,
+  "simulation_hits": 0,
+  "rejected": 6,
+  "pruned": 0,
+  "history": [
+    {
+      "stage": "seed",
+      "candidate": "components_1",
+      "lower_bound": 4308312,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 4502666,
+      "added_bytes": 82469784,
+      "improved": true,
+      "seconds": 9.152357400002074
+    },
+    {
+      "stage": "seed",
+      "candidate": "input_affinity",
+      "lower_bound": 4307424,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 4564244,
+      "added_bytes": 69525432,
+      "seconds": 9.000771299994085
+    },
+    {
+      "stage": "stage",
+      "candidate": "stage_width_16",
+      "lower_bound": 4317457,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 4443382,
+      "added_bytes": 80649492,
+      "improved": true,
+      "seconds": 10.103223099999013
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000045_1_3_1_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000045_1_3_2_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000045_2_3_1_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000045_2_3_2_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000045_2_3_4_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000045_2_3_5_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    }
+  ]
+}

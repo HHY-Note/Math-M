@@ -1,0 +1,77 @@
+{
+  "independent": true,
+  "cores": 4,
+  "origin": "input_affinity",
+  "carry_makespan": 1383483,
+  "initial_makespan": 1069661,
+  "structural_makespan": 1069661,
+  "final_makespan": 1069661,
+  "classic_makespan": 1069661,
+  "certified_optimal": false,
+  "minimum_added_bytes": 0,
+  "cache_makespan": 1069661,
+  "global_lower_bound": 898341,
+  "gap_upper_bound": 0.19070709229568727,
+  "search_seconds": 45.08186170000408,
+  "setup_seconds": 9.999930625781417e-07,
+  "budget_seconds": 45,
+  "budget_exhausted": true,
+  "preview_calls": 4,
+  "preparation_hits": 1,
+  "preparation_misses": 55,
+  "simulation_hits": 0,
+  "rejected": 1,
+  "pruned": 0,
+  "history": [
+    {
+      "stage": "seed",
+      "candidate": "components_1",
+      "lower_bound": 906660,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1069661,
+      "added_bytes": 11796480,
+      "improved": true,
+      "seconds": 5.626633599997149
+    },
+    {
+      "stage": "seed",
+      "candidate": "stream_29_3",
+      "lower_bound": 902916,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 2105257,
+      "added_bytes": 11124302,
+      "seconds": 6.036360400001286
+    },
+    {
+      "stage": "seed",
+      "candidate": "input_affinity",
+      "lower_bound": 906660,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1069661,
+      "added_bytes": 10483200,
+      "improved": true,
+      "seconds": 6.657969499996398
+    },
+    {
+      "stage": "stage",
+      "candidate": "stage_width_2",
+      "lower_bound": 925570,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 1350959,
+      "added_bytes": 50981952,
+      "seconds": 10.4883153999981
+    },
+    {
+      "stage": "structure",
+      "candidate": "merge_per_core_b2",
+      "status": "invalid",
+      "called": false,
+      "reason": "划分或任务顺序产生了依赖环",
+      "seconds": 0
+    }
+  ]
+}

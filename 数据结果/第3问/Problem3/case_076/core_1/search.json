@@ -1,0 +1,94 @@
+{
+  "independent": true,
+  "cores": 1,
+  "origin": "components_4",
+  "carry_makespan": 6183098,
+  "initial_makespan": 6149890,
+  "structural_makespan": 6149890,
+  "final_makespan": 6149890,
+  "classic_makespan": 6149890,
+  "certified_optimal": false,
+  "minimum_added_bytes": 0,
+  "cache_makespan": 6149890,
+  "global_lower_bound": 6061715,
+  "gap_upper_bound": 0.014546213406601893,
+  "search_seconds": 48.11638269999821,
+  "setup_seconds": 3.7999998312443495e-06,
+  "budget_seconds": 45,
+  "budget_exhausted": true,
+  "preview_calls": 5,
+  "preparation_hits": 0,
+  "preparation_misses": 5,
+  "simulation_hits": 0,
+  "rejected": 0,
+  "pruned": 2,
+  "history": [
+    {
+      "stage": "seed",
+      "candidate": "components_4",
+      "lower_bound": 6061715,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 6149890,
+      "added_bytes": 37681152,
+      "improved": true,
+      "seconds": 7.890766700002132
+    },
+    {
+      "stage": "seed",
+      "candidate": "dfs_4",
+      "lower_bound": 6061715,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 6170048,
+      "added_bytes": 30024704,
+      "seconds": 7.993874699997832
+    },
+    {
+      "stage": "seed",
+      "candidate": "topo_4",
+      "lower_bound": 6061715,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 6203243,
+      "added_bytes": 27024384,
+      "seconds": 7.673162699997192
+    },
+    {
+      "stage": "structure",
+      "candidate": "block_critical_b0",
+      "lower_bound": 6061715,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 6161897,
+      "added_bytes": 38217728,
+      "seconds": 8.847215400004643
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_hot_runs_r0_b0",
+      "lower_bound": 6820145,
+      "called": false,
+      "status": "pruned",
+      "seconds": 0.26363460000720806
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_hot_runs_r0_b1",
+      "lower_bound": 6858161,
+      "called": false,
+      "status": "pruned",
+      "seconds": 0.24773809999169316
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000034771_0_0_1_r0_b0",
+      "lower_bound": 6061715,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 6161376,
+      "added_bytes": 38217728,
+      "seconds": 8.528319300006842
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "independent": true,
+  "cores": 5,
+  "origin": "stage_width_12",
+  "carry_makespan": 5985478,
+  "initial_makespan": 4819330,
+  "structural_makespan": 4819330,
+  "final_makespan": 4819330,
+  "classic_makespan": 4854207,
+  "certified_optimal": false,
+  "minimum_added_bytes": 0,
+  "cache_makespan": 4819330,
+  "global_lower_bound": 4585627,
+  "gap_upper_bound": 0.05096424109505637,
+  "search_seconds": 52.739681000006385,
+  "setup_seconds": 1.1999945854768157e-06,
+  "budget_seconds": 45,
+  "budget_exhausted": true,
+  "preview_calls": 4,
+  "preparation_hits": 0,
+  "preparation_misses": 72,
+  "simulation_hits": 0,
+  "rejected": 4,
+  "pruned": 0,
+  "history": [
+    {
+      "stage": "seed",
+      "candidate": "components_1",
+      "lower_bound": 4595860,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 4854207,
+      "added_bytes": 121488048,
+      "improved": true,
+      "seconds": 8.083507899995311
+    },
+    {
+      "stage": "seed",
+      "candidate": "wave_8",
+      "lower_bound": 4607990,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 4944160,
+      "added_bytes": 58530880,
+      "seconds": 9.312757400010014
+    },
+    {
+      "stage": "stage",
+      "candidate": "stage_width_12",
+      "lower_bound": 4622304,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 4819330,
+      "added_bytes": 71866822,
+      "improved": true,
+      "seconds": 7.9474366000067675
+    },
+    {
+      "stage": "structure",
+      "candidate": "merge_per_core_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "划分或任务顺序产生了依赖环",
+      "seconds": 0
+    },
+    {
+      "stage": "structure",
+      "candidate": "merge_per_core_b2",
+      "status": "invalid",
+      "called": false,
+      "reason": "划分或任务顺序产生了依赖环",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000901_1_0_1_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_phase_1000000901_1_0_2_r0_b0",
+      "status": "invalid",
+      "called": false,
+      "reason": "同核子图顺序违反依赖",
+      "seconds": 0
+    },
+    {
+      "stage": "cache",
+      "candidate": "cache_gather_1000000043_3_2_r0_b1",
+      "lower_bound": 4595893,
+      "called": true,
+      "status": "evaluated",
+      "makespan": 4871072,
+      "added_bytes": 121322928,
+      "seconds": 8.988202000007732
+    }
+  ]
+}
